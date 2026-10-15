@@ -292,7 +292,7 @@
 
     /* --- ENHANCEMENT: CODE BLOCKS STYLING & COLLAPSIBILITY --- */
     .code-block-container { background: #1e1e1e; border-radius: 8px; margin: 15px 0; width: 100%; border: 1px solid #333; overflow: hidden; }
-    .code-header { background: #2d2d2d; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; color: #aaa; font-size: 12px; user-select: none; }
+    .code-header { background: #2d2d2d; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; color: #aaa; font-size: 12px; user-select: none; position: sticky; top: 0; z-index: 10; }
     .code-header .code-actions { display: flex; gap: 12px; }
     .code-header .action-icon { cursor: pointer; display: flex; align-items: center; gap: 4px; color: #aaa; transition: color 0.2s; }
     .code-header .action-icon:hover { color: #fff; }
@@ -586,7 +586,17 @@
         return mapping[normalized] || lang;
     }
 
-    /* --- MARKED CONFIGURATION & ENHANCED CODE RENDERER (COLLAPSIBLE & ROBUST ACTIONS) --- */
+    function escapeHtml(str) {
+        if (!str) return "";
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    /* --- MARKED CONFIGURATION & LIGHTWEIGHT FAST CODE RENDERER (ELIMINATES STREAM FREEZES) --- */
     const renderer = new marked.Renderer();
     renderer.code = function(code, language) {
         const lang = language || 'plaintext';
@@ -596,12 +606,7 @@
             previewBtn = `<div class="action-icon" onclick="window.showPreviewFromBlock(this)"><span class="material-symbols-outlined" style="font-size:16px;">visibility</span> Preview</div>`;
         }
 
-        let highlightedCode = code;
-        if (lang && lang !== 'plaintext' && hljs.getLanguage(lang)) {
-            try { highlightedCode = hljs.highlight(code, { language: lang }).value; } catch (e) {}
-        } else {
-            try { highlightedCode = hljs.highlightAuto(code).value; } catch (e) {}
-        }
+        const safeCode = escapeHtml(code);
 
         return `
         <div class="code-block-container">
@@ -613,7 +618,7 @@
                     <div class="action-icon" onclick="window.copyCodeFromBlock(this)"><span class="material-symbols-outlined" style="font-size:16px;">content_copy</span> Copy</div>
                 </div>
             </div>
-            <pre><code class="hljs ${lang}">${highlightedCode}</code></pre>
+            <pre><code class="hljs ${lang}">${safeCode}</code></pre>
         </div>`;
     };
     marked.setOptions({ renderer: renderer });
@@ -671,6 +676,14 @@
             alert("Code copied to clipboard");
         } catch (err) {}
         document.body.removeChild(textArea);
+    }
+
+    function safeAutoScroll() {
+        const threshold = 180;
+        const isNearBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - threshold);
+        if (isNearBottom) {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
     }
 
     window.copyCode = function(code) {
@@ -1141,7 +1154,7 @@
        chatHistory.push({sender: "Bot", text: "[Image Generated]", type: "image", src: src, id: msgId});
        localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
 
-       window.scrollTo(0, document.body.scrollHeight);
+       safeAutoScroll();
     }
 
     async function sendMessage(fromVoice = false) {
@@ -1229,7 +1242,7 @@
 
       const loader = document.getElementById('ecgLoader');
       loader.style.display = 'flex';
-      window.scrollTo(0, document.body.scrollHeight);
+      safeAutoScroll();
 
       try {
         console.log("Requesting AI Response for model: " + model);
@@ -1294,7 +1307,6 @@
                 });
             }
 
-            // Inject previous dialogue turns from chat history
             if (Array.isArray(chatHistory)) {
                 chatHistory.slice(0, -1).forEach(item => {
                     if (item.sender === "User" && item.text) {
@@ -1371,7 +1383,7 @@
 
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
 
-            /* --- THROTTLED STREAM RENDERING TO PREVENT MAIN THREAD FREEZE --- */
+            /* --- FAST LIGHTWEIGHT STREAM RENDERING (NO FREEZES) --- */
             let lastRender = 0;
             for await (const chunk of streamResp) {
                 if(chunk.usage) { updateUsageUI(chunk.usage); continue; }
@@ -1382,15 +1394,15 @@
                     if (now - lastRender > 80) {
                         lastRender = now;
                         targetSpan.innerHTML = marked.parse(fullBotText);
-                        window.scrollTo(0, document.body.scrollHeight);
+                        safeAutoScroll();
                     }
                 }
             }
 
             // Final render with complete syntax highlight executed only once
             targetSpan.innerHTML = marked.parse(fullBotText);
-            document.querySelectorAll(`#stream-content-${msgId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
-            window.scrollTo(0, document.body.scrollHeight);
+            document.querySelectorAll(`#stream-content-${msgId} pre code`).forEach((block) => { hljs.highlightElement(block); });
+            safeAutoScroll();
 
             loader.style.display = 'none';
             chatHistory.push({sender: "Bot", text: fullBotText, id: msgId, files: []});
@@ -1470,7 +1482,7 @@
           localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
       }
 
-      window.scrollTo(0, document.body.scrollHeight);
+      safeAutoScroll();
     }
 
     function showContextMenu(e, text, id) {
@@ -2095,13 +2107,13 @@
                     if (now - lastFallbackRender > 80) {
                         lastFallbackRender = now;
                         targetSpan.innerHTML = marked.parse(fullBotText);
-                        window.scrollTo(0, document.body.scrollHeight);
+                        safeAutoScroll();
                     }
                 }
             }
             targetSpan.innerHTML = marked.parse(fullBotText);
-            document.querySelectorAll(`#stream-content-${loaderId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
-            window.scrollTo(0, document.body.scrollHeight);
+            document.querySelectorAll(`#stream-content-${loaderId} pre code`).forEach((block) => { hljs.highlightElement(block); });
+            safeAutoScroll();
 
             chatHistory.push({sender: "Bot", text: fullBotText, id: `msg-${loaderId}`, files: []});
             localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
@@ -2262,13 +2274,13 @@
                     if (now - lastRagRender > 80) {
                         lastRagRender = now;
                         targetSpan.innerHTML = marked.parse(fullBotText);
-                        window.scrollTo(0, document.body.scrollHeight);
+                        safeAutoScroll();
                     }
                 }
             }
             targetSpan.innerHTML = marked.parse(fullBotText);
-            document.querySelectorAll(`#stream-content-${loaderId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
-            window.scrollTo(0, document.body.scrollHeight);
+            document.querySelectorAll(`#stream-content-${loaderId} pre code`).forEach((block) => { hljs.highlightElement(block); });
+            safeAutoScroll();
 
             chatHistory.push({sender: "Bot", text: fullBotText, id: `msg-${loaderId}`, files: []});
             localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
@@ -2338,7 +2350,7 @@
             </div>
         `;
         log.appendChild(div);
-        window.scrollTo(0, document.body.scrollHeight);
+        safeAutoScroll();
 
         const existingIds = new Set();
         try {
@@ -2581,7 +2593,7 @@
 
         const loader = document.getElementById('ecgLoader');
         loader.style.display = 'flex';
-        window.scrollTo(0, document.body.scrollHeight);
+        safeAutoScroll();
 
         const msgId = "gemini-" + Date.now() + "_" + Math.floor(Math.random() * 1000000);
 
@@ -2719,9 +2731,9 @@
 
         div.innerHTML = `<div class="message-content"><b>Bot:</b><br><span id="stream-content-${msgId}">Thinking...</span></div>`;
         log.appendChild(div);
-        window.scrollTo(0, document.body.scrollHeight);
+        safeAutoScroll();
 
-        /* --- THROTTLED GEMINI STREAM CHUNK PARSING & HIGHLIGHT AVOIDANCE --- */
+        /* --- FAST STREAM CHUNK PARSER (NO HANG) --- */
         let streamThrottleTimer = null;
 
         window.onGeminiStreamChunk = function(targetMsgId, rawChunk) {
@@ -2760,7 +2772,7 @@
                 if (textToRender) {
                     targetSpan.innerHTML = marked.parse(textToRender);
                 }
-                window.scrollTo(0, document.body.scrollHeight);
+                safeAutoScroll();
             }, 80);
         };
 
@@ -2826,7 +2838,7 @@
                 }
 
                 targetSpan.innerHTML = marked.parse(renderedText);
-                document.querySelectorAll(`#stream-content-${msgId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
+                document.querySelectorAll(`#stream-content-${msgId} pre code`).forEach((block) => { hljs.highlightElement(block); });
 
                 const metadata = obj.candidates?.[0]?.groundingMetadata;
                 if (metadata) {
@@ -2888,7 +2900,7 @@
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
             if (targetSpan) {
                 targetSpan.innerHTML = marked.parse(finalBody);
-                document.querySelectorAll(`#stream-content-${msgId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
+                document.querySelectorAll(`#stream-content-${msgId} pre code`).forEach((block) => { hljs.highlightElement(block); });
                 try {
                     const lastJson = tempBuffer.substring(tempBuffer.lastIndexOf('{'));
                     const obj = JSON.parse(lastJson);
@@ -2903,7 +2915,7 @@
 
         chatHistory.push({sender: "Bot", text: finalBody, id: msgId, files: []});
         localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
-        window.scrollTo(0, document.body.scrollHeight);
+        safeAutoScroll();
 
         if (isVoiceResponseActive && !document.getElementById(msgId)?.querySelector(".message-content")?.dataset?.audioUrl) {
             executeSpeechSynthesisFallback(finalBody);
@@ -3345,7 +3357,7 @@
                                 scheduleAudioChunkPlayLive(part.inlineData.data);
                             }
                         }
-                        window.scrollTo(0, document.body.scrollHeight);
+                        safeAutoScroll();
                     }
 
                     if (content.outputTranscription && content.outputTranscription.text) {
@@ -3399,7 +3411,7 @@
                         currentLiveBotSpan.innerText += content.outputTranscription.text;
                         chatHistory.push({sender: "Bot", text: content.outputTranscription.text, id: msgId, files: []});
                         localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
-                        window.scrollTo(0, document.body.scrollHeight);
+                        safeAutoScroll();
                     }
 
                     if (content.turnComplete) {
@@ -3449,7 +3461,7 @@
                         }
 
                         currentLiveUserSpan.innerText += content.inputTranscription.text;
-                        window.scrollTo(0, document.body.scrollHeight);
+                        safeAutoScroll();
 
                         if (window.AndroidInterface && window.AndroidInterface.broadcastUserTranscript) {
                             window.AndroidInterface.broadcastUserTranscript(content.inputTranscription.text);
@@ -3940,4 +3952,3 @@
   </script>
 </body>
 </html>
-
