@@ -84,7 +84,7 @@
     .aspect-ratio-select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; background: #f9f9f9; font-size: 14px; outline: none; cursor: pointer; }
     .ai-generated-image { width: 100%; max-width: 500px; border-radius: 16px; margin-top: 10px; border: 1px solid #ddd; display: block; }
 
-    /* --- STEP 2: NATIVE DOWNLOAD FEATURING THIN STYLE IN Bot MESSAGE HEADER --- */
+    /* --- NATIVE DOWNLOAD FEATURING THIN STYLE IN Bot MESSAGE HEADER --- */
     .msg-header {
       display: flex;
       justify-content: space-between;
@@ -111,20 +111,20 @@
     .user-message .message-content { background-color: #007bff; color: white; border-bottom-right-radius: 4px; }
     .bot-message .message-content { background-color: #e5e5ea; color: black; border-bottom-left-radius: 4px; }
 
-    /* --- NEW FEATURE: IN-CHAT THUMBNAILS --- */
+    /* --- IN-CHAT THUMBNAILS --- */
     .chat-thumbnail-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 8px; }
     .user-message .chat-thumbnail-container { border-top: 1px solid rgba(255,255,255,0.3); }
     .chat-inline-thumb { width: 60px; height: 60px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(0,0,0,0.1); background: #fff; }
     .chat-inline-file { width: 60px; height: 60px; border-radius: 6px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #1a73e8; border: 1px solid rgba(0,0,0,0.1); text-align: center; }
 
-    /* --- ENHANCEMENT: ECG LOADER CSS --- */
+    /* --- ECG LOADER CSS --- */
     .loader-container { display: none; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0; width: 100%; }
     .ecg-graph { width: 120px; height: 30px; }
     .ecg-path { fill: none; stroke: #1a73e8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 200; stroke-dashoffset: 200; animation: ecg-flow 1.5s linear infinite; }
     @keyframes ecg-flow { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: -200; } }
     .loader-text { font-size: 13px; color: #666; margin-top: 8px; font-weight: bold; }
 
-    /* --- ENHANCEMENT: CONTEXT MENU CSS --- */
+    /* --- CONTEXT MENU CSS --- */
     .context-menu { position: fixed; background: #fff; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); display: none; z-index: 1000; min-width: 180px; padding: 5px 0; border: 1px solid #ddd; }
     .context-menu li { list-style: none; padding: 12px 20px; font-size: 15px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: #333; }
     .context-menu li:hover { background: #f0f0f0; }
@@ -132,11 +132,11 @@
     .delete-action { color: #d93025 !important; }
     .delete-action span { color: #d93025 !important; }
 
-    /* --- FIXED SEARCH BAR CSS WITH DYNAMIC TRANSFORM --- */
+    /* --- FIXED SEARCH BAR CSS --- */
     .chat-controls { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; padding: 10px; z-index: 110; border-top: 1px solid #ddd; }
     .search-bar-container { display: flex; flex-direction: column; width: 100%; max-width: 600px; border-radius: 28px; background-color: white; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); padding: 6px 10px; position: relative; min-height: 56px; height: auto !important; border: 1px solid #dadce0; margin: 0 auto; transition: all 0.2s ease; }
 
-    /* --- NEW FEATURE: THUMBNAIL CONTAINER --- */
+    /* --- THUMBNAIL CONTAINER --- */
     .thumbnail-container { display: flex; flex-wrap: wrap; gap: 8px; padding: 5px 40px; width: 100%; }
     .thumbnail { position: relative; width: 42px; height: 42px; border-radius: 8px; border: 1px solid #ddd; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: visible; }
     .thumbnail img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
@@ -145,7 +145,6 @@
 
     .input-wrapper { display: flex; align-items: center; width: 100%; position: relative; }
 
-    /* FIX #1: PROFESSIONAL TEXTAREA UPGRADE CSS */
     .search-bar-container textarea { 
         flex-grow: 1; 
         border: none; 
@@ -164,7 +163,6 @@
         font-family: inherit;
     }
 
-    /* Rules for all buttons in the bar */
     .search-bar-container .action-button { 
         background: none; 
         border: none; 
@@ -186,7 +184,6 @@
     .mic-btn-cls { right: 48px; }
     .voice-agent-btn-cls { right: 6px; color: #1a73e8; }
 
-    /* --- NATIVE GEMINI INDICATOR SYSTEM (WEBVIEW OPTIMIZED) --- */
     .ai-indicator {
        position: relative;
        width: 40px;
@@ -196,19 +193,17 @@
        justify-content: center;
     }
 
-    /* Base color styling for the voice agent icon */
     #voiceAgentIcon {
       color: #1a73e8 !important;
       display: inline-block;
       transform-origin: center;
     }
 
-    /* Orbit star default structural styling */
     .orbit-star {
        position: absolute;
        left: 50%;
        top: 50%;
-       margin-left: -5px; /* Centers ✦ cleanly on GPU layer */
+       margin-left: -5px;
        margin-top: -6px;
        transform-origin: 0 0;
        color: #1a73e8;
@@ -220,56 +215,27 @@
        will-change: transform, opacity, filter;
     }
 
-    /* Center star scale pulse */
     @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.25);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
     }
 
-    /* Orbital path calculation keeping the ✦ vertically aligned */
     @keyframes orbit {
-       from {
-          transform:
-            rotate(0deg)
-            translateX(18px)
-            rotate(0deg);
-       }
-       to {
-          transform:
-            rotate(360deg)
-            translateX(18px)
-            rotate(-360deg);
-       }
+       from { transform: rotate(0deg) translateX(18px) rotate(0deg); }
+       to { transform: rotate(360deg) translateX(18px) rotate(-360deg); }
     }
 
-    /* Compositor-accelerated opacity blink */
     @keyframes blink {
-       0%, 100% {
-          opacity: 1;
-       }
-       50% {
-          opacity: .2;
-       }
+       0%, 100% { opacity: 1; }
+       50% { opacity: .2; }
     }
 
-    /* GPU-accelerated hue shift to bypass layout painting blocks on native Android WebViews */
     @keyframes webview-hue-shift {
-      0% {
-        filter: hue-rotate(0deg) saturate(1.2);
-      }
-      50% {
-        filter: hue-rotate(180deg) saturate(1.6);
-      }
-      100% {
-        filter: hue-rotate(360deg) saturate(1.2);
-      }
+      0% { filter: hue-rotate(0deg) saturate(1.2); }
+      50% { filter: hue-rotate(180deg) saturate(1.6); }
+      100% { filter: hue-rotate(360deg) saturate(1.2); }
     }
 
-    /* Active voice state center icon triggers */
     #voiceAgentIcon.sparkle-active {
       display: inline-block !important;
       transform-origin: center !important;
@@ -279,31 +245,21 @@
         webview-hue-shift 3s infinite linear !important;
     }
 
-    /* Sibling toggles executing orbital loops concurrently */
     #voiceAgentIcon.sparkle-active ~ .orbit-star {
        visibility: visible;
        opacity: 1;
     }
 
     #voiceAgentIcon.sparkle-active ~ .orbit-star.s1 {
-       animation:
-          orbit 2s linear infinite,
-          blink 1s ease-in-out infinite,
-          webview-hue-shift 3s infinite linear !important;
+       animation: orbit 2s linear infinite, blink 1s ease-in-out infinite, webview-hue-shift 3s infinite linear !important;
     }
 
     #voiceAgentIcon.sparkle-active ~ .orbit-star.s2 {
-       animation:
-          orbit 3s linear infinite,
-          blink 1.3s ease-in-out infinite,
-          webview-hue-shift 3s infinite linear !important;
+       animation: orbit 3s linear infinite, blink 1.3s ease-in-out infinite, webview-hue-shift 3s infinite linear !important;
     }
 
     #voiceAgentIcon.sparkle-active ~ .orbit-star.s3 {
-       animation:
-          orbit 4s linear infinite,
-          blink 0.8s ease-in-out infinite,
-          webview-hue-shift 3s infinite linear !important;
+       animation: orbit 4s linear infinite, blink 0.8s ease-in-out infinite, webview-hue-shift 3s infinite linear !important;
     }
 
     .search-bar-container .send-btn-cls { 
@@ -316,7 +272,6 @@
     }
     .send-btn-cls span { font-variation-settings: 'FILL' 1; }
 
-    /* VISIBILITY LOGIC */
     .search-bar-container.has-text .mic-btn-cls,
     .search-bar-container.has-text .voice-agent-btn-cls { 
         display: none !important; 
@@ -335,15 +290,16 @@
     .btn-primary { background: #1a73e8; color: #fff; }
     .btn-secondary { background: #eee; color: #333; }
 
-    /* --- ENHANCEMENT: VERTICAL-ONLY CODE BLOCKS STYLING --- */
+    /* --- ENHANCEMENT: CODE BLOCKS STYLING & COLLAPSIBILITY --- */
     .code-block-container { background: #1e1e1e; border-radius: 8px; margin: 15px 0; width: 100%; border: 1px solid #333; overflow: hidden; }
-    .code-header { background: #2d2d2d; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; color: #aaa; font-size: 12px; }
+    .code-header { background: #2d2d2d; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; color: #aaa; font-size: 12px; user-select: none; }
     .code-header .code-actions { display: flex; gap: 12px; }
     .code-header .action-icon { cursor: pointer; display: flex; align-items: center; gap: 4px; color: #aaa; transition: color 0.2s; }
     .code-header .action-icon:hover { color: #fff; }
+    pre { margin: 0; }
     code { display: block; font-family: 'monospace'; line-height: 1.5; padding: 15px; white-space: pre-wrap !important; word-break: break-word !important; overflow-x: hidden; }
 
-    /* --- ENHANCEMENT: PREVIEW MODAL STYLING --- */
+    /* --- PREVIEW MODAL STYLING --- */
     #previewModal { display: none; position: fixed; inset: 0; z-index: 2000; background: #fff; flex-direction: column; }
     .preview-header { background: #333; color: #fff; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; }
     .preview-header h3 { margin: 0; font-size: 16px; font-weight: normal; }
@@ -371,15 +327,11 @@
       <li onclick="window.AndroidInterface.loadLocalUrl('browser.html')">Browse Website</li>
       <li onclick="window.AndroidInterface.loadLocalUrl('bot.html')">Traders Zone</li>
 
-      <!-- =========================================================================
-       * OPEN-TEXT REPLY LANGUAGE CONFIGURATION PANEL
-       * ========================================================================= -->
       <li style="padding: 12px 20px; cursor: default; border-bottom: 1px solid #f0f0f0; display: flex; flex-direction: column; gap: 6px;">
         <div style="font-weight: bold; color: #555; font-size: 13px;">Reply Language</div>
         <input type="text" id="modelLanguageInput" placeholder="Enter reply language (e.g., Malayalam, Spanish)..." onchange="handleLanguageInput(this.value)" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; outline: none; background: #f9f9f9; box-sizing: border-box;" />
       </li>
 
-      <!-- PERSISTENT USAGE TELEMETRY UI -->
       <li id="usageDisplay" class="usage-divider">
         GENERATION USAGE
         <span class="usage-val" id="lastTokenVal">Last: 0 tokens</span>
@@ -388,15 +340,9 @@
         <span class="usage-val" id="totalCreditVal">Global Cost: $0.0000</span>
       </li>
 
-      <!-- REQUIREMENT #3: DYNAMIC SESSION LIST INJECTED HERE -->
       <div id="dynamicSessions"></div>
-
-      <!-- NEW "WEB SCRAP" SUB-SECTION DYNAMICALLY INJECTED HERE -->
       <div id="dynamicScrapedItems"></div>
 
-      <!-- =========================================================================
-       * NOSTR NATIVE CRYPTO IDENTITY PANEL
-       * ========================================================================= -->
       <li class="session-divider" style="background:#e8f0fe; color:#1a73e8;">Nostr Identity</li>
       <li style="padding: 10px 20px; font-size: 13px; line-height: 1.5; cursor: default;">
         <div style="font-weight: bold; color: #555;">Public ID (npub)</div>
@@ -409,9 +355,6 @@
         <button class="btn-primary" onclick="copyNostrKey('priv')" style="padding: 6px 12px; font-size: 11px; margin-top: 4px; border-radius: 4px; border:none; color:white; cursor:pointer; width: 100%;">Copy nsec</button>
       </li>
 
-      <!-- =========================================================================
-       * EXPANDABLE NATIVE GEMINI ACCORDION SETTINGS PANEL
-       * ========================================================================= -->
       <li class="session-divider" id="geminiMenuDivider" style="background:#e8f0fe; color:#1a73e8; display:none;">Gemini Configuration</li>
       <li id="geminiToggleDrawerHeader" onclick="toggleGeminiDrawer()" style="display:none; font-weight:bold; cursor:pointer; justify-content:space-between; align-items:center;">
         <span>Gemini Settings</span>
@@ -436,7 +379,6 @@
             <option value="maps">Google Maps</option>
           </select>
         </div>
-        <!-- Voice Character UI -->
         <div style="display:flex; flex-direction:column; gap:4px; margin-top:5px;">
           <label style="font-size:11px; font-weight:bold; color:#555;">Voice Character</label>
           <select id="geminiVoiceSelect" onchange="handleGeminiVoiceChange(this.value)" style="width:100%; padding:8px 12px; border:1px solid #ccc; border-radius:8px; font-size:13px; outline:none; background:#fff; box-sizing:border-box;">
@@ -459,12 +401,9 @@
         <span id="selectedModelText">Loading models...</span>
         <span class="material-symbols-outlined">expand_more</span>
       </div>
-      <div id="accordionMenu" class="accordion-menu">
-         <!-- Dynamically populated by JS -->
-      </div>
+      <div id="accordionMenu" class="accordion-menu"></div>
     </div>
 
-    <!-- ENHANCEMENT: ASPECT RATIO DROPDOWN -->
     <div id="aspectRatioContainer" class="aspect-ratio-container">
         <select id="aspectRatioSelect" class="aspect-ratio-select">
            <option value="1:1">1:1 Square (Profile/Logo)</option>
@@ -480,7 +419,6 @@
   <div class="chat-container">
     <div id="puterChatLog" class="chat-log"></div>
 
-    <!-- ECG GRAPH LOADER -->
     <div id="ecgLoader" class="loader-container">
         <svg class="ecg-graph" viewBox="0 0 100 30">
             <path class="ecg-path" d="M0,15 L25,15 L30,5 L35,25 L40,15 L60,15 L65,0 L75,30 L80,15 L100,15" />
@@ -491,25 +429,19 @@
 
   <div class="chat-controls">
     <div class="search-bar-container" id="puterSearchBarContainer">
-
-      <!-- FILE THUMBNAILS -->
       <div id="thumbnailArea" class="thumbnail-container"></div>
 
       <div class="input-wrapper">
-          <!-- 1. Upload Icon: Extreme Left -->
           <button class="action-button upload-btn-cls" onclick="window.AndroidInterface.openFilePicker()">
             <span class="material-symbols-outlined">add</span>
           </button>
 
-          <!-- TEXTAREA REPLACEMENT -->
           <textarea id="puterChatInput" placeholder="Ask Puter..." oninput="handleInput()" autocomplete="off" rows="1"></textarea>
 
-          <!-- 2. Microphone: Right side, left of TTS -->
           <button class="action-button mic-btn-cls" onclick="triggerMic()">
             <span class="material-symbols-outlined">mic</span>
           </button>
 
-          <!-- 3. TTS/Voice Agent: Extreme Right (HTML structure wrapper with separate orbiting elements) -->
           <button class="action-button voice-agent-btn-cls" onclick="triggerVoiceAgent()">
             <div class="ai-indicator">
                 <span id="voiceAgentIcon" class="material-symbols-outlined">auto_awesome</span>
@@ -519,7 +451,6 @@
             </div>
           </button>
 
-          <!-- 4. Send Button: Replaces Mic and TTS when text is present -->
           <button class="action-button send-btn-cls" id="sendBtn" onclick="sendMessage(false)">
             <span class="material-symbols-outlined">send</span>
           </button>
@@ -527,18 +458,16 @@
     </div>
   </div>
 
-  <!-- CONTEXT MENU (SEVEN ACTIVE OPTIONS) -->
   <ul id="customContextMenu" class="context-menu">
       <li onclick="handleMenuAction('copy')"><span class="material-symbols-outlined">content_copy</span> Copy Chat</li>
       <li onclick="handleMenuAction('read')"><span class="material-symbols-outlined">volume_up</span> Read Aloud</li>
       <li onclick="handleMenuAction('delete')" class="delete-action"><span class="material-symbols-outlined">delete</span> Delete Chat</li>
       <li onclick="handleMenuAction('refresh_relay')"><span class="material-symbols-outlined">sync</span> Refresh Relay</li>
-      <li id="menuToggleModeOption" onclick="handleMenuAction('toggle_mode')"><!-- Dynamically evaluated toggle button --></li>
-      <li id="menuToggleProviderOption" onclick="handleMenuAction('toggle_provider')"><!-- puter / gemini toggle --></li>
+      <li id="menuToggleModeOption" onclick="handleMenuAction('toggle_mode')"></li>
+      <li id="menuToggleProviderOption" onclick="handleMenuAction('toggle_provider')"></li>
       <li onclick="handleMenuAction('end_session')"><span class="material-symbols-outlined">power_settings_new</span> End Session</li>
   </ul>
 
-  <!-- HELP MODAL -->
   <div class="modal-overlay" id="helpModal">
     <div class="modal">
       <h3 style="display: flex; align-items: center; gap: 8px;">
@@ -557,7 +486,6 @@
     </div>
   </div>
 
-  <!-- CUSTOM INSTRUCTION MODAL -->
   <div class="modal-overlay" id="customModal">
     <div class="modal">
       <h3>Custom Instruction</h3>
@@ -570,20 +498,16 @@
     </div>
   </div>
 
-  <!-- HISTORY MODAL -->
   <div class="modal-overlay" id="historyModal">
     <div class="modal">
       <h3>Chat History</h3>
-      <div id="historyList" style="max-height: 300px; overflow-y: auto; font-size: 14px;">
-        <!-- Dynamically filled by JS -->
-      </div>
+      <div id="historyList" style="max-height: 300px; overflow-y: auto; font-size: 14px;"></div>
       <div class="modal-buttons">
         <button class="btn-secondary" onclick="closeModal('historyModal')">Close</button>
       </div>
     </div>
   </div>
 
-  <!-- ENHANCEMENT: FULL-SCREEN PREVIEW MODAL -->
   <div id="previewModal">
       <div class="preview-header">
           <h3>HTML Preview</h3>
@@ -592,9 +516,6 @@
       <iframe id="previewIframe"></iframe>
   </div>
 
-  <!-- =========================================================================
-   * STARTUP terminal diagnostic modal
-   * ========================================================================= -->
   <div class="modal-overlay" id="diagnosticModal" style="background: #121212;">
     <div class="modal" style="background: #1e1e1e; color: #00ff00; font-family: monospace; border: 1px solid #00ff00; max-width: 600px; max-height: 85vh;">
       <h3 style="color: #00ff00; border-bottom: 1px solid #00ff00; padding-bottom: 8px; margin-top:0;">Startup Hardware & Web Diagnostics</h3>
@@ -607,7 +528,6 @@
   </div>
 
   <script>
-    /* --- CRYPTOGRAPHIC BECH32 DECODER & HEX TRANSLATION UTILITIES --- */
     const BECH32_ALPHABET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
 
     function decodeBech32(bechString) {
@@ -624,7 +544,7 @@
             data.push(charIndex);
         }
 
-        const values = data.slice(0, -6); // Strip 6-character checksum
+        const values = data.slice(0, -6);
         let accumulator = 0;
         let bits = 0;
         const bytes = [];
@@ -645,7 +565,6 @@
         return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    /* --- NATIVE SCRIPT TRANSLATION DICTIONARY FOR LANGUAGE COMPLIANCE --- */
     function getNativeLanguageName(lang) {
         if (!lang) return "";
         const normalized = lang.trim().toLowerCase();
@@ -667,15 +586,14 @@
         return mapping[normalized] || lang;
     }
 
-    /* --- MARKED CONFIGURATION & CUSTOM RENDERER --- */
+    /* --- MARKED CONFIGURATION & ENHANCED CODE RENDERER (COLLAPSIBLE & ROBUST ACTIONS) --- */
     const renderer = new marked.Renderer();
     renderer.code = function(code, language) {
         const lang = language || 'plaintext';
-        const safeCode = encodeURIComponent(code);
 
         let previewBtn = '';
         if (lang.toLowerCase() === 'html' || lang.toLowerCase() === 'xml') {
-            previewBtn = `<div class="action-icon" onclick="showPreview(decodeURIComponent('${safeCode}'))"><span class="material-symbols-outlined" style="font-size:16px;">visibility</span> Preview</div>`;
+            previewBtn = `<div class="action-icon" onclick="window.showPreviewFromBlock(this)"><span class="material-symbols-outlined" style="font-size:16px;">visibility</span> Preview</div>`;
         }
 
         let highlightedCode = code;
@@ -690,14 +608,70 @@
             <div class="code-header">
                 <span>${lang}</span>
                 <div class="code-actions">
+                    <div class="action-icon" onclick="window.toggleCodeBlock(this)"><span class="material-symbols-outlined" style="font-size:16px;">unfold_less</span> Hide</div>
                     ${previewBtn}
-                    <div class="action-icon" onclick="copyCode(decodeURIComponent('${safeCode}'))"><span class="material-symbols-outlined" style="font-size:16px;">content_copy</span> Copy</div>
+                    <div class="action-icon" onclick="window.copyCodeFromBlock(this)"><span class="material-symbols-outlined" style="font-size:16px;">content_copy</span> Copy</div>
                 </div>
             </div>
             <pre><code class="hljs ${lang}">${highlightedCode}</code></pre>
         </div>`;
     };
     marked.setOptions({ renderer: renderer });
+
+    window.toggleCodeBlock = function(btn) {
+        const container = btn.closest('.code-block-container');
+        if (!container) return;
+        const pre = container.querySelector('pre');
+        if (!pre) return;
+        if (pre.style.display === 'none') {
+            pre.style.display = 'block';
+            btn.innerHTML = `<span class="material-symbols-outlined" style="font-size:16px;">unfold_less</span> Hide`;
+        } else {
+            pre.style.display = 'none';
+            btn.innerHTML = `<span class="material-symbols-outlined" style="font-size:16px;">unfold_more</span> Reveal`;
+        }
+    };
+
+    window.copyCodeFromBlock = function(btn) {
+        const container = btn.closest('.code-block-container');
+        if (!container) return;
+        const codeEl = container.querySelector('code');
+        const codeText = codeEl ? (codeEl.innerText || codeEl.textContent) : "";
+        if (window.AndroidInterface && window.AndroidInterface.copyToClipboard) {
+            window.AndroidInterface.copyToClipboard(codeText);
+            if (window.AndroidInterface.showToast) {
+                window.AndroidInterface.showToast("Code copied to clipboard");
+            }
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeText).then(() => {
+                alert("Code copied to clipboard");
+            }).catch(() => {
+                fallbackCopyText(codeText);
+            });
+        } else {
+            fallbackCopyText(codeText);
+        }
+    };
+
+    window.showPreviewFromBlock = function(btn) {
+        const container = btn.closest('.code-block-container');
+        if (!container) return;
+        const codeEl = container.querySelector('code');
+        const codeText = codeEl ? (codeEl.innerText || codeEl.textContent) : "";
+        window.showPreview(codeText);
+    };
+
+    function fallbackCopyText(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            alert("Code copied to clipboard");
+        } catch (err) {}
+        document.body.removeChild(textArea);
+    }
 
     window.copyCode = function(code) {
         if (window.AndroidInterface && window.AndroidInterface.copyToClipboard) {
@@ -751,7 +725,6 @@
     let isLivePlaybackActive = false;
     window.isConnectingLiveSocket = false;
 
-    // ACTIVE LIVE SESSION CONTEXT STATE TRACKERS
     let currentLiveBotSpan = null;
     let currentLiveUserSpan = null;
     let isLiveSessionConnected = false;
@@ -800,6 +773,9 @@
 
     function openModal(id) { 
         if(id === 'historyModal') renderHistory();
+        if(id === 'customModal') {
+            document.getElementById('customInput').value = customInstruction || "";
+        }
         document.getElementById(id).style.display = 'flex'; 
     }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
@@ -813,7 +789,6 @@
         el.classList.toggle('open');
     }
 
-    // UPDATED: Traders Zone is integrated below, so let's preserve the selectModel configuration
     function selectModel(id, name, modelObj = null) {
         globalSelectedModel = id;
         globalModelObject = modelObj;
@@ -912,7 +887,6 @@
 
         let html = '';
 
-        // SLIDER 1: ALL MODELS
         html += `<div class="acc-section">
                     <div class="acc-header" onclick="toggleAcc('acc-all')">All Models <span class="material-symbols-outlined" style="font-size:18px;">expand_more</span></div>
                     <div id="acc-all" class="acc-content">`;
@@ -924,7 +898,6 @@
         });
         html += `   </div></div>`;
 
-        // SLIDER 2: BY PARENT
         html += `<div class="acc-section">
                     <div class="acc-header" onclick="toggleAcc('acc-parents')">By Parent <span class="material-symbols-outlined" style="font-size:18px;">expand_more</span></div>
                     <div id="acc-parents" class="acc-content">`;
@@ -941,7 +914,6 @@
         }
         html += `   </div></div>`;
 
-        // SLIDER 3: BY CATEGORY
         html += `<div class="acc-section">
                     <div class="acc-header" onclick="toggleAcc('acc-cat')">By Category <span class="material-symbols-outlined" style="font-size:18px;">expand_more</span></div>
                     <div id="acc-cat" class="acc-content">`;
@@ -1060,7 +1032,6 @@
         return String(content);
     }
 
-    /* --- TWO-TIER STT FALLBACK: MICROPHONE ICON --- */
     function triggerMic() {
         isVoiceResponseActive = true;
         if (window.AndroidInterface && window.AndroidInterface.setVoiceMode) {
@@ -1110,7 +1081,6 @@
     }
 
     function triggerVoiceAgent() {
-        // Toggle check: If the live connection is already active or connecting, disconnect it cleanly
         if (liveWs && (liveWs.readyState === WebSocket.OPEN || liveWs.readyState === WebSocket.CONNECTING)) {
             disconnectWebSocketLive();
             return;
@@ -1121,7 +1091,6 @@
             window.AndroidInterface.setVoiceMode(true);
         }
 
-        // Start multi-color blinking immediately when clicking the sparkle
         const icon = document.getElementById("voiceAgentIcon");
         if (icon) {
             icon.classList.add("sparkle-active");
@@ -1316,11 +1285,23 @@
             else appendChat("Bot", "Error: Recognized image data not found in response.");
 
         } else {
+            /* --- CONSTRUCT MULTI-TURN MESSAGES ARRAY WITH PERSISTENT CHAT HISTORY --- */
             const messagesArray = [];
             if (activeSystemMessage) {
                 messagesArray.push({
                     role: 'system',
                     content: activeSystemMessage
+                });
+            }
+
+            // Inject previous dialogue turns from chat history
+            if (Array.isArray(chatHistory)) {
+                chatHistory.slice(0, -1).forEach(item => {
+                    if (item.sender === "User" && item.text) {
+                        messagesArray.push({ role: 'user', content: item.text });
+                    } else if (item.sender === "Bot" && item.text && item.text !== "[Image Generated]") {
+                        messagesArray.push({ role: 'assistant', content: item.text });
+                    }
                 });
             }
 
@@ -1350,7 +1331,11 @@
                 });
             }
 
-            const streamResp = await puter.ai.chat(messagesArray, {model: model, stream: true});
+            const streamResp = await puter.ai.chat(messagesArray, {
+                model: model, 
+                stream: true,
+                system_message: activeSystemMessage
+            });
 
             let fullBotText = "";
             const msgId = "msg-" + Date.now() + "_" + Math.floor(Math.random() * 1000000);
@@ -1386,16 +1371,26 @@
 
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
 
+            /* --- THROTTLED STREAM RENDERING TO PREVENT MAIN THREAD FREEZE --- */
+            let lastRender = 0;
             for await (const chunk of streamResp) {
                 if(chunk.usage) { updateUsageUI(chunk.usage); continue; }
                 const chunkText = chunk?.text || chunk?.message?.content || "";
                 if (chunkText) {
                     fullBotText += chunkText;
-                    targetSpan.innerHTML = marked.parse(fullBotText);
-                    document.querySelectorAll(`#stream-content-${msgId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
-                    window.scrollTo(0, document.body.scrollHeight);
+                    const now = Date.now();
+                    if (now - lastRender > 80) {
+                        lastRender = now;
+                        targetSpan.innerHTML = marked.parse(fullBotText);
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }
                 }
             }
+
+            // Final render with complete syntax highlight executed only once
+            targetSpan.innerHTML = marked.parse(fullBotText);
+            document.querySelectorAll(`#stream-content-${msgId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
+            window.scrollTo(0, document.body.scrollHeight);
 
             loader.style.display = 'none';
             chatHistory.push({sender: "Bot", text: fullBotText, id: msgId, files: []});
@@ -2068,11 +2063,21 @@
             if (activeSystemMessage) {
                 messagesArray.push({ role: 'system', content: activeSystemMessage });
             }
+            if (Array.isArray(chatHistory)) {
+                chatHistory.forEach(item => {
+                    if (item.sender === "User" && item.text) {
+                        messagesArray.push({ role: 'user', content: item.text });
+                    } else if (item.sender === "Bot" && item.text && item.text !== "[Image Generated]") {
+                        messagesArray.push({ role: 'assistant', content: item.text });
+                    }
+                });
+            }
             messagesArray.push({ role: 'user', content: finalQueryText });
 
             const streamResp = await puter.ai.chat(messagesArray, {
                 model: activeModel,
-                stream: true
+                stream: true,
+                system_message: activeSystemMessage
             });
 
             const loaderTextEl = document.getElementById(`loader-indicator-text-${loaderId}`);
@@ -2080,16 +2085,23 @@
 
             const targetSpan = document.getElementById(`stream-content-${loaderId}`);
             let fullBotText = "";
+            let lastFallbackRender = 0;
             for await (const chunk of streamResp) {
                 if (chunk.usage) { updateUsageUI(chunk.usage); continue; }
                 const chunkText = chunk?.text || chunk?.message?.content || "";
                 if (chunkText) {
                     fullBotText += chunkText;
-                    targetSpan.innerHTML = marked.parse(fullBotText);
-                    document.querySelectorAll(`#stream-content-${loaderId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
-                    window.scrollTo(0, document.body.scrollHeight);
+                    const now = Date.now();
+                    if (now - lastFallbackRender > 80) {
+                        lastFallbackRender = now;
+                        targetSpan.innerHTML = marked.parse(fullBotText);
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }
                 }
             }
+            targetSpan.innerHTML = marked.parse(fullBotText);
+            document.querySelectorAll(`#stream-content-${loaderId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
+            window.scrollTo(0, document.body.scrollHeight);
 
             chatHistory.push({sender: "Bot", text: fullBotText, id: `msg-${loaderId}`, files: []});
             localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
@@ -2152,10 +2164,20 @@
             const modelId = globalSelectedModel;
             const msgId = "gemini-" + Date.now() + "_" + Math.floor(Math.random() * 1000000);
             
-            const contents = [{
+            const contents = [];
+            if (Array.isArray(chatHistory)) {
+                chatHistory.forEach(item => {
+                    if (item.sender === "User" && item.text) {
+                        contents.push({ role: "user", parts: [{ text: item.text }] });
+                    } else if (item.sender === "Bot" && item.text && item.text !== "[Image Generated]") {
+                        contents.push({ role: "model", parts: [{ text: item.text }] });
+                    }
+                });
+            }
+            contents.push({
                 role: "user",
                 parts: [{ text: `USER QUESTION: ${queryText}` }]
-            }];
+            });
 
             const isAudioModel = modelId.includes("tts") || (globalModelObject && globalModelObject.categories && globalModelObject.categories.includes("audio"));
             const isStreaming = window.AndroidInterface ? window.AndroidInterface.getGeminiStreaming() : true;
@@ -2197,9 +2219,19 @@
         }
 
         const messagesArray = [
-            { role: "system", content: groundingPrompt },
-            { role: "user", content: finalUserQueryText }
+            { role: "system", content: groundingPrompt }
         ];
+
+        if (Array.isArray(chatHistory)) {
+            chatHistory.forEach(item => {
+                if (item.sender === "User" && item.text) {
+                    messagesArray.push({ role: 'user', content: item.text });
+                } else if (item.sender === "Bot" && item.text && item.text !== "[Image Generated]") {
+                    messagesArray.push({ role: 'assistant', content: item.text });
+                }
+            });
+        }
+        messagesArray.push({ role: "user", content: finalUserQueryText });
 
         const activeModel = globalSelectedModel;
         try {
@@ -2211,7 +2243,8 @@
 
             const streamResp = await puter.ai.chat(messagesArray, {
                 model: activeModel,
-                stream: true
+                stream: true,
+                system_message: groundingPrompt
             });
 
             const loaderTextEl = document.getElementById(`loader-indicator-text-${loaderId}`);
@@ -2219,16 +2252,23 @@
 
             const targetSpan = document.getElementById(`stream-content-${loaderId}`);
             let fullBotText = "";
+            let lastRagRender = 0;
             for await (const chunk of streamResp) {
                 if (chunk.usage) { updateUsageUI(chunk.usage); continue; }
                 const chunkText = chunk?.text || chunk?.message?.content || "";
                 if (chunkText) {
                     fullBotText += chunkText;
-                    targetSpan.innerHTML = marked.parse(fullBotText);
-                    document.querySelectorAll(`#stream-content-${loaderId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
-                    window.scrollTo(0, document.body.scrollHeight);
+                    const now = Date.now();
+                    if (now - lastRagRender > 80) {
+                        lastRagRender = now;
+                        targetSpan.innerHTML = marked.parse(fullBotText);
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }
                 }
             }
+            targetSpan.innerHTML = marked.parse(fullBotText);
+            document.querySelectorAll(`#stream-content-${loaderId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
+            window.scrollTo(0, document.body.scrollHeight);
 
             chatHistory.push({sender: "Bot", text: fullBotText, id: `msg-${loaderId}`, files: []});
             localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
@@ -2545,18 +2585,29 @@
 
         const msgId = "gemini-" + Date.now() + "_" + Math.floor(Math.random() * 1000000);
 
+        /* --- MULTI-TURN CONTENTS RECONSTRUCTION FROM LOCAL CHAT HISTORY --- */
         const contents = [];
-        const parts = [];
 
+        if (Array.isArray(chatHistory)) {
+            chatHistory.slice(0, -1).forEach(item => {
+                if (item.sender === "User" && item.text) {
+                    contents.push({ role: "user", parts: [{ text: item.text }] });
+                } else if (item.sender === "Bot" && item.text && item.text !== "[Image Generated]") {
+                    contents.push({ role: "model", parts: [{ text: item.text }] });
+                }
+            });
+        }
+
+        const currentParts = [];
         if (promptText) {
-            parts.push({ text: promptText });
+            currentParts.push({ text: promptText });
         }
 
         files.forEach(f => {
             if (f.type.startsWith('image/')) {
                 const match = f.data.match(/^data:([^;]+);base64,(.+)$/);
                 if (match) {
-                    parts.push({
+                    currentParts.push({
                         inlineData: {
                             mimeType: match[1],
                             data: match[2]
@@ -2564,11 +2615,11 @@
                     });
                 }
             } else {
-                parts.push({ text: `[Attached File: ${f.name}]\n${f.data}` });
+                currentParts.push({ text: `[Attached File: ${f.name}]\n${f.data}` });
             }
         });
 
-        contents.push({ role: "user", parts: parts });
+        contents.push({ role: "user", parts: currentParts });
 
         const payload = { contents: contents };
 
@@ -2598,14 +2649,19 @@
             }
         }
 
+        /* --- UNIFIED SYSTEM INSTRUCTION & CUSTOM DIRECTIVES --- */
         if (!isDedicatedTts) {
             const targetLanguage = localStorage.getItem("puter_target_language") || "";
             const nativeLanguage = getNativeLanguageName(targetLanguage);
+            let combinedInstruction = customInstruction || "";
+
             if (targetLanguage) {
                 const systemDirective = `IMPORTANT:\nALWAYS respond ONLY in ${nativeLanguage || targetLanguage}.\n\nNEVER use English.\n\nEven if user speaks English, translate internally and answer only in ${nativeLanguage || targetLanguage}. Do not transliterate. Write strictly in the native script characters of the language.`;
-                payload.systemInstruction = { parts: [{ text: systemDirective }] };
-            } else if (customInstruction) {
-                payload.systemInstruction = { parts: [{ text: customInstruction }] };
+                combinedInstruction = combinedInstruction ? `${combinedInstruction}\n\n${systemDirective}` : systemDirective;
+            }
+
+            if (combinedInstruction) {
+                payload.systemInstruction = { parts: [{ text: combinedInstruction }] };
             }
         }
 
@@ -2630,13 +2686,9 @@
     }
 
     let activeGeminiBuffer = "";
-    let braceCount = 0;
-    let startIndex = -1;
 
     function setupGeminiCallbacks(promptText, msgId, isStreaming) {
         activeGeminiBuffer = "";
-        braceCount = 0;
-        startIndex = -1;
 
         const log = document.getElementById('puterChatLog');
         const div = document.createElement('div');
@@ -2669,49 +2721,64 @@
         log.appendChild(div);
         window.scrollTo(0, document.body.scrollHeight);
 
+        /* --- THROTTLED GEMINI STREAM CHUNK PARSING & HIGHLIGHT AVOIDANCE --- */
+        let streamThrottleTimer = null;
+
         window.onGeminiStreamChunk = function(targetMsgId, rawChunk) {
             if (targetMsgId !== msgId) return;
             activeGeminiBuffer += rawChunk;
 
-            const targetSpan = document.getElementById(`stream-content-${msgId}`);
-            if (!targetSpan) return;
+            if (streamThrottleTimer) return;
 
-            let textToRender = "";
-            let tempBuffer = activeGeminiBuffer;
+            streamThrottleTimer = setTimeout(() => {
+                streamThrottleTimer = null;
+                const targetSpan = document.getElementById(`stream-content-${msgId}`);
+                if (!targetSpan) return;
 
-            for (let i = 0; i < tempBuffer.length; i++) {
-                if (tempBuffer[i] === '{') {
-                    if (braceCount === 0) startIndex = i;
-                    braceCount++;
-                } else if (tempBuffer[i] === '}') {
-                    braceCount--;
-                    if (braceCount === 0 && startIndex !== -1) {
-                        const jsonStr = tempBuffer.substring(startIndex, i + 1);
-                        try {
-                            const obj = JSON.parse(jsonStr);
-                            const partText = obj.candidates?.[0]?.content?.parts?.[0]?.text;
-                            if (partText) {
-                                textToRender += partText;
-                            }
-                        } catch (e) {}
+                let textToRender = "";
+                let tempBuffer = activeGeminiBuffer;
+                let bCount = 0;
+                let sIndex = -1;
+
+                for (let i = 0; i < tempBuffer.length; i++) {
+                    if (tempBuffer[i] === '{') {
+                        if (bCount === 0) sIndex = i;
+                        bCount++;
+                    } else if (tempBuffer[i] === '}') {
+                        bCount--;
+                        if (bCount === 0 && sIndex !== -1) {
+                            const jsonStr = tempBuffer.substring(sIndex, i + 1);
+                            try {
+                                const obj = JSON.parse(jsonStr);
+                                const partText = obj.candidates?.[0]?.content?.parts?.[0]?.text;
+                                if (partText) textToRender += partText;
+                            } catch (e) {}
+                        }
                     }
                 }
-            }
 
-            if (textToRender) {
-                targetSpan.innerHTML = marked.parse(textToRender);
-                document.querySelectorAll(`#stream-content-${msgId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
-            }
-            window.scrollTo(0, document.body.scrollHeight);
+                if (textToRender) {
+                    targetSpan.innerHTML = marked.parse(textToRender);
+                }
+                window.scrollTo(0, document.body.scrollHeight);
+            }, 80);
         };
 
         window.onGeminiStreamComplete = function(targetMsgId) {
             if (targetMsgId !== msgId) return;
+            if (streamThrottleTimer) {
+                clearTimeout(streamThrottleTimer);
+                streamThrottleTimer = null;
+            }
             finalizeGeminiResponse(msgId);
         };
 
         window.onGeminiComplete = function(targetMsgId, fullResponse) {
             if (targetMsgId !== msgId) return;
+            if (streamThrottleTimer) {
+                clearTimeout(streamThrottleTimer);
+                streamThrottleTimer = null;
+            }
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
             if (!targetSpan) return;
 
@@ -2775,6 +2842,10 @@
 
         window.onGeminiError = function(targetMsgId, error) {
             if (targetMsgId !== msgId) return;
+            if (streamThrottleTimer) {
+                clearTimeout(streamThrottleTimer);
+                streamThrottleTimer = null;
+            }
             const loader = document.getElementById('ecgLoader');
             loader.style.display = 'none';
             
@@ -2817,6 +2888,7 @@
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
             if (targetSpan) {
                 targetSpan.innerHTML = marked.parse(finalBody);
+                document.querySelectorAll(`#stream-content-${msgId} pre code:not(.hljs)`).forEach((block) => { hljs.highlightElement(block); });
                 try {
                     const lastJson = tempBuffer.substring(tempBuffer.lastIndexOf('{'));
                     const obj = JSON.parse(lastJson);
@@ -3022,7 +3094,6 @@
         if (!apiKey) {
             alert("Please configure a valid Gemini Access API key first in Settings.");
             
-            // Remove the active animation class if connection fails early
             const icon = document.getElementById("voiceAgentIcon");
             if (icon) {
                 icon.classList.remove("sparkle-active");
@@ -3060,7 +3131,6 @@
         const header = new ArrayBuffer(44);
         const view = new DataView(header);
 
-        // Helper string writer
         function writeString(view, offset, string) {
             for (let i = 0; i < string.length; i++) {
                 view.setUint8(offset + i, string.charCodeAt(i));
@@ -3098,11 +3168,8 @@
         return window.btoa(binary);
     }
 
-    /* --- ADOPTED WEBSOCKET LIVE AUDIO ROUTING PIPELINES --- */
     function connectWebSocketLive(apiKey, modelId, voiceName, useSearch) {
-        // Set the transitional setup flag before triggering the reset cleanup [1]
         window.isConnectingLiveSocket = true;
-
         disconnectWebSocketLive();
 
         if (window.AndroidInterface) {
@@ -3118,7 +3185,7 @@
             liveWs = new WebSocket(url);
         } catch (err) {
             console.error("Live WebSocket creation exception: ", err);
-            window.isConnectingLiveSocket = false; // Reset the transitioning flag on initial failure [1]
+            window.isConnectingLiveSocket = false;
             if (window.AndroidInterface) {
                 window.AndroidInterface.logDiagnostic("WebSockets construction threw exception: " + err.message, "ERROR");
                 window.AndroidInterface.logHtmlGlitch("index.html - WebSockets", "Creation Exception: " + err.message);
@@ -3168,7 +3235,6 @@
                 }
 
                 if (payload.setupComplete) {
-                    // Reset transitional setup flag once handshake is fully confirmed [1]
                     window.isConnectingLiveSocket = false;
 
                     if (!isLiveSessionConnected) {
@@ -3176,7 +3242,6 @@
 
                         if (window.AndroidInterface) {
                             window.AndroidInterface.logDiagnostic("Handshake handshake confirmed. Triggering capture initialization...", "NETWORK");
-                            // Notify Android to cleanly release native SpeechRecognizer locks
                             if (window.AndroidInterface.setLiveSocketActive) {
                                 window.AndroidInterface.setLiveSocketActive(true);
                             }
@@ -3184,11 +3249,9 @@
                         }
                         initMicrophoneCaptureLive();
 
-                        // Visual Feedback in Chat log indicating successful connection
                         appendChat("System", "🟢 Connected to Gemini Live Model", false, []);
                     }
 
-                    // Dispatch any stored/pending query that initiated the connection
                     if (pendingLiveQuery) {
                         if (window.AndroidInterface) {
                             window.AndroidInterface.logDiagnostic("Sending deferred query following socket activation: " + pendingLiveQuery.text.substring(0, 15) + "...", "QUERY");
@@ -3200,7 +3263,7 @@
                 }
 
                 if (payload.error) {
-                    window.isConnectingLiveSocket = false; // Reset the transitioning flag [1]
+                    window.isConnectingLiveSocket = false;
                     console.error("Live server error returned:", payload.error);
                     if (window.AndroidInterface) {
                         window.AndroidInterface.logDiagnostic("Live session host returned structural error: " + JSON.stringify(payload.error), "ERROR");
@@ -3213,7 +3276,6 @@
                 if (payload.serverContent) {
                     const content = payload.serverContent;
 
-                    // Unified Live Barge-in Interruption Hook
                     if (content.interrupted) {
                         if (window.AndroidInterface) {
                             window.AndroidInterface.logDiagnostic("⚡ Live Barge-in Interruption packet received. Purging audio buffers.", "BARGE_IN");
@@ -3226,7 +3288,6 @@
                     }
 
                     if (content.modelTurn && content.modelTurn.parts) {
-                        // Consolidate currentLiveUserSpan if it exists (Turn Complete)
                         if (currentLiveUserSpan) {
                             const finalUserText = currentLiveUserSpan.innerText.trim();
                             if (finalUserText) {
@@ -3288,7 +3349,6 @@
                     }
 
                     if (content.outputTranscription && content.outputTranscription.text) {
-                        // Consolidate currentLiveUserSpan if it exists (Turn Complete)
                         if (currentLiveUserSpan) {
                             const finalUserText = currentLiveUserSpan.innerText.trim();
                             if (finalUserText) {
@@ -3350,7 +3410,6 @@
                     }
 
                     if (content.inputTranscription && content.inputTranscription.text) {
-                        // COHESIVE VOICE RE-ASSEMBLER PIPELINE
                         const msgId = "live-user-msg-" + Date.now();
                         if (!currentLiveUserSpan) {
                             const log = document.getElementById('puterChatLog');
@@ -3392,14 +3451,13 @@
                         currentLiveUserSpan.innerText += content.inputTranscription.text;
                         window.scrollTo(0, document.body.scrollHeight);
 
-                        // Forward user transcriptions dynamically to native VoiceAgentActivity
                         if (window.AndroidInterface && window.AndroidInterface.broadcastUserTranscript) {
                             window.AndroidInterface.broadcastUserTranscript(content.inputTranscription.text);
                         }
                     }
                 }
             } catch (e) {
-                window.isConnectingLiveSocket = false; // Reset transitioning flag on error [1]
+                window.isConnectingLiveSocket = false;
                 console.error("Live packet processing exception: ", e);
                 if (window.AndroidInterface) {
                     window.AndroidInterface.logDiagnostic("Error processing message frame: " + e.message, "ERROR");
@@ -3409,7 +3467,7 @@
         };
 
         liveWs.onclose = (event) => {
-            window.isConnectingLiveSocket = false; // Reset the transitioning flag on closure [1]
+            window.isConnectingLiveSocket = false;
             if (window.AndroidInterface) {
                 window.AndroidInterface.logDiagnostic("WebSocket channel closed. Status Code: " + event.code + " | Reason: " + (event.reason || "None") + " | Clean close: " + event.wasClean, "NETWORK");
             }
@@ -3417,7 +3475,7 @@
         };
 
         liveWs.onerror = (err) => {
-            window.isConnectingLiveSocket = false; // Reset the transitioning flag on error [1]
+            window.isConnectingLiveSocket = false;
             console.error("Live WebSockets channel error: ", err);
             if (window.AndroidInterface) {
                 window.AndroidInterface.logDiagnostic("WebSocket protocol network error observed. State: " + (liveWs ? liveWs.readyState : "null"), "ERROR");
@@ -3429,7 +3487,6 @@
         if (window.AndroidInterface) {
             window.AndroidInterface.logDiagnostic("WebRTC initMicrophoneCaptureLive starting. Checking secure origin context: " + window.isSecureContext, "WEBRTC");
 
-            // Enumerate media devices first to diagnose hardware availability
             try {
                 const devices = await navigator.mediaDevices.enumerateDevices();
                 let audioInputs = devices.filter(d => d.kind === 'audioinput');
@@ -3441,7 +3498,6 @@
                 window.AndroidInterface.logDiagnostic("Failed to enumerate devices: " + enumErr.message, "WEBRTC");
             }
 
-            // Check permissions API
             if (navigator.permissions && navigator.permissions.query) {
                 try {
                     const status = await navigator.permissions.query({ name: 'microphone' });
@@ -3613,18 +3669,16 @@
     }
 
     function disconnectWebSocketLive() {
-        if (!liveWs) return; // Guard against multiple teardown iterations
-        isLiveSessionConnected = false; // Reset connection session flag
+        if (!liveWs) return;
+        isLiveSessionConnected = false;
 
         if (window.AndroidInterface) {
             window.AndroidInterface.logDiagnostic("disconnectWebSocketLive sequence initiated.", "NETWORK");
             window.AndroidInterface.showToast("Disconnected from Live Model");
         }
 
-        // Visual Feedback in Chat log indicating disconnection
         appendChat("System", "🔴 Disconnected from Live Model", false, []);
 
-        // Consolidate any active/partially transcribed user speech before closing connection
         if (currentLiveUserSpan) {
             const finalUserText = currentLiveUserSpan.innerText.trim();
             if (finalUserText) {
@@ -3637,7 +3691,6 @@
 
         currentLiveBotSpan = null;
 
-        // Gated call to prevent premature STT activations [1]
         if (!window.isConnectingLiveSocket) {
             if (window.AndroidInterface && window.AndroidInterface.setLiveSocketActive) {
                 window.AndroidInterface.setLiveSocketActive(false);
@@ -3710,7 +3763,6 @@
             liveWs = null;
         }
 
-        // Revert the sparkle icon back to original static state
         const icon = document.getElementById("voiceAgentIcon");
         if (icon) {
             icon.classList.remove("sparkle-active");
@@ -3770,7 +3822,6 @@
         }
     }
 
-    /* --- STARTUP DIAGNOSTICS CONTROL HOOKS --- */
     function logTerminal(message, type = "info") {
         const term = document.getElementById("diagnosticTerminalLogs");
         if (!term) return;
@@ -3791,7 +3842,6 @@
 
         logTerminal("Initializing Startup Web-Native diagnostics self-check...", "info");
 
-        // 1. WEB AUDIT
         logTerminal("Starting Web API Audit...", "info");
         logTerminal(`window.isSecureContext: ${window.isSecureContext}`, window.isSecureContext ? "success" : "warning");
         if (!window.isSecureContext) {
@@ -3815,7 +3865,6 @@
             logTerminal(`Failed to instantiate dummy AudioContext: ${audioErr.message}`, "error");
         }
 
-        // 2. NATIVE AUDIT
         if (window.AndroidInterface && window.AndroidInterface.getSystemHardwareDiagnostics) {
             logTerminal("Starting Native Android Hardware Audit...", "info");
             try {
@@ -3869,9 +3918,6 @@
         document.getElementById('totalTokenVal').textContent = `Global Total: ${sessionTotalTokens} tokens`;
         document.getElementById('totalCreditVal').textContent = `Global Cost: $${sessionTotalCredits.toFixed(4)}`;
 
-        // Trigger startup terminal self-diagnostics checklist immediately on load
-        // runStartupDiagnostics();
-
         if (typeof puter !== 'undefined') {
             console.log("Puter SDK detected. Waiting for ready signal...");
             puter.ready(() => {
@@ -3894,3 +3940,4 @@
   </script>
 </body>
 </html>
+
