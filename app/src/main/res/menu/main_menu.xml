@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 
+        Native Toolbar Menu for Puter Unofficial.
+        This provides a fallback or secondary access to the essential 
+        functions defined in your original HTML dropdown.
+    -->
+
+    <item
+        android:id="@+id/action_auth"
+        android:title="Sign In"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_custom_instruction"
+        android:title="Custom Instruction"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_history"
+        android:title="View History"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_new_session"
+        android:title="New Session"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_help"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="Help"
+        app:showAsAction="never" />
+
+</menu>
