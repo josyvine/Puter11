@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Web Exploration Start Portal</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+      overflow-y: auto;
+      align-items: center;
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+
+    /* Slick top header bar matching Puter Unofficial theme */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      color: #fff;
+      padding: 8px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .exit-btn {
+      color: #f4f4f4;
+      background-color: #d93025;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+
+    .exit-btn:active {
+      background-color: #b52218;
+    }
+
+    /* Standard scraper action button matching the native app styles */
+    .scraper-btn {
+      color: #f4f4f4;
+      background-color: #1a73e8;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+
+    .scraper-btn:active {
+      background-color: #1557b0;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    /* Centralized Search and Exploration Container */
+    .portal-container {
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .portal-logo {
+      font-size: 80px;
+      color: #1a73e8;
+      margin-bottom: 15px;
+    }
+
+    .portal-title {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .portal-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 28px;
+      padding: 4px 16px;
+      height: 52px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border: 1px solid #ddd;
+    }
+
+    .search-wrapper input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: #333;
+      background: transparent;
+    }
+
+    .search-btn {
+      background: none;
+      border: none;
+      color: #1a73e8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    .search-btn span {
+      font-size: 28px;
+    }
+
+    /* =========================================================================
+     * NEW: OPERATIONAL MODE SELECTOR CARD STYLING
+     * ========================================================================= */
+    .mode-card {
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mode-header {
+      font-size: 12px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 6px;
+    }
+
+    .mode-buttons {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fdfdfd;
+      font-weight: bold;
+      font-size: 13px;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .mode-btn.active {
+      background-color: #1a73e8;
+      color: white;
+      border-color: #1a73e8;
+    }
+
+    .mode-btn:active {
+      opacity: 0.8;
+    }
+
+    /* =========================================================================
+     * NOSTR HANDSHAKE SETTINGS CARD (ELEGANT INTEGRATION)
+     * ========================================================================= */
+    .settings-card {
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .settings-header {
+      font-size: 12px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 6px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: bold;
+      color: #666;
+    }
+
+    .form-group input, .form-group select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #333;
+      outline: none;
+      background: #fdfdfd;
+      transition: border 0.2s;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      border-color: #1a73e8;
+    }
+
+    .toggle-btn {
+      color: #ffffff;
+      background-color: #27ae60;
+      border-radius: 18px;
+      padding: 8px 15px;
+      height: 38px;
+      font-weight: bold;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background-color 0.2s;
+      margin-top: 5px;
+      width: 100%;
+    }
+
+    .toggle-btn.disconnected {
+      background-color: #d93025;
+    }
+
+    /* =========================================================================
+     * DECENTRALIZED RECEIVER INBOX (TINY BOX) PANEL
+     * ========================================================================= */
+    .inbox-container {
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      max-height: 250px;
+    }
+
+    .inbox-header {
+      font-size: 12px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 6px;
+    }
+
+    .inbox-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 5px;
+    }
+
+    /* Style for the visual dynamic card (Tiny Box) */
+    .tiny-box {
+      background: #f8f9fa;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .tiny-box:hover {
+      background: #e8f0fe;
+      border-color: #1a73e8;
+    }
+
+    .tiny-box-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      overflow: hidden;
+      flex: 1;
+      padding-right: 10px;
+    }
+
+    .tiny-box-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tiny-box-sub {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .tiny-box-icon {
+      color: #1a73e8;
+      font-size: 20px;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d93025; /* RED indicating offline by default */
+      transition: background 0.3s;
+    }
+
+    .status-dot.connected {
+      background: #27ae60; /* GREEN when socket is fully open */
+    }
+
+    /* =========================================================================
+     * NEW: DIAGNOSTIC CONSOLE LOG CARD STYLING
+     * ========================================================================= */
+    .console-card {
+      width: 90%;
+      max-width: 500px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .console-header {
+      font-size: 12px;
+      font-weight: bold;
+      color: #aaa;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 6px;
+    }
+
+    .console-body {
+      height: 150px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: #00ff00;
+      background: #000;
+      padding: 8px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .console-btn-clear {
+      background: none;
+      border: none;
+      color: #1a73e8;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .console-btn-clear:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Local Start Header -->
+  <header>
+    <button class="exit-btn" onclick="exitBrowser()" title="Exit to Chat">
+      <span class="material-symbols-outlined" style="font-size: 20px;">logout</span>
+    </button>
+    <div class="header-title">Web Browser Portal</div>
+    <button id="btnReconnect" class="scraper-btn" onclick="initNostrConnection()" title="Reconnect Relay">
+      <span class="material-symbols-outlined" style="font-size: 20px;">sync</span>
+    </button>
+  </header>
+
+  <!-- Central Landing Area -->
+  <div class="portal-container">
+    <span class="material-symbols-outlined portal-logo">travel_explore</span>
+    <div class="portal-title">Explore Web Content</div>
+    <div class="portal-desc">Enter an address or type a query to browse, summarize, and catalog target web documents.</div>
+
+    <!-- Central Search Input Box -->
+    <div class="search-wrapper">
+      <input type="text" id="portalAddressInput" placeholder="Enter web address or search query..." onkeydown="handlePortalKey(event)">
+      <button class="search-btn" onclick="navigatePortalAddress()">
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Operational Mode Selector Card -->
+  <div class="mode-card">
+    <div class="mode-header">Operational Mode Selector</div>
+    <div class="mode-buttons">
+      <button id="btnManualMode" class="mode-btn active" onclick="setOperationalMode(false)">
+        <span class="material-symbols-outlined" style="font-size: 18px;">touch_app</span> Manual Mode
+      </button>
+      <button id="btnAutoMode" class="mode-btn" onclick="setOperationalMode(true)">
+        <span class="material-symbols-outlined" style="font-size: 18px;">bolt</span> Auto Mode
+      </button>
+    </div>
+  </div>
+
+  <!-- Nostr Handshake Settings Card -->
+  <div class="settings-card">
+    <div class="settings-header">Nostr Handshake Settings</div>
+    <div class="form-group">
+      <label for="extensionPublicKey">Extension Public Key (npub)</label>
+      <input type="text" id="extensionPublicKey" placeholder="npub1... or hex public key" oninput="saveNostrSettingsFromUI()">
+    </div>
+    <div class="form-group">
+      <label for="nostrRelaySelect">Select Relay</label>
+      <select id="nostrRelaySelect" onchange="saveNostrSettingsFromUI()">
+        <option value="wss://relay.damus.io">wss://relay.damus.io</option>
+        <option value="wss://nos.lol">wss://nos.lol</option>
+        <option value="wss://relay.snort.social">wss://relay.snort.social</option>
+        <option value="wss://relay.primal.net">wss://relay.primal.net</option>
+      </select>
+    </div>
+    <button id="btnConnectionToggle" class="toggle-btn" onclick="toggleNostrConnection()">
+      <span class="material-symbols-outlined" style="font-size: 18px;">power_settings_new</span>
+      <span id="connectionToggleText">Disconnect Relay</span>
+    </button>
+  </div>
+
+  <!-- Real-Time Decentralized Scraper Receiver Inbox -->
+  <div class="inbox-container">
+    <div class="inbox-header">
+      <span>Scraper Inbox</span>
+      <div class="status-indicator">
+        <div id="statusDot" class="status-dot"></div>
+        <span id="statusText">Offline</span>
+      </div>
+    </div>
+    <div id="inboxList" class="inbox-list">
+      <div style="color: #999; text-align: center; font-size: 12px; margin-top: 20px;">No incoming data packets yet.</div>
+    </div>
+  </div>
+
+  <!-- Diagnostic Console Log Card -->
+  <div class="console-card">
+    <div class="console-header">
+      <span>Diagnostic Console</span>
+      <button class="console-btn-clear" onclick="clearConsoleLog()">Clear Log</button>
+    </div>
+    <div id="consoleBody" class="console-body">Console system ready. Waiting for network and user events...</div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // ADVANCED CONSOLE LOGGER LOGIC
+    // =========================================================================
+    function addConsoleLog(message, type = "info") {
+        const consoleBody = document.getElementById("consoleBody");
+        if (!consoleBody) return;
+
+        const now = new Date();
+        const timestamp = now.toTimeString().split(' ')[0]; // Returns formatted HH:MM:SS string
+        let prefix = `[${timestamp}] `;
+
+        if (type === "error") {
+            prefix += "[ERROR] ";
+        } else if (type === "warning") {
+            prefix += "[WARN] ";
+        } else if (type === "success") {
+            prefix += "[SUCCESS] ";
+        } else if (type === "system") {
+            prefix += "[SYSTEM] ";
+        } else {
+            prefix += "[INFO] ";
+        }
+
+        const logLine = document.createElement("div");
+        logLine.style.marginBottom = "4px";
+        if (type === "error") {
+            logLine.style.color = "#ff4d4d";
+        } else if (type === "warning") {
+            logLine.style.color = "#ffaa00";
+        } else if (type === "success") {
+            logLine.style.color = "#27ae60";
+        } else if (type === "system") {
+            logLine.style.color = "#3498db";
+        } else {
+            logLine.style.color = "#00ff00";
+        }
+
+        logLine.innerText = prefix + message;
+        consoleBody.appendChild(logLine);
+        consoleBody.scrollTop = consoleBody.scrollHeight;
+
+        // Forward back to Android system log as well
+        if (window.AndroidInterface && window.AndroidInterface.logTechnicalEvent) {
+            window.AndroidInterface.logTechnicalEvent("browser_console: " + message);
+        }
+    }
+
+    function clearConsoleLog() {
+        const consoleBody = document.getElementById("consoleBody");
+        if (consoleBody) {
+            consoleBody.innerHTML = "Console log cleared.\n";
+            addConsoleLog("Console log cleared.", "system");
+        }
+    }
+
+    // Expose global callback on window scope for Android WebView evaluateJavascript injections
+    window.addNativeLogToConsole = function(msg, type) {
+        addConsoleLog(msg, type);
+    };
+
+    // --- TOTAL SURVEILLANCE: GLOBAL EXCEPTION INTERCEPTORS ---
+    window.onerror = function(message, source, lineno, colno, error) {
+        const glitchDetails = "Global Exception: " + message + " | Source: " + source + " at line " + lineno + ":" + colno;
+        addConsoleLog(glitchDetails, "error");
+
+        if (window.AndroidInterface && window.AndroidInterface.logHtmlGlitch) {
+            const stack = error ? error.stack : "No stack trace available";
+            const details = "Error: " + message + "\nSource: " + source + " at line " + lineno + ":" + colno + "\nStack:\n" + stack;
+            window.AndroidInterface.logHtmlGlitch("browser.html", details);
+        }
+        return false; // Propagate to browser normally
+    };
+
+    window.onunhandledrejection = function(event) {
+        const reason = event.reason ? (event.reason.stack || event.reason) : "No rejection reason";
+        addConsoleLog("Promise Rejection: " + reason, "error");
+
+        if (window.AndroidInterface && window.AndroidInterface.logHtmlGlitch) {
+            window.AndroidInterface.logHtmlGlitch("browser.html", "Unhandled Promise Rejection:\n" + reason);
+        }
+    };
+
+    /**
+     * Resolves the user input and performs top-level redirection on the WebView context.
+     * Treats valid-looking strings as URLs, and other inputs as Google Search queries.
+     */
+    function navigatePortalAddress() {
+        const input = document.getElementById('portalAddressInput');
+        let query = input.value.trim();
+        if (!query) return;
+
+        let targetUrl = query;
+
+        // Check if the query is a search term or a specific URL
+        const isUrlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i;
+
+        if (isUrlPattern.test(query)) {
+            // If it behaves like a URL, ensure valid protocol prefix is attached
+            if (!query.startsWith("http://") && !query.startsWith("https://")) {
+                targetUrl = "https://" + query;
+            }
+        } else {
+            // If it is a raw search query, route through Google Search natively
+            targetUrl = "https://www.google.com/search?q=" + encodeURIComponent(query);
+        }
+
+        addConsoleLog("Portal Redirecting Main Frame -> " + targetUrl, "system");
+
+        if (window.AndroidInterface && window.AndroidInterface.nativeLog) {
+            window.AndroidInterface.nativeLog("Portal Redirecting Main Frame -> " + targetUrl, "native");
+        }
+
+        // Redirect the primary top-level WebView context to bypass iframe limitations
+        window.location.href = targetUrl;
+    }
+
+    function handlePortalKey(event) {
+        if (event.key === "Enter") {
+            navigatePortalAddress();
+        }
+    }
+
+    function exitBrowser() {
+        addConsoleLog("Navigating UI back to primary chat screen", "system");
+        if (window.AndroidInterface && window.AndroidInterface.loadLocalUrl) {
+            window.AndroidInterface.loadLocalUrl('index.html');
+        } else {
+            window.location.href = 'index.html';
+        }
+    }
+
+    // Legacy Scraper routing removed. Re-connects Nostr WebSocket Client manually.
+    function goToScraper() {
+        addConsoleLog("Manual Scraper reconnect sequence triggered", "system");
+        initNostrConnection();
+    }
+
+    // =========================================================================
+    // DECENTRALIZED RECEIVER CLIENT ENGINE & ERROR REPORTING
+    // =========================================================================
+    let nostrSocket = null;
+    let connectionForcedClosed = false;
+
+    // Convert byte array to hexadecimal string
+    function bytesToHex(bytes) {
+        return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Bech32 npub/nsec Key Decoder
+    const BECH32_ALPHABET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
+    function decodeBech32(bechString) {
+        const separatorIndex = bechString.lastIndexOf('1');
+        if (separatorIndex === -1) throw new Error("Invalid Bech32 key structural configuration.");
+        const hrp = bechString.slice(0, separatorIndex);
+        if (hrp !== "npub" && hrp !== "nsec") throw new Error("Key structure prefix is not npub or nsec.");
+
+        const dataString = bechString.slice(separatorIndex + 1);
+        const data = [];
+        for (let i = 0; i < dataString.length; i++) {
+            const charIndex = BECH32_ALPHABET.indexOf(dataString[i]);
+            if (charIndex === -1) throw new Error("Bech32 contains prohibited structures.");
+            data.push(charIndex);
+        }
+
+        const values = data.slice(0, -6); // Strip 6-character checksum
+        let accumulator = 0;
+        let bits = 0;
+        const bytes = [];
+        const maxAccumulator = (1 << 12) - 1;
+
+        for (let i = 0; i < values.length; i++) {
+            accumulator = ((accumulator << 5) | values[i]) & maxAccumulator;
+            bits += 5;
+            while (bits >= 8) {
+                bits -= 8;
+                bytes.push((accumulator >> bits) & 0xff);
+            }
+        }
+        return new Uint8Array(bytes);
+    }
+
+    /**
+     * Reads native settings to load configured values onto the HTML inputs
+     */
+    function loadNostrSettingsInUI() {
+        if (!window.AndroidInterface) return;
+        try {
+            const settingsJson = window.AndroidInterface.getNostrSettings();
+            const settings = JSON.parse(settingsJson);
+            if (settings) {
+                const pubKey = settings.public_key || "";
+                const relayUrl = settings.relay_url || "wss://relay.damus.io";
+
+                document.getElementById("extensionPublicKey").value = pubKey;
+                document.getElementById("nostrRelaySelect").value = relayUrl;
+
+                addConsoleLog("Settings updated in UI. Extension key: " + pubKey.substring(0, 15) + "...", "info");
+                window.AndroidInterface.nativeLog("browser.html: Synchronized handshake configuration UI.", "info");
+            }
+        } catch (e) {
+            addConsoleLog("Failed to sync settings: " + e.message, "error");
+            window.AndroidInterface.logHtmlGlitch("browser.html", "Failed to deserialize settings payload: " + e.message);
+        }
+    }
+
+    /**
+     * Persists settings changes back to the native backend on the fly
+     */
+    function saveNostrSettingsFromUI() {
+        if (!window.AndroidInterface) return;
+        try {
+            const pubKey = document.getElementById("extensionPublicKey").value.trim();
+            const relayUrl = document.getElementById("nostrRelaySelect").value;
+
+            window.AndroidInterface.saveNostrSettings(pubKey, relayUrl);
+            addConsoleLog("Settings auto-saved. Extension key: " + pubKey.substring(0, 15) + "...", "info");
+            window.AndroidInterface.nativeLog("browser.html: Auto-saved handshakes to SharedPreferences.", "info");
+        } catch (e) {
+            addConsoleLog("Failed to auto-save settings: " + e.message, "error");
+            window.AndroidInterface.logHtmlGlitch("browser.html", "Failed to persist updated settings: " + e.message);
+        }
+    }
+
+    /**
+     * Reconnection and Active State Toggle mechanism
+     */
+    function toggleNostrConnection() {
+        if (nostrSocket && (nostrSocket.readyState === WebSocket.OPEN || nostrSocket.readyState === WebSocket.CONNECTING)) {
+            connectionForcedClosed = true;
+            addConsoleLog("Manual connection closure requested by user.", "warning");
+            if (nostrSocket) {
+                try { nostrSocket.close(); } catch(e) {}
+            }
+            updateStatusUI("disconnected");
+            window.AndroidInterface.nativeLog("browser.html: Manually disconnected relay socket.", "info");
+        } else {
+            connectionForcedClosed = false;
+            addConsoleLog("Manual connection open requested by user.", "system");
+            initNostrConnection();
+        }
+    }
+
+    /**
+     * Initializes the WebSocket connection using credentials retrieved from the HTML inputs,
+     * featuring comprehensive exception-trap logging.
+     */
+    function initNostrConnection() {
+        if (!window.AndroidInterface) return;
+
+        // Terminate existing socket instances cleanly before opening a new channel
+        if (nostrSocket) {
+            try { 
+                addConsoleLog("Closing previous WebSocket connection...", "info");
+                nostrSocket.close(); 
+            } catch(e) {}
+        }
+
+        updateStatusUI("connecting");
+
+        try {
+            // Read active targets directly from the configured HTML inputs
+            const relayUrl = document.getElementById("nostrRelaySelect").value || "wss://relay.damus.io";
+            const extPubkey = document.getElementById("extensionPublicKey").value.trim();
+
+            if (!extPubkey) {
+                addConsoleLog("Connection aborted: Extension key is missing.", "warning");
+                window.AndroidInterface.showToast("Handshake Warning: Link Extension Public ID in Settings.");
+                updateStatusUI("error");
+                return;
+            }
+
+            // Dynamic Key Format Translation (Bech32 npub to 32-byte Hex)
+            let hexPubkey = extPubkey;
+            try {
+                const hexRegex = /^[a-fA-F0-9]{64}$/;
+                if (hexRegex.test(extPubkey)) {
+                    addConsoleLog("Detected raw 64-character hexadecimal public key format.", "info");
+                    window.AndroidInterface.nativeLog("Inbox Client: Detected raw 64-character hexadecimal public key format.", "info");
+                } else if (extPubkey.startsWith("npub1")) {
+                    addConsoleLog("Detected Bech32 npub format. Translating to hex...", "info");
+                    window.AndroidInterface.nativeLog("Inbox Client: Detected Bech32 npub format. Translating to hex...", "info");
+                    const decodedBytes = decodeBech32(extPubkey);
+                    hexPubkey = bytesToHex(decodedBytes);
+                    addConsoleLog("Derived hex public key: " + hexPubkey.substring(0, 15) + "...", "info");
+                    window.AndroidInterface.nativeLog("Inbox Client: Derived hex public key: " + hexPubkey, "info");
+                } else {
+                    throw new Error("Unsupported public key format. Must be 64-char hex or start with 'npub1'.");
+                }
+            } catch (keyError) {
+                addConsoleLog("Public key parsing failed: " + keyError.message, "error");
+                window.AndroidInterface.reportGlitchedLogic("NOSTR_KEY_PARSE_FAILED", "Failed to parse public key '" + extPubkey + "': " + keyError.message);
+                updateStatusUI("error");
+                return;
+            }
+
+            addConsoleLog("Connecting to Nostr relay: " + relayUrl + "...", "info");
+            window.AndroidInterface.nativeLog("Inbox Client: Connecting directly to " + relayUrl, "info");
+            nostrSocket = new WebSocket(relayUrl);
+
+            nostrSocket.onopen = () => {
+                updateStatusUI("connected");
+                addConsoleLog("Nostr socket connected successfully.", "success");
+                window.AndroidInterface.nativeLog("Inbox Client: Socket established successfully.", "info");
+
+                // Broadcast NIP-01 Subscription Request (Filter for Kind 1 events authored by the extension)
+                const reqFrame = ["REQ", "puter_inbox_sub", {
+                    kinds: [1],
+                    authors: [hexPubkey],
+                    "#t": ["puter_unofficial_scrap"]
+                }];
+                addConsoleLog("Broadcasting NIP-01 subscription request: puter_inbox_sub", "info");
+                nostrSocket.send(JSON.stringify(reqFrame));
+            };
+
+            nostrSocket.onmessage = (msgEvent) => {
+                try {
+                    const message = JSON.parse(msgEvent.data);
+
+                    // Route notice rejections natively
+                    if (Array.isArray(message) && message[0] === "NOTICE") {
+                        const rejectDetails = `Relay Notice from ${relayUrl}: ${message[1]}`;
+                        addConsoleLog("Relay Notice: " + message[1], "warning");
+                        window.AndroidInterface.reportGlitchedLogic("NOSTR_RELAY_NOTICE", rejectDetails);
+                    }
+
+                    // Handle standard subscription termination messages natively
+                    if (Array.isArray(message) && message[0] === "CLOSED") {
+                        const closeReason = `Relay Subscription Closed from ${relayUrl} on sub: ${message[1]} -- Reason: ${message[2] || 'Unspecified'}`;
+                        addConsoleLog("Relay Subscription Closed: " + (message[2] || "Unspecified reason"), "error");
+                        window.AndroidInterface.reportGlitchedLogic("NOSTR_RELAY_CLOSED", closeReason);
+                    }
+
+                    if (Array.isArray(message) && message[0] === "EVENT" && message[2]) {
+                        const event = message[2];
+                        addConsoleLog("Incoming scraped event received. Event ID: " + event.id.substring(0, 10) + "...", "success");
+                        processIncomingScrapedEvent(event);
+                    }
+                } catch(e) {
+                    addConsoleLog("Failed to parse incoming frame: " + e.message, "error");
+                    const parseDetails = "Failed to deserialize WebSocket Frame: " + e.message + "\nFrame: " + msgEvent.data;
+                    window.AndroidInterface.logHtmlGlitch("NOSTR_SERIALIZE_EXCEPTION", parseDetails);
+                }
+            };
+
+            nostrSocket.onclose = (closeEvent) => {
+                updateStatusUI("disconnected");
+                addConsoleLog("Nostr socket connection closed. Code: " + closeEvent.code + " | Clean: " + closeEvent.wasClean, "warning");
+                window.AndroidInterface.nativeLog("Inbox Client: Connection closed.", "info");
+
+                // Track unexpected connection terminations natively
+                if (!closeEvent.wasClean && !connectionForcedClosed) {
+                    const details = `Disconnection from ${relayUrl}. Code: ${closeEvent.code} | Reason: ${closeEvent.reason || 'None'}`;
+                    window.AndroidInterface.reportGlitchedLogic("NOSTR_SOCKET_CLOSE", details);
+                }
+            };
+
+            nostrSocket.onerror = (error) => {
+                updateStatusUI("error");
+                addConsoleLog("Nostr socket experienced a communication error.", "error");
+                const errDetails = `WebSocket error occurred during communication with: ${relayUrl}. ReadyState: ${nostrSocket.readyState}`;
+                window.AndroidInterface.reportGlitchedLogic("NOSTR_SOCKET_ERROR", errDetails);
+            };
+
+        } catch (setupError) {
+            updateStatusUI("error");
+            addConsoleLog("WebSocket setup exception: " + setupError.message, "error");
+            window.AndroidInterface.reportGlitchedLogic("NOSTR_SETUP_CRITICAL", "Setup Failed for relay " + (document.getElementById("nostrRelaySelect")?.value || "unknown") + " with error: " + setupError.message);
+        }
+    }
+
+    /**
+     * Dynamic UI state-machine switcher
+     */
+    function updateStatusUI(state) {
+        const dot = document.getElementById("statusDot");
+        const txt = document.getElementById("statusText");
+        const toggleBtn = document.getElementById("btnConnectionToggle");
+        const toggleTxt = document.getElementById("connectionToggleText");
+
+        dot.className = "status-dot";
+        if (state === "connected") {
+            dot.classList.add("connected");
+            txt.innerText = "Listening";
+            if (toggleBtn) {
+                toggleBtn.classList.remove("disconnected");
+                toggleTxt.innerText = "Disconnect Relay";
+            }
+        } else if (state === "connecting") {
+            txt.innerText = "Connecting...";
+        } else if (state === "error") {
+            txt.innerText = "Error";
+        } else {
+            txt.innerText = "Offline";
+            if (toggleBtn) {
+                toggleBtn.classList.add("disconnected");
+                toggleTxt.innerText = "Connect Relay";
+            }
+        }
+    }
+
+    /**
+     * Receives raw Nostr events, parses their nested contents,
+     * and maps them dynamically to "Tiny Box" cards.
+     * FIXED: Multi-item parallel scraping payload now resolves unique card IDs to prevent DOM rendering skips.
+     */
+    function processIncomingScrapedEvent(event) {
+        try {
+            const rawContent = event.content;
+            if (!rawContent) return;
+
+            // Deserialize content string array
+            const itemsList = JSON.parse(rawContent);
+            if (!Array.isArray(itemsList) || itemsList.length === 0) return;
+
+            // Clear empty container state
+            const listContainer = document.getElementById("inboxList");
+            if (listContainer.innerHTML.includes("No incoming data")) {
+                listContainer.innerHTML = '';
+            }
+
+            itemsList.forEach((item, index) => {
+                // Identify category mapping metadata
+                const isUniversal = (item.hierarchy && item.hierarchy.main_category === "Universal Scrape");
+
+                // Resolve unique indexing key to prevent rendering skip on multi-item parallel events
+                const itemKey = isUniversal ? (item.specifications.title || "UNI_" + index) : (item.specifications.asin || "AMZN_" + index);
+                const cardId = `box_${event.id}_${itemKey}`;
+
+                // Ensure duplicate check before adding card element
+                const existingCard = document.getElementById(cardId);
+                if (existingCard) return;
+
+                // 2. Extracts labeling details (extracts title/model)
+                let label = "";
+                let subLabel = "";
+
+                if (isUniversal) {
+                    label = item.specifications.title || "Universal Article";
+                    subLabel = item.hierarchy.sub_category || "Web Domain";
+                } else {
+                    label = item.specifications.model || item.specifications.asin || "Amazon Product";
+                    subLabel = `Brand: ${item.specifications.brand || 'N/A'}`;
+                }
+
+                // 3. Create the Tiny Box card
+                const card = document.createElement("div");
+                card.className = "tiny-box";
+                card.id = cardId;
+
+                card.innerHTML = `
+                    <div class="tiny-box-content">
+                        <span class="tiny-box-title">${label}</span>
+                        <span class="tiny-box-sub">${subLabel}</span>
+                    </div>
+                    <span class="material-symbols-outlined tiny-box-icon">archive</span>
+                `;
+
+                // 4. Save logic on click: Passes JSON to native bridge
+                card.onclick = () => {
+                    const trackingId = isUniversal ? (item.specifications.title || "UNI_" + Date.now() + "_" + index) : (item.specifications.asin || "AMZN_" + Date.now() + "_" + index);
+
+                    // Transform to Puter database structure
+                    const databaseStructure = {
+                        type: isUniversal ? "universal_web" : "amazon_catalog",
+                        scraped_id: trackingId,
+                        hierarchy: item.hierarchy,
+                        specifications: item.specifications,
+                        metadata: isUniversal ? {
+                            title: item.specifications.title,
+                            url: item.specifications.url,
+                            timestamp: new Date().toLocaleString()
+                        } : null,
+                        content: isUniversal ? item.specifications.raw_content : null
+                    };
+
+                    addConsoleLog("Saving scraped item to local database. ID: " + trackingId, "system");
+                    window.AndroidInterface.addScrapedProduct(trackingId, JSON.stringify(databaseStructure));
+                    window.AndroidInterface.showToast(`Saved to history: ${label}`);
+
+                    // Delete card visually after save
+                    card.style.transform = "translateX(50px)";
+                    card.style.opacity = "0";
+                    setTimeout(() => {
+                        card.remove();
+                        addConsoleLog("Cleaned card view for ID: " + trackingId, "info");
+                    }, 300);
+                };
+
+                listContainer.appendChild(card);
+                addConsoleLog("Rendered new inbox element card: " + label, "info");
+            });
+
+        } catch (parseError) {
+            addConsoleLog("Mismatched content JSON format: " + parseError.message, "error");
+            const errDetails = "Mismatched content JSON format: " + parseError.message + "\nEvent Content: " + event.content;
+            window.AndroidInterface.logHtmlGlitch("NOSTR_PARSER_EXCEPTION", errDetails);
+        }
+    }
+
+    // =========================================================================
+    // NATIVE OPERATIONAL MODE SYNCHRONIZATION AND STATE CHANGERS
+    // =========================================================================
+
+    /**
+     * Active click handler mapped directly to the segmented mode selector card.
+     * Sets the saved preference in native SharedPreferences on the fly.
+     * Requirement: Instruction Two and Four
+     */
+    function setOperationalMode(isAuto) {
+        if (!window.AndroidInterface) return;
+        try {
+            window.AndroidInterface.setAutoMode(isAuto);
+            updateOperationalModeUI(isAuto);
+            addConsoleLog("Operational preference updated natively. AutoMode: " + isAuto, "system");
+            window.AndroidInterface.showToast("Switched system mode to: " + (isAuto ? "Auto Mode" : "Manual Mode"));
+            window.AndroidInterface.nativeLog("browser.html: Operational preference updated natively.", "info");
+        } catch (e) {
+            addConsoleLog("Failed to write operational preference: " + e.message, "error");
+            window.AndroidInterface.logHtmlGlitch("browser.html", "Failed to write operational preference: " + e.message);
+        }
+    }
+
+    /**
+     * Synchronizes active CSS class highlights of the selector buttons
+     * based on active state parameters.
+     */
+    function updateOperationalModeUI(isAuto) {
+        const btnAuto = document.getElementById("btnAutoMode");
+        const btnManual = document.getElementById("btnManualMode");
+
+        if (isAuto) {
+            btnAuto.classList.add("active");
+            btnManual.classList.remove("active");
+        } else {
+            btnAuto.classList.remove("active");
+            btnManual.classList.add("active");
+        }
+    }
+
+    /**
+     * Queries the native backend to align UI buttons on page start.
+     */
+    function syncOperationalModeOnLoad() {
+        if (!window.AndroidInterface) return;
+        try {
+            const isAuto = window.AndroidInterface.getAutoMode();
+            updateOperationalModeUI(isAuto);
+            addConsoleLog("Synchronized mode state with native backend. AutoMode: " + isAuto, "info");
+            window.AndroidInterface.nativeLog("browser.html: Synchronized state with SharedPreferences.", "info");
+        } catch (e) {
+            addConsoleLog("Failed to sync mode state on load: " + e.message, "error");
+            window.AndroidInterface.logHtmlGlitch("browser.html", "Failed to query operational mode state: " + e.message);
+        }
+    }
+
+    // Initialize Settings UI and Connection on start
+    window.onload = () => {
+        addConsoleLog("Page Lifecycle: browser.html onload complete.", "info");
+        loadNostrSettingsInUI();
+        initNostrConnection();
+        syncOperationalModeOnLoad(); // Instantly aligns buttons based on local save state
+    };
+  </script>
+</body>
+</html>
