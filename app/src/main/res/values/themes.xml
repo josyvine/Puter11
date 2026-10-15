@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 
+        Base application theme for Puter Unofficial.
+        Set to MaterialComponents.Light.NoActionBar to provide a clean, 
+        white-based UI that allows the WebView to fill the entire screen.
+    -->
+    <style name="Theme.Puter.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/puter_blue</item>
+        <item name="colorPrimaryVariant">@color/puter_blue_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/puter_accent</item>
+        <item name="colorSecondaryVariant">@color/puter_blue_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <!-- Status bar color: Set to White with dark icons for a clean look -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        <!-- Background color of the window -->
+        <item name="android:windowBackground">@color/white</item>
+
+        <!-- Customize your theme here -->
+    </style>
+
+    <!-- Translucent theme for Splash Activity if needed, or use the base theme -->
+    <style name="Theme.HFS" parent="Theme.Puter.Light">
+        <!-- Kept for compatibility with Manifest references if not fully renamed yet -->
+    </style>
+</resources>
