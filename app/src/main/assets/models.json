@@ -1,0 +1,5603 @@
+{
+  "alibaba": [
+    {
+      "name": "QVQ Max",
+      "id": "qvq-max",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Qwen Flash",
+      "id": "qwen-flash",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen Max",
+      "id": "qwen-max",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen-MT Plus",
+      "id": "qwen-mt-plus",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen-MT Turbo",
+      "id": "qwen-mt-turbo",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen-Omni Turbo",
+      "id": "qwen-omni-turbo",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 2048,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen Plus",
+      "id": "qwen-plus",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen Turbo",
+      "id": "qwen-turbo",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen-VL Max",
+      "id": "qwen-vl-max",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen-VL OCR",
+      "id": "qwen-vl-ocr",
+      "endpoint": "",
+      "context": 34096,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Qwen-VL Plus",
+      "id": "qwen-vl-plus",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 14B Instruct",
+      "id": "qwen2-5-14b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 32B Instruct",
+      "id": "qwen2-5-32b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 72B Instruct",
+      "id": "qwen2-5-72b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 7B Instruct",
+      "id": "qwen2-5-7b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5-Omni 7B",
+      "id": "qwen2-5-omni-7b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 2048,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5-VL 72B Instruct",
+      "id": "qwen2-5-vl-72b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5-VL 7B Instruct",
+      "id": "qwen2-5-vl-7b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 14B",
+      "id": "qwen3-14b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 235B-A22B",
+      "id": "qwen3-235b-a22b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 32B",
+      "id": "qwen3-32b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 8B",
+      "id": "qwen3-8b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-Coder 30B-A3B Instruct",
+      "id": "qwen3-coder-30b-a3b-instruct",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-Coder 480B-A35B Instruct",
+      "id": "qwen3-coder-480b-a35b-instruct",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 Coder Flash",
+      "id": "qwen3-coder-flash",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 Coder Plus",
+      "id": "qwen3-coder-plus",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 Max",
+      "id": "qwen3-max",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-Next 80B-A3B Instruct",
+      "id": "qwen3-next-80b-a3b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-Next 80B-A3B (Thinking)",
+      "id": "qwen3-next-80b-a3b-thinking",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen3-Omni Flash",
+      "id": "qwen3-omni-flash",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-VL 235B-A22B",
+      "id": "qwen3-vl-235b-a22b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-VL 30B-A3B",
+      "id": "qwen3-vl-30b-a3b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-VL Plus",
+      "id": "qwen3-vl-plus",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 122B-A10B",
+      "id": "qwen3.5-122b-a10b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 27B",
+      "id": "qwen3.5-27b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 35B-A3B",
+      "id": "qwen3.5-35b-a3b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 397B-A17B",
+      "id": "qwen3.5-397b-a17b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 Plus",
+      "id": "qwen3.5-plus",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.6 27B",
+      "id": "qwen3.6-27b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.6 35B-A3B",
+      "id": "qwen3.6-35b-a3b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.6 Max Preview",
+      "id": "qwen3.6-max-preview",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.6 Plus",
+      "id": "qwen3.6-plus",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "QwQ Plus",
+      "id": "qwq-plus",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    }
+  ],
+  "claude": [
+    {
+      "name": "",
+      "id": "claude-3-5-sonnet-20240620",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude 3.5 Sonnet",
+      "id": "claude-3-5-sonnet-20241022",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "",
+      "id": "claude-3-7-sonnet-20250219",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "",
+      "id": "claude-3-haiku-20240307",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Haiku 4.5",
+      "id": "claude-haiku-4-5-20251001",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 64000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Opus 4.1",
+      "id": "claude-opus-4-1-20250805",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 32000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Opus 4",
+      "id": "claude-opus-4-20250514",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 32000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Opus 4.5",
+      "id": "claude-opus-4-5-20251101",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 64000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Opus 4.6",
+      "id": "claude-opus-4-6",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Opus 4.7",
+      "id": "claude-opus-4-7",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Sonnet 4",
+      "id": "claude-sonnet-4-20250514",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 64000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Sonnet 4.5",
+      "id": "claude-sonnet-4-5-20250929",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 64000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Claude Sonnet 4.6",
+      "id": "claude-sonnet-4-6",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 64000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    }
+  ],
+  "deepseek": [
+    {
+      "name": "DeepSeek Chat",
+      "id": "deepseek-v4-flash",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 384000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "DeepSeek Chat",
+      "id": "deepseek-v4-pro",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 384000,
+      "categories": [
+        "text_chat"
+      ]
+    }
+  ],
+  "gemini": [
+    {
+      "name": "Gemini 2.0 Flash",
+      "id": "gemini-2.0-flash",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.0 Flash-Lite",
+      "id": "gemini-2.0-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Flash",
+      "id": "gemini-2.5-flash",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Flash-Lite",
+      "id": "gemini-2.5-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Pro",
+      "id": "gemini-2.5-pro",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 200000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3 Flash",
+      "id": "gemini-3-flash-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3.1 Flash-Lite",
+      "id": "gemini-3.1-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3.1 Pro Preview",
+      "id": "gemini-3.1-pro-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    }
+  ],
+  "mistral": [
+    {
+      "name": "Codestral",
+      "id": "codestral-2508",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 256000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Devstral 2",
+      "id": "devstral-2512",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Magistral Medium 1.2",
+      "id": "magistral-medium-2509",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Magistral Small 1.2",
+      "id": "magistral-small-2509",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Ministral 3 14B",
+      "id": "ministral-14b-2512",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Ministral 3 3B",
+      "id": "ministral-3b-2512",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Ministral 3 8B",
+      "id": "ministral-8b-2512",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Large 3",
+      "id": "mistral-large-2512",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Medium 3.1",
+      "id": "mistral-medium-2508",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Medium 3.5",
+      "id": "mistral-medium-3-5",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Small 4",
+      "id": "mistral-small-2603",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 256000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Nemo 12B",
+      "id": "open-mistral-nemo-2407",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Voxtral Small",
+      "id": "voxtral-small-2507",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    }
+  ],
+  "moonshotai": [
+    {
+      "name": "Kimi K2.5",
+      "id": "kimi-k2.5",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Kimi K2.6",
+      "id": "kimi-k2.6",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Moonshot V1 128K",
+      "id": "moonshot-v1-128k",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Moonshot V1 128K Vision",
+      "id": "moonshot-v1-128k-vision-preview",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "vision"
+      ]
+    },
+    {
+      "name": "Moonshot V1 32K",
+      "id": "moonshot-v1-32k",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Moonshot V1 32K Vision",
+      "id": "moonshot-v1-32k-vision-preview",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "vision"
+      ]
+    },
+    {
+      "name": "Moonshot V1 8K",
+      "id": "moonshot-v1-8k",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Moonshot V1 8K Vision",
+      "id": "moonshot-v1-8k-vision-preview",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "vision"
+      ]
+    },
+    {
+      "name": "Moonshot V1 Auto",
+      "id": "moonshot-v1-auto",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    }
+  ],
+  "openai-completion": [
+    {
+      "name": "",
+      "id": "gpt-4.1",
+      "endpoint": "",
+      "context": 1047576,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-4.1-mini",
+      "endpoint": "",
+      "context": 1047576,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-4.1-nano",
+      "endpoint": "",
+      "context": 1047576,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-4.5-preview",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-4o",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-4o-mini",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5-2025-08-07",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5-chat-latest",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5-mini-2025-08-07",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5-nano-2025-08-07",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.1",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.1-chat-latest",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.2-2025-12-11",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.2-chat-latest",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.4-2026-03-05",
+      "endpoint": "",
+      "context": 1050000,
+      "max_tokens": 1050000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.4-nano",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.5-2026-04-23",
+      "endpoint": "",
+      "context": 1050000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "o1",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "",
+      "id": "o1-mini",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "",
+      "id": "o1-pro",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "",
+      "id": "o3",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "",
+      "id": "o3-mini",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "",
+      "id": "o4-mini",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "unknown"
+      ]
+    }
+  ],
+  "openai-responses": [
+    {
+      "name": "",
+      "id": "gpt-5.1-codex",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.1-codex-mini",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.2-codex",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.2-pro-2025-12-11",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.3-codex",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.4-mini",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.4-pro",
+      "endpoint": "",
+      "context": 1050000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "gpt-5.5-pro-2026-04-23",
+      "endpoint": "",
+      "context": 1050000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "",
+      "id": "o3-pro",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    }
+  ],
+  "openrouter": [
+    {
+      "name": "Google Gemini Flash Latest (OpenRouter)",
+      "id": "openrouter:~google/gemini-flash-latest",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google Gemini Pro Latest (OpenRouter)",
+      "id": "openrouter:~google/gemini-pro-latest",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "MoonshotAI Kimi Latest (OpenRouter)",
+      "id": "openrouter:~moonshotai/kimi-latest",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262142,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "OpenAI GPT Latest (OpenRouter)",
+      "id": "openrouter:~openai/gpt-latest",
+      "endpoint": "",
+      "context": 1050000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI GPT Mini Latest (OpenRouter)",
+      "id": "openrouter:~openai/gpt-mini-latest",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "AI21: Jamba Large 1.7 (OpenRouter)",
+      "id": "openrouter:ai21/jamba-large-1.7",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 4096,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "AionLabs: Aion-1.0 (OpenRouter)",
+      "id": "openrouter:aion-labs/aion-1.0",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "AionLabs: Aion-1.0-Mini (OpenRouter)",
+      "id": "openrouter:aion-labs/aion-1.0-mini",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "AionLabs: Aion-2.0 (OpenRouter)",
+      "id": "openrouter:aion-labs/aion-2.0",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "AionLabs: Aion-RP 1.0 (8B) (OpenRouter)",
+      "id": "openrouter:aion-labs/aion-rp-llama-3.1-8b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "AlfredPros: CodeLLaMa 7B Instruct Solidity (OpenRouter)",
+      "id": "openrouter:alfredpros/codellama-7b-instruct-solidity",
+      "endpoint": "",
+      "context": 4096,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Tongyi DeepResearch 30B A3B (OpenRouter)",
+      "id": "openrouter:alibaba/tongyi-deepresearch-30b-a3b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "AllenAI: Olmo 3 32B Think (OpenRouter)",
+      "id": "openrouter:allenai/olmo-3-32b-think",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Amazon: Nova 2 Lite (OpenRouter)",
+      "id": "openrouter:amazon/nova-2-lite-v1",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65535,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Amazon: Nova Lite 1.0 (OpenRouter)",
+      "id": "openrouter:amazon/nova-lite-v1",
+      "endpoint": "",
+      "context": 300000,
+      "max_tokens": 5120,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Amazon: Nova Micro 1.0 (OpenRouter)",
+      "id": "openrouter:amazon/nova-micro-v1",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 5120,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Amazon: Nova Premier 1.0 (OpenRouter)",
+      "id": "openrouter:amazon/nova-premier-v1",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 32000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Amazon: Nova Pro 1.0 (OpenRouter)",
+      "id": "openrouter:amazon/nova-pro-v1",
+      "endpoint": "",
+      "context": 300000,
+      "max_tokens": 5120,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Magnum v4 72B (OpenRouter)",
+      "id": "openrouter:anthracite-org/magnum-v4-72b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 2048,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Anthropic: Claude 3.5 Haiku (OpenRouter)",
+      "id": "openrouter:anthropic/claude-3.5-haiku",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Anthropic: Claude Opus 4.1 (OpenRouter)",
+      "id": "openrouter:anthropic/claude-opus-4.1",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 32000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Anthropic: Claude Opus 4.6 (Fast) (OpenRouter)",
+      "id": "openrouter:anthropic/claude-opus-4.6-fast",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Anthropic: Claude Opus 4.7 (Fast) (OpenRouter)",
+      "id": "openrouter:anthropic/claude-opus-4.7-fast",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Arcee AI: Coder Large (OpenRouter)",
+      "id": "openrouter:arcee-ai/coder-large",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Arcee AI: Maestro Reasoning (OpenRouter)",
+      "id": "openrouter:arcee-ai/maestro-reasoning",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32000,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Arcee AI: Spotlight (OpenRouter)",
+      "id": "openrouter:arcee-ai/spotlight",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 65537,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Arcee AI: Trinity Large Preview (OpenRouter)",
+      "id": "openrouter:arcee-ai/trinity-large-preview",
+      "endpoint": "",
+      "context": 131000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Arcee AI: Trinity Large Thinking (OpenRouter)",
+      "id": "openrouter:arcee-ai/trinity-large-thinking",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Arcee AI: Trinity Large Thinking (free) (OpenRouter)",
+      "id": "openrouter:arcee-ai/trinity-large-thinking:free",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 80000,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Arcee AI: Virtuoso Large (OpenRouter)",
+      "id": "openrouter:arcee-ai/virtuoso-large",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 64000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Baidu Qianfan: CoBuddy (free) (OpenRouter)",
+      "id": "openrouter:baidu/cobuddy:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Baidu: ERNIE 4.5 21B A3B (OpenRouter)",
+      "id": "openrouter:baidu/ernie-4.5-21b-a3b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Baidu: ERNIE 4.5 21B A3B Thinking (OpenRouter)",
+      "id": "openrouter:baidu/ernie-4.5-21b-a3b-thinking",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 65536,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Baidu: ERNIE 4.5 300B A47B  (OpenRouter)",
+      "id": "openrouter:baidu/ernie-4.5-300b-a47b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 12000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Baidu: ERNIE 4.5 VL 28B A3B (OpenRouter)",
+      "id": "openrouter:baidu/ernie-4.5-vl-28b-a3b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Baidu: ERNIE 4.5 VL 424B A47B  (OpenRouter)",
+      "id": "openrouter:baidu/ernie-4.5-vl-424b-a47b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Baidu: Qianfan-OCR-Fast (OpenRouter)",
+      "id": "openrouter:baidu/qianfan-ocr-fast",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 28672,
+      "categories": [
+        "vision"
+      ]
+    },
+    {
+      "name": "ByteDance Seed: Seed 1.6 (OpenRouter)",
+      "id": "openrouter:bytedance-seed/seed-1.6",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "ByteDance Seed: Seed 1.6 Flash (OpenRouter)",
+      "id": "openrouter:bytedance-seed/seed-1.6-flash",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "ByteDance Seed: Seed-2.0-Lite (OpenRouter)",
+      "id": "openrouter:bytedance-seed/seed-2.0-lite",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "ByteDance Seed: Seed-2.0-Mini (OpenRouter)",
+      "id": "openrouter:bytedance-seed/seed-2.0-mini",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "ByteDance: UI-TARS 7B  (OpenRouter)",
+      "id": "openrouter:bytedance/ui-tars-1.5-7b",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 2048,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Venice: Uncensored (free) (OpenRouter)",
+      "id": "openrouter:cognitivecomputations/dolphin-mistral-24b-venice-edition:free",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Cohere: Command A (OpenRouter)",
+      "id": "openrouter:cohere/command-a",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Cohere: Command R (08-2024) (OpenRouter)",
+      "id": "openrouter:cohere/command-r-08-2024",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 4000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Cohere: Command R+ (08-2024) (OpenRouter)",
+      "id": "openrouter:cohere/command-r-plus-08-2024",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 4000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Cohere: Command R7B (12-2024) (OpenRouter)",
+      "id": "openrouter:cohere/command-r7b-12-2024",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 4000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Deep Cogito: Cogito v2.1 671B (OpenRouter)",
+      "id": "openrouter:deepcogito/cogito-v2.1-671b",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "DeepSeek: DeepSeek V3 0324 (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-chat-v3-0324",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "DeepSeek: DeepSeek V3.1 (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-chat-v3.1",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "DeepSeek: R1 (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-r1",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 16000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "DeepSeek: R1 0528 (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-r1-0528",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "DeepSeek: R1 Distill Qwen 32B (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-r1-distill-qwen-32b",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "DeepSeek: DeepSeek V3.1 Terminus (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-v3.1-terminus",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "DeepSeek: DeepSeek V3.2 (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-v3.2",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "DeepSeek: DeepSeek V3.2 Exp (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-v3.2-exp",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "DeepSeek: DeepSeek V3.2 Speciale (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-v3.2-speciale",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 163840,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "DeepSeek: DeepSeek V4 Flash (free) (OpenRouter)",
+      "id": "openrouter:deepseek/deepseek-v4-flash:free",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 384000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.0 Flash (OpenRouter)",
+      "id": "openrouter:google/gemini-2.0-flash-001",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.0 Flash Lite (OpenRouter)",
+      "id": "openrouter:google/gemini-2.0-flash-lite-001",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.5 Flash (OpenRouter)",
+      "id": "openrouter:google/gemini-2.5-flash",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Nano Banana (Gemini 2.5 Flash Image) (OpenRouter)",
+      "id": "openrouter:google/gemini-2.5-flash-image",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "vision",
+        "image_generation",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.5 Flash Lite (OpenRouter)",
+      "id": "openrouter:google/gemini-2.5-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.5 Flash Lite Preview 09-2025 (OpenRouter)",
+      "id": "openrouter:google/gemini-2.5-flash-lite-preview-09-2025",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.5 Pro (OpenRouter)",
+      "id": "openrouter:google/gemini-2.5-pro",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.5 Pro Preview 06-05 (OpenRouter)",
+      "id": "openrouter:google/gemini-2.5-pro-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 2.5 Pro Preview 05-06 (OpenRouter)",
+      "id": "openrouter:google/gemini-2.5-pro-preview-05-06",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 3 Flash Preview (OpenRouter)",
+      "id": "openrouter:google/gemini-3-flash-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Nano Banana Pro (Gemini 3 Pro Image Preview) (OpenRouter)",
+      "id": "openrouter:google/gemini-3-pro-image-preview",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "vision",
+        "image_generation",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Nano Banana 2 (Gemini 3.1 Flash Image Preview) (OpenRouter)",
+      "id": "openrouter:google/gemini-3.1-flash-image-preview",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "image_generation",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 3.1 Flash Lite (OpenRouter)",
+      "id": "openrouter:google/gemini-3.1-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 3.1 Flash Lite Preview (OpenRouter)",
+      "id": "openrouter:google/gemini-3.1-flash-lite-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 3.1 Pro Preview (OpenRouter)",
+      "id": "openrouter:google/gemini-3.1-pro-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemini 3.1 Pro Preview Custom Tools (OpenRouter)",
+      "id": "openrouter:google/gemini-3.1-pro-preview-customtools",
+      "endpoint": "",
+      "context": 1048756,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "tool_calling",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Google: Gemma 3 12B (OpenRouter)",
+      "id": "openrouter:google/gemma-3-12b-it",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Google: Gemma 4 26B A4B  (free) (OpenRouter)",
+      "id": "openrouter:google/gemma-4-26b-a4b-it:free",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Google: Gemma 4 31B (free) (OpenRouter)",
+      "id": "openrouter:google/gemma-4-31b-it:free",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Google: Lyria 3 Clip Preview (OpenRouter)",
+      "id": "openrouter:google/lyria-3-clip-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Google: Lyria 3 Pro Preview (OpenRouter)",
+      "id": "openrouter:google/lyria-3-pro-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MythoMax 13B (OpenRouter)",
+      "id": "openrouter:gryphe/mythomax-l2-13b",
+      "endpoint": "",
+      "context": 4096,
+      "max_tokens": 4096,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "IBM: Granite 4.0 Micro (OpenRouter)",
+      "id": "openrouter:ibm-granite/granite-4.0-h-micro",
+      "endpoint": "",
+      "context": 131000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "IBM: Granite 4.1 8B (OpenRouter)",
+      "id": "openrouter:ibm-granite/granite-4.1-8b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Inception: Mercury 2 (OpenRouter)",
+      "id": "openrouter:inception/mercury-2",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 50000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "inclusionAI: Ling-2.6-1T (OpenRouter)",
+      "id": "openrouter:inclusionai/ling-2.6-1t",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "inclusionAI: Ling-2.6-flash (OpenRouter)",
+      "id": "openrouter:inclusionai/ling-2.6-flash",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "inclusionAI: Ring-2.6-1T (OpenRouter)",
+      "id": "openrouter:inclusionai/ring-2.6-1t",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Inflection: Inflection 3 Pi (OpenRouter)",
+      "id": "openrouter:inflection/inflection-3-pi",
+      "endpoint": "",
+      "context": 8000,
+      "max_tokens": 1024,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Inflection: Inflection 3 Productivity (OpenRouter)",
+      "id": "openrouter:inflection/inflection-3-productivity",
+      "endpoint": "",
+      "context": 8000,
+      "max_tokens": 1024,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Kwaipilot: KAT-Coder-Pro V2 (OpenRouter)",
+      "id": "openrouter:kwaipilot/kat-coder-pro-v2",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 80000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "LiquidAI: LFM2-24B-A2B (OpenRouter)",
+      "id": "openrouter:liquid/lfm-2-24b-a2b",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "LiquidAI: LFM2.5-1.2B-Instruct (free) (OpenRouter)",
+      "id": "openrouter:liquid/lfm-2.5-1.2b-instruct:free",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "LiquidAI: LFM2.5-1.2B-Thinking (free) (OpenRouter)",
+      "id": "openrouter:liquid/lfm-2.5-1.2b-thinking:free",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": "",
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Mancer: Weaver (alpha) (OpenRouter)",
+      "id": "openrouter:mancer/weaver",
+      "endpoint": "",
+      "context": 8000,
+      "max_tokens": 2000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Meta: Llama 3 70B Instruct (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-3-70b-instruct",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta: Llama 3 8B Instruct (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-3-8b-instruct",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta: Llama 3.1 70B Instruct (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-3.1-70b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta: Llama 3.1 8B Instruct (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-3.1-8b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta: Llama 3.2 11B Vision Instruct (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-3.2-11b-vision-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Meta: Llama 3.2 3B Instruct (free) (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-3.2-3b-instruct:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta: Llama 3.3 70B Instruct (free) (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-3.3-70b-instruct:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta: Llama 4 Maverick (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-4-maverick",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta: Llama 4 Scout (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-4-scout",
+      "endpoint": "",
+      "context": 10000000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama Guard 3 8B (OpenRouter)",
+      "id": "openrouter:meta-llama/llama-guard-3-8b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Microsoft: Phi 4 (OpenRouter)",
+      "id": "openrouter:microsoft/phi-4",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Microsoft: Phi 4 Mini Instruct (OpenRouter)",
+      "id": "openrouter:microsoft/phi-4-mini-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "WizardLM-2 8x22B (OpenRouter)",
+      "id": "openrouter:microsoft/wizardlm-2-8x22b",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 8000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax: MiniMax-01 (OpenRouter)",
+      "id": "openrouter:minimax/minimax-01",
+      "endpoint": "",
+      "context": 1000192,
+      "max_tokens": 1000192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax: MiniMax M1 (OpenRouter)",
+      "id": "openrouter:minimax/minimax-m1",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 40000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax: MiniMax M2-her (OpenRouter)",
+      "id": "openrouter:minimax/minimax-m2-her",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 2048,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax: MiniMax M2.1 (OpenRouter)",
+      "id": "openrouter:minimax/minimax-m2.1",
+      "endpoint": "",
+      "context": 204800,
+      "max_tokens": 196608,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax: MiniMax M2.5 (OpenRouter)",
+      "id": "openrouter:minimax/minimax-m2.5",
+      "endpoint": "",
+      "context": 204800,
+      "max_tokens": 196608,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax: MiniMax M2.5 (free) (OpenRouter)",
+      "id": "openrouter:minimax/minimax-m2.5:free",
+      "endpoint": "",
+      "context": 204800,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Mistral: Devstral Medium (OpenRouter)",
+      "id": "openrouter:mistralai/devstral-medium",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Devstral Small 1.1 (OpenRouter)",
+      "id": "openrouter:mistralai/devstral-small",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Large 2407 (OpenRouter)",
+      "id": "openrouter:mistralai/mistral-large-2407",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Large 2411 (OpenRouter)",
+      "id": "openrouter:mistralai/mistral-large-2411",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Mistral Medium 3.1 (OpenRouter)",
+      "id": "openrouter:mistralai/mistral-medium-3.1",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Saba (OpenRouter)",
+      "id": "openrouter:mistralai/mistral-saba",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Mistral Small 3.1 24B (OpenRouter)",
+      "id": "openrouter:mistralai/mistral-small-3.1-24b-instruct",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Mistral Small 3.2 24B (OpenRouter)",
+      "id": "openrouter:mistralai/mistral-small-3.2-24b-instruct",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Mixtral 8x22B Instruct (OpenRouter)",
+      "id": "openrouter:mistralai/mixtral-8x22b-instruct",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Pixtral Large 2411 (OpenRouter)",
+      "id": "openrouter:mistralai/pixtral-large-2411",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral: Voxtral Small 24B 2507 (OpenRouter)",
+      "id": "openrouter:mistralai/voxtral-small-24b-2507",
+      "endpoint": "",
+      "context": 32000,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "MoonshotAI: Kimi K2 0711 (OpenRouter)",
+      "id": "openrouter:moonshotai/kimi-k2",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MoonshotAI: Kimi K2 0905 (OpenRouter)",
+      "id": "openrouter:moonshotai/kimi-k2-0905",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MoonshotAI: Kimi K2 Thinking (OpenRouter)",
+      "id": "openrouter:moonshotai/kimi-k2-thinking",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Morph: Morph V3 Fast (OpenRouter)",
+      "id": "openrouter:morph/morph-v3-fast",
+      "endpoint": "",
+      "context": 81920,
+      "max_tokens": 38000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Morph: Morph V3 Large (OpenRouter)",
+      "id": "openrouter:morph/morph-v3-large",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Nex AGI: DeepSeek V3.1 Nex N1 (OpenRouter)",
+      "id": "openrouter:nex-agi/deepseek-v3.1-nex-n1",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 163840,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "NousResearch: Hermes 2 Pro - Llama-3 8B (OpenRouter)",
+      "id": "openrouter:nousresearch/hermes-2-pro-llama-3-8b",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Nous: Hermes 3 405B Instruct (OpenRouter)",
+      "id": "openrouter:nousresearch/hermes-3-llama-3.1-405b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Nous: Hermes 3 405B Instruct (free) (OpenRouter)",
+      "id": "openrouter:nousresearch/hermes-3-llama-3.1-405b:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Nous: Hermes 3 70B Instruct (OpenRouter)",
+      "id": "openrouter:nousresearch/hermes-3-llama-3.1-70b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Nous: Hermes 4 405B (OpenRouter)",
+      "id": "openrouter:nousresearch/hermes-4-405b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Nous: Hermes 4 70B (OpenRouter)",
+      "id": "openrouter:nousresearch/hermes-4-70b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "NVIDIA: Llama 3.3 Nemotron Super 49B V1.5 (OpenRouter)",
+      "id": "openrouter:nvidia/llama-3.3-nemotron-super-49b-v1.5",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron 3 Nano 30B A3B (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-3-nano-30b-a3b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 228000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron 3 Nano 30B A3B (free) (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-3-nano-30b-a3b:free",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron 3 Nano Omni (free) (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 65536,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron 3 Super (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-3-super-120b-a12b",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 16384,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron 3 Super (free) (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron Nano 12B 2 VL (free) (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-nano-12b-v2-vl:free",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron Nano 9B V2 (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-nano-9b-v2",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "NVIDIA: Nemotron Nano 9B V2 (free) (OpenRouter)",
+      "id": "openrouter:nvidia/nemotron-nano-9b-v2:free",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-3.5 Turbo (OpenRouter)",
+      "id": "openrouter:openai/gpt-3.5-turbo",
+      "endpoint": "",
+      "context": 16385,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-3.5 Turbo (older v0613) (OpenRouter)",
+      "id": "openrouter:openai/gpt-3.5-turbo-0613",
+      "endpoint": "",
+      "context": 4095,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-3.5 Turbo 16k (OpenRouter)",
+      "id": "openrouter:openai/gpt-3.5-turbo-16k",
+      "endpoint": "",
+      "context": 16385,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-3.5 Turbo Instruct (OpenRouter)",
+      "id": "openrouter:openai/gpt-3.5-turbo-instruct",
+      "endpoint": "",
+      "context": 4095,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4 (OpenRouter)",
+      "id": "openrouter:openai/gpt-4",
+      "endpoint": "",
+      "context": 8191,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4 (older v0314) (OpenRouter)",
+      "id": "openrouter:openai/gpt-4-0314",
+      "endpoint": "",
+      "context": 8191,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4 Turbo (older v1106) (OpenRouter)",
+      "id": "openrouter:openai/gpt-4-1106-preview",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4 Turbo (OpenRouter)",
+      "id": "openrouter:openai/gpt-4-turbo",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4 Turbo Preview (OpenRouter)",
+      "id": "openrouter:openai/gpt-4-turbo-preview",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4o (2024-05-13) (OpenRouter)",
+      "id": "openrouter:openai/gpt-4o-2024-05-13",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4o (2024-08-06) (OpenRouter)",
+      "id": "openrouter:openai/gpt-4o-2024-08-06",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4o (2024-11-20) (OpenRouter)",
+      "id": "openrouter:openai/gpt-4o-2024-11-20",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4o Audio (OpenRouter)",
+      "id": "openrouter:openai/gpt-4o-audio-preview",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "audio",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4o-mini (2024-07-18) (OpenRouter)",
+      "id": "openrouter:openai/gpt-4o-mini-2024-07-18",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4o-mini Search Preview (OpenRouter)",
+      "id": "openrouter:openai/gpt-4o-mini-search-preview",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-4o Search Preview (OpenRouter)",
+      "id": "openrouter:openai/gpt-4o-search-preview",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-5 Codex (OpenRouter)",
+      "id": "openrouter:openai/gpt-5-codex",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-5 Image (OpenRouter)",
+      "id": "openrouter:openai/gpt-5-image",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat",
+        "image_generation"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-5 Image Mini (OpenRouter)",
+      "id": "openrouter:openai/gpt-5-image-mini",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat",
+        "image_generation"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-5 Pro (OpenRouter)",
+      "id": "openrouter:openai/gpt-5-pro",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-5.1-Codex-Max (OpenRouter)",
+      "id": "openrouter:openai/gpt-5.1-codex-max",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-5.3 Chat (OpenRouter)",
+      "id": "openrouter:openai/gpt-5.3-chat",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT-5.4 Image 2 (OpenRouter)",
+      "id": "openrouter:openai/gpt-5.4-image-2",
+      "endpoint": "",
+      "context": 272000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat",
+        "image_generation"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT Audio (OpenRouter)",
+      "id": "openrouter:openai/gpt-audio",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "audio",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT Audio Mini (OpenRouter)",
+      "id": "openrouter:openai/gpt-audio-mini",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "audio",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "OpenAI: GPT Chat Latest (OpenRouter)",
+      "id": "openrouter:openai/gpt-chat-latest",
+      "endpoint": "",
+      "context": 400000,
+      "max_tokens": 128000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: gpt-oss-120b (free) (OpenRouter)",
+      "id": "openrouter:openai/gpt-oss-120b:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: gpt-oss-20b (free) (OpenRouter)",
+      "id": "openrouter:openai/gpt-oss-20b:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: gpt-oss-safeguard-20b (OpenRouter)",
+      "id": "openrouter:openai/gpt-oss-safeguard-20b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI: o3 Deep Research (OpenRouter)",
+      "id": "openrouter:openai/o3-deep-research",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "OpenAI: o3 Mini High (OpenRouter)",
+      "id": "openrouter:openai/o3-mini-high",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "OpenAI: o4 Mini Deep Research (OpenRouter)",
+      "id": "openrouter:openai/o4-mini-deep-research",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "OpenAI: o4 Mini High (OpenRouter)",
+      "id": "openrouter:openai/o4-mini-high",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 100000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Body Builder (beta) (OpenRouter)",
+      "id": "openrouter:openrouter/bodybuilder",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Free Models Router (OpenRouter)",
+      "id": "openrouter:openrouter/free",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Owl Alpha (OpenRouter)",
+      "id": "openrouter:openrouter/owl-alpha",
+      "endpoint": "",
+      "context": 1048756,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Pareto Code Router (OpenRouter)",
+      "id": "openrouter:openrouter/pareto-code",
+      "endpoint": "",
+      "context": 2000000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Perceptron: Perceptron Mk1 (OpenRouter)",
+      "id": "openrouter:perceptron/perceptron-mk1",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Perplexity: Sonar (OpenRouter)",
+      "id": "openrouter:perplexity/sonar",
+      "endpoint": "",
+      "context": 127072,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Perplexity: Sonar Deep Research (OpenRouter)",
+      "id": "openrouter:perplexity/sonar-deep-research",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Perplexity: Sonar Pro (OpenRouter)",
+      "id": "openrouter:perplexity/sonar-pro",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 8000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Perplexity: Sonar Pro Search (OpenRouter)",
+      "id": "openrouter:perplexity/sonar-pro-search",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 8000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Perplexity: Sonar Reasoning Pro (OpenRouter)",
+      "id": "openrouter:perplexity/sonar-reasoning-pro",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Poolside: Laguna M.1 (free) (OpenRouter)",
+      "id": "openrouter:poolside/laguna-m.1:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Poolside: Laguna XS.2 (free) (OpenRouter)",
+      "id": "openrouter:poolside/laguna-xs.2:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Prime Intellect: INTELLECT-3 (OpenRouter)",
+      "id": "openrouter:prime-intellect/intellect-3",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Qwen2.5 72B Instruct (OpenRouter)",
+      "id": "openrouter:qwen/qwen-2.5-72b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen2.5 7B Instruct (OpenRouter)",
+      "id": "openrouter:qwen/qwen-2.5-7b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 Coder 32B Instruct (OpenRouter)",
+      "id": "openrouter:qwen/qwen-2.5-coder-32b-instruct",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen Plus 0728 (OpenRouter)",
+      "id": "openrouter:qwen/qwen-plus-2025-07-28",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen Plus 0728 (thinking) (OpenRouter)",
+      "id": "openrouter:qwen/qwen-plus-2025-07-28:thinking",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 235B A22B Instruct 2507 (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-235b-a22b-2507",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 235B A22B Thinking 2507 (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-235b-a22b-thinking-2507",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": "",
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 30B A3B Instruct 2507 (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-30b-a3b-instruct-2507",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 30B A3B Thinking 2507 (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-30b-a3b-thinking-2507",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 Coder 480B A35B (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-coder",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 Coder Next (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-coder-next",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 Coder 480B A35B (free) (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-coder:free",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 262000,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 Max Thinking (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-max-thinking",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 Next 80B A3B Instruct (free) (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-next-80b-a3b-instruct:free",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 VL 235B A22B Instruct (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-vl-235b-a22b-instruct",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 VL 235B A22B Thinking (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-vl-235b-a22b-thinking",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 VL 30B A3B Instruct (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-vl-30b-a3b-instruct",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 VL 30B A3B Thinking (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-vl-30b-a3b-thinking",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3 VL 8B Thinking (OpenRouter)",
+      "id": "openrouter:qwen/qwen3-vl-8b-thinking",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3.5-Flash (OpenRouter)",
+      "id": "openrouter:qwen/qwen3.5-flash-02-23",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3.5 Plus 2026-02-15 (OpenRouter)",
+      "id": "openrouter:qwen/qwen3.5-plus-02-15",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3.5 Plus 2026-04-20 (OpenRouter)",
+      "id": "openrouter:qwen/qwen3.5-plus-20260420",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen: Qwen3.6 Flash (OpenRouter)",
+      "id": "openrouter:qwen/qwen3.6-flash",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Reka Edge (OpenRouter)",
+      "id": "openrouter:rekaai/reka-edge",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Reka Flash 3 (OpenRouter)",
+      "id": "openrouter:rekaai/reka-flash-3",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Relace: Relace Apply 3 (OpenRouter)",
+      "id": "openrouter:relace/relace-apply-3",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Relace: Relace Search (OpenRouter)",
+      "id": "openrouter:relace/relace-search",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Sao10k: Llama 3 Euryale 70B v2.1 (OpenRouter)",
+      "id": "openrouter:sao10k/l3-euryale-70b",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Sao10K: Llama 3 8B Lunaris (OpenRouter)",
+      "id": "openrouter:sao10k/l3-lunaris-8b",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Sao10K: Llama 3.1 70B Hanami x1 (OpenRouter)",
+      "id": "openrouter:sao10k/l3.1-70b-hanami-x1",
+      "endpoint": "",
+      "context": 16000,
+      "max_tokens": "",
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Sao10K: Llama 3.1 Euryale 70B v2.2 (OpenRouter)",
+      "id": "openrouter:sao10k/l3.1-euryale-70b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Sao10K: Llama 3.3 Euryale 70B (OpenRouter)",
+      "id": "openrouter:sao10k/l3.3-euryale-70b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "StepFun: Step 3.5 Flash (OpenRouter)",
+      "id": "openrouter:stepfun/step-3.5-flash",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Switchpoint Router (OpenRouter)",
+      "id": "openrouter:switchpoint/router",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Tencent: Hunyuan A13B Instruct (OpenRouter)",
+      "id": "openrouter:tencent/hunyuan-a13b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Tencent: Hy3 preview (OpenRouter)",
+      "id": "openrouter:tencent/hy3-preview",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "TheDrummer: Cydonia 24B V4.1 (OpenRouter)",
+      "id": "openrouter:thedrummer/cydonia-24b-v4.1",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "TheDrummer: Rocinante 12B (OpenRouter)",
+      "id": "openrouter:thedrummer/rocinante-12b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "TheDrummer: Skyfall 36B V2 (OpenRouter)",
+      "id": "openrouter:thedrummer/skyfall-36b-v2",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "TheDrummer: UnslopNemo 12B (OpenRouter)",
+      "id": "openrouter:thedrummer/unslopnemo-12b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "ReMM SLERP 13B (OpenRouter)",
+      "id": "openrouter:undi95/remm-slerp-l2-13b",
+      "endpoint": "",
+      "context": 6144,
+      "max_tokens": 4096,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Upstage: Solar Pro 3 (OpenRouter)",
+      "id": "openrouter:upstage/solar-pro-3",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Writer: Palmyra X5 (OpenRouter)",
+      "id": "openrouter:writer/palmyra-x5",
+      "endpoint": "",
+      "context": 1040000,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "xAI: Grok 4.20 (OpenRouter)",
+      "id": "openrouter:x-ai/grok-4.20",
+      "endpoint": "",
+      "context": 2000000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "xAI: Grok 4.20 Multi-Agent (OpenRouter)",
+      "id": "openrouter:x-ai/grok-4.20-multi-agent",
+      "endpoint": "",
+      "context": 2000000,
+      "max_tokens": "",
+      "categories": [
+        "tool_calling"
+      ]
+    },
+    {
+      "name": "Xiaomi: MiMo-V2-Flash (OpenRouter)",
+      "id": "openrouter:xiaomi/mimo-v2-flash",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Xiaomi: MiMo-V2-Omni (OpenRouter)",
+      "id": "openrouter:xiaomi/mimo-v2-omni",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Xiaomi: MiMo-V2-Pro (OpenRouter)",
+      "id": "openrouter:xiaomi/mimo-v2-pro",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Xiaomi: MiMo-V2.5 (OpenRouter)",
+      "id": "openrouter:xiaomi/mimo-v2.5",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Xiaomi: MiMo-V2.5-Pro (OpenRouter)",
+      "id": "openrouter:xiaomi/mimo-v2.5-pro",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 16384,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Z.ai: GLM 4 32B  (OpenRouter)",
+      "id": "openrouter:z-ai/glm-4-32b",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": "",
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Z.ai: GLM 4.5 Air (free) (OpenRouter)",
+      "id": "openrouter:z-ai/glm-4.5-air:free",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 96000,
+      "categories": [
+        "unknown"
+      ]
+    }
+  ],
+  "together-ai": [
+    {
+      "name": "Deepcoder 14B Preview",
+      "id": "togetherai:agentica-org/deepcoder-14b-preview",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "tool_calling"
+      ]
+    },
+    {
+      "name": "Molmo 7B D 0924",
+      "id": "togetherai:allenai/molmo-7b-d-0924",
+      "endpoint": "",
+      "context": 4096,
+      "max_tokens": 4096,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Trinity Mini",
+      "id": "togetherai:arcee-ai/trinity-mini",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Arize AI Qwen 2 1.5B Instruct",
+      "id": "togetherai:arize-ai/qwen-2-1.5b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Cogito V1 Preview Llama 70B",
+      "id": "togetherai:deepcogito/cogito-v1-preview-llama-70b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Cogito V1 Preview Llama 70B Turbo",
+      "id": "togetherai:deepcogito/cogito-v1-preview-llama-70b-turbo",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Cogito V1 Preview Llama 8B",
+      "id": "togetherai:deepcogito/cogito-v1-preview-llama-8b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Cogito V1 Preview Qwen 14B",
+      "id": "togetherai:deepcogito/cogito-v1-preview-qwen-14b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Cogito V1 Preview Qwen 32B",
+      "id": "togetherai:deepcogito/cogito-v1-preview-qwen-32b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Cogito v2.1 671B",
+      "id": "togetherai:deepcogito/cogito-v2-1-671b",
+      "endpoint": "",
+      "context": 163840,
+      "max_tokens": 163840,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Deepseek Coder 33B Instruct",
+      "id": "togetherai:deepseek-ai/deepseek-coder-33b-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Deepseek OCR 2",
+      "id": "togetherai:deepseek-ai/deepseek-ocr-2",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "DeepSeek R1 Distill Llama 70B",
+      "id": "togetherai:deepseek-ai/deepseek-r1-distill-llama-70b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "DeepSeek R1 Distill Qwen 1.5B",
+      "id": "togetherai:deepseek-ai/deepseek-r1-distill-qwen-1.5b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "DeepSeek R1 Distill Qwen 14B",
+      "id": "togetherai:deepseek-ai/deepseek-r1-distill-qwen-14b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "DeepSeek R1 Distill Qwen 7B",
+      "id": "togetherai:deepseek-ai/deepseek-r1-distill-qwen-7b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "EssentialAI Rnj-1 Instruct",
+      "id": "togetherai:essentialai/rnj-1-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Facebook CWM",
+      "id": "togetherai:facebook/cwm",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma-2 Instruct (27B)",
+      "id": "togetherai:google/gemma-2-27b-it",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Gemma 2 9B It",
+      "id": "togetherai:google/gemma-2-9b-it",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 2B It",
+      "id": "togetherai:google/gemma-2b-it",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 1b it",
+      "id": "togetherai:google/gemma-3-1b-it",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 1B Pt",
+      "id": "togetherai:google/gemma-3-1b-pt",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 270M It",
+      "id": "togetherai:google/gemma-3-270m-it",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 270M It Lora",
+      "id": "togetherai:google/gemma-3-270m-it-lora",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 27B It",
+      "id": "togetherai:google/gemma-3-27b-it",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 27B It Lora",
+      "id": "togetherai:google/gemma-3-27b-it-lora",
+      "endpoint": "",
+      "context": "",
+      "max_tokens": 8000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 27B Pt",
+      "id": "togetherai:google/gemma-3-27b-pt",
+      "endpoint": "",
+      "context": "",
+      "max_tokens": 8000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3 4b it",
+      "id": "togetherai:google/gemma-3-4b-it",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 65536,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 3N E4B Instruct",
+      "id": "togetherai:google/gemma-3n-e4b-it",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Gemma 4 26B A4b It",
+      "id": "togetherai:google/gemma-4-26b-a4b-it",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 4 E2B-it",
+      "id": "togetherai:google/gemma-4-e2b-it",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Gemma 4 E4B-it",
+      "id": "togetherai:google/gemma-4-e4b-it",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Medgemma 27B Text It",
+      "id": "togetherai:google/medgemma-27b-text-it",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Holo3 35B A3b",
+      "id": "togetherai:hcompany/holo3-35b-a3b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "LFM2-24B-A2B",
+      "id": "togetherai:liquidai/lfm2-24b-a2b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "meta-llama/Llama-2-7b-chat-hf",
+      "id": "togetherai:meta-llama/llama-2-7b-chat-hf",
+      "endpoint": "",
+      "context": 4096,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3 8B Instruct Reference",
+      "id": "togetherai:meta-llama/llama-3-8b-chat-hf",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 3.1 405B",
+      "id": "togetherai:meta-llama/llama-3.1-405b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.1 405B Instruct",
+      "id": "togetherai:meta-llama/llama-3.1-405b-instruct",
+      "endpoint": "",
+      "context": 4096,
+      "max_tokens": 4096,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 3.2 1B",
+      "id": "togetherai:meta-llama/llama-3.2-1b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.2 1B Instruct",
+      "id": "togetherai:meta-llama/llama-3.2-1b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.2 3B",
+      "id": "togetherai:meta-llama/llama-3.2-3b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.2 3B Instruct",
+      "id": "togetherai:meta-llama/llama-3.2-3b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "meta-llama/Llama-3.3-70B-Instruct",
+      "id": "togetherai:meta-llama/llama-3.3-70b-instruct",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 3.3 70B Instruct FP8 Lora",
+      "id": "togetherai:meta-llama/llama-3.3-70b-instruct-fp8-lora",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.3 70B Instruct Turbo",
+      "id": "togetherai:meta-llama/llama-3.3-70b-instruct-turbo",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.3 70B Instruct Turbo",
+      "id": "togetherai:meta-llama/llama-3.3-70b-instruct-turbo-test",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 4 Maverick Instruct (17Bx128E) FP8",
+      "id": "togetherai:meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 1048576,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 4 Scout (17Bx16E)",
+      "id": "togetherai:meta-llama/llama-4-scout-17b-16e",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 4 Scout Instruct (17Bx16E)",
+      "id": "togetherai:meta-llama/llama-4-scout-17b-16e-instruct",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 1048576,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama Guard 4 12B",
+      "id": "togetherai:meta-llama/llama-guard-4-12b",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 1048576,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3 70B Instruct Turbo",
+      "id": "togetherai:meta-llama/meta-llama-3-70b-instruct-turbo",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3 8B Instruct",
+      "id": "togetherai:meta-llama/meta-llama-3-8b-instruct",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3 8B Instruct Lite",
+      "id": "togetherai:meta-llama/meta-llama-3-8b-instruct-lite",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 3.1 70B",
+      "id": "togetherai:meta-llama/meta-llama-3.1-70b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.1 70B Instruct Turbo",
+      "id": "togetherai:meta-llama/meta-llama-3.1-70b-instruct-turbo",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.1 8B",
+      "id": "togetherai:meta-llama/meta-llama-3.1-8b",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.1 8B Instruct Turbo",
+      "id": "togetherai:meta-llama/meta-llama-3.1-8b-instruct-turbo",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Minimax M1 40K",
+      "id": "togetherai:minimaxai/minimax-m1-40k",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 1048576,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Minimax M1 80K",
+      "id": "togetherai:minimaxai/minimax-m1-80k",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 1048576,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax M2",
+      "id": "togetherai:minimaxai/minimax-m2",
+      "endpoint": "",
+      "context": 196608,
+      "max_tokens": 196608,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "MiniMax M2.7 FP4",
+      "id": "togetherai:minimaxai/minimax-m2.7",
+      "endpoint": "",
+      "context": 196608,
+      "max_tokens": 196608,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Devstral Small 2505",
+      "id": "togetherai:mistralai/devstral-small-2505",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Magistral Small 2506",
+      "id": "togetherai:mistralai/magistral-small-2506",
+      "endpoint": "",
+      "context": 40960,
+      "max_tokens": 40960,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Ministral 3 14B Instruct 2512",
+      "id": "togetherai:mistralai/ministral-3-14b-instruct-2512",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral (7B) Instruct v0.1",
+      "id": "togetherai:mistralai/mistral-7b-instruct-v0.1",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral (7B) Instruct v0.3",
+      "id": "togetherai:mistralai/mistral-7b-instruct-v0.3",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral 7B v0.1",
+      "id": "togetherai:mistralai/mistral-7b-v0.1",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mistral Small (24B) Instruct 25.01",
+      "id": "togetherai:mistralai/mistral-small-24b-instruct-2501",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mixtral 8X22b Instruct V0.1",
+      "id": "togetherai:mistralai/mixtral-8x22b-instruct-v0.1",
+      "endpoint": "",
+      "context": 65536,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mixtral-8x7B Instruct v0.1",
+      "id": "togetherai:mistralai/mixtral-8x7b-instruct-v0.1",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mixtral 8x7B Instruct V0.1 FP8 Lora",
+      "id": "togetherai:mistralai/mixtral-8x7b-instruct-v0.1-fp8-lora",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Mixtral 8X7b V0.1",
+      "id": "togetherai:mistralai/mixtral-8x7b-v0.1",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/meta/llama-3.1-70b-instruct",
+      "id": "togetherai:nim/meta/llama-3.1-70b-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/meta/llama-3.1-8b-instruct",
+      "id": "togetherai:nim/meta/llama-3.1-8b-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/meta/llama-3.2-11b-vision-instruct",
+      "id": "togetherai:nim/meta/llama-3.2-11b-vision-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "nim/meta/llama-3.2-90b-vision-instruct",
+      "id": "togetherai:nim/meta/llama-3.2-90b-vision-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "nim/meta/llama-3.3-70b-instruct",
+      "id": "togetherai:nim/meta/llama-3.3-70b-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/mistralai/mixtral-8x22b-instruct-v01",
+      "id": "togetherai:nim/mistralai/mixtral-8x22b-instruct-v01",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/mistralai/mixtral-8x7b-instruct-v01",
+      "id": "togetherai:nim/mistralai/mixtral-8x7b-instruct-v01",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/nv-mistralai/mistral-nemo-12b-instruct",
+      "id": "togetherai:nim/nv-mistralai/mistral-nemo-12b-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/nvidia/llama-3.1-nemotron-70b-instruct",
+      "id": "togetherai:nim/nvidia/llama-3.1-nemotron-70b-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "nim/nvidia/llama-3.3-nemotron-super-49b-v1",
+      "id": "togetherai:nim/nvidia/llama-3.3-nemotron-super-49b-v1",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Nous Hermes 2 Mixtral 8X7B Dpo",
+      "id": "togetherai:nousresearch/nous-hermes-2-mixtral-8x7b-dpo",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Llama 3.1 Nemotron 70B Instruct HF",
+      "id": "togetherai:nvidia/llama-3.1-nemotron-70b-instruct-hf",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Nemotron 3 Nano Omni 30B A3b Reasoning Fp8",
+      "id": "togetherai:nvidia/nemotron-3-nano-omni-30b-a3b-reasoning-fp8",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Nvidia Nemotron 3 Nano 30B A3b Bf16",
+      "id": "togetherai:nvidia/nvidia-nemotron-3-nano-30b-a3b-bf16",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Nvidia Nemotron 3 Super 120B A12b Bf16",
+      "id": "togetherai:nvidia/nvidia-nemotron-3-super-120b-a12b-bf16",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Nvidia Nemotron 3 Super 120B A12b Fp8",
+      "id": "togetherai:nvidia/nvidia-nemotron-3-super-120b-a12b-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Nvidia Nemotron Nano 9B V2",
+      "id": "togetherai:nvidia/nvidia-nemotron-nano-9b-v2",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "OpenAI GPT-OSS 120B",
+      "id": "togetherai:openai/gpt-oss-120b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "OpenAI GPT-OSS 20B",
+      "id": "togetherai:openai/gpt-oss-20b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Pearl-ai Gemma-4-31B-it-pearl",
+      "id": "togetherai:pearl-ai/gemma-4-31b-it",
+      "endpoint": "",
+      "context": 32000,
+      "max_tokens": 32000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Qwen 2 (1.5B)",
+      "id": "togetherai:qwen/qwen2-1.5b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen 2 Instruct (1.5B)",
+      "id": "togetherai:qwen/qwen2-1.5b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen 2 (72B)",
+      "id": "togetherai:qwen/qwen2-72b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2 72B Instruct",
+      "id": "togetherai:qwen/qwen2-72b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen 2 (7B)",
+      "id": "togetherai:qwen/qwen2-7b",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2-VL (72B) Instruct",
+      "id": "togetherai:qwen/qwen2-vl-72b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 1.5B",
+      "id": "togetherai:qwen/qwen2.5-1.5b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 1.5B Instruct",
+      "id": "togetherai:qwen/qwen2.5-1.5b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 14B",
+      "id": "togetherai:qwen/qwen2.5-14b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen 2.5 14B Instruct",
+      "id": "togetherai:qwen/qwen2.5-14b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 32B",
+      "id": "togetherai:qwen/qwen2.5-32b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 32B Instruct",
+      "id": "togetherai:qwen/qwen2.5-32b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 3B Instruct",
+      "id": "togetherai:qwen/qwen2.5-3b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 72B",
+      "id": "togetherai:qwen/qwen2.5-72b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 72B Instruct",
+      "id": "togetherai:qwen/qwen2.5-72b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 72B Instruct Turbo",
+      "id": "togetherai:qwen/qwen2.5-72b-instruct-turbo",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 7B",
+      "id": "togetherai:qwen/qwen2.5-7b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 7B Instruct",
+      "id": "togetherai:qwen/qwen2.5-7b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5 7B Instruct Turbo",
+      "id": "togetherai:qwen/qwen2.5-7b-instruct-turbo",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen 2.5 Coder 32B Instruct",
+      "id": "togetherai:qwen/qwen2.5-coder-32b-instruct",
+      "endpoint": "",
+      "context": 16384,
+      "max_tokens": 16384,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen2.5-VL (72B) Instruct",
+      "id": "togetherai:qwen/qwen2.5-vl-72b-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 0.6B",
+      "id": "togetherai:qwen/qwen3-0.6b",
+      "endpoint": "",
+      "context": 40960,
+      "max_tokens": 40960,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 0.6B Base",
+      "id": "togetherai:qwen/qwen3-0.6b-base",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 1.7B",
+      "id": "togetherai:qwen/qwen3-1.7b",
+      "endpoint": "",
+      "context": 40960,
+      "max_tokens": 40960,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 1.7B Base",
+      "id": "togetherai:qwen/qwen3-1.7b-base",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 14B Base",
+      "id": "togetherai:qwen/qwen3-14b-base",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 235B A22b Instruct 2507 Fp8",
+      "id": "togetherai:qwen/qwen3-235b-a22b-instruct-2507-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 235B A22B Instruct 2507 FP8 Throughput",
+      "id": "togetherai:qwen/qwen3-235b-a22b-instruct-2507-tput",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 30B A3b",
+      "id": "togetherai:qwen/qwen3-30b-a3b",
+      "endpoint": "",
+      "context": 40960,
+      "max_tokens": 40960,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 30B A3b Base",
+      "id": "togetherai:qwen/qwen3-30b-a3b-base",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 30B A3B Instruct 2507 Lora",
+      "id": "togetherai:qwen/qwen3-30b-a3b-instruct-2507-lora",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 4B Base",
+      "id": "togetherai:qwen/qwen3-4b-base",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 4B Instruct 2507",
+      "id": "togetherai:qwen/qwen3-4b-instruct-2507",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 8B Base",
+      "id": "togetherai:qwen/qwen3-8b-base",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 8B Lora",
+      "id": "togetherai:qwen/qwen3-8b-lora",
+      "endpoint": "",
+      "context": 40960,
+      "max_tokens": 40960,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 Coder 480B A35B Instruct Fp8",
+      "id": "togetherai:qwen/qwen3-coder-480b-a35b-instruct-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 Coder Next Fp8",
+      "id": "togetherai:qwen/qwen3-coder-next-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3 Next 80B A3b Instruct Fp8",
+      "id": "togetherai:qwen/qwen3-next-80b-a3b-instruct-fp8",
+      "endpoint": "",
+      "context": "",
+      "max_tokens": "",
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-VL-235B-A22B-Instruct-FP8",
+      "id": "togetherai:qwen/qwen3-vl-235b-a22b-instruct-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-VL-32B-Instruct",
+      "id": "togetherai:qwen/qwen3-vl-32b-instruct",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3-VL-8B-Instruct",
+      "id": "togetherai:qwen/qwen3-vl-8b-instruct",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 122B A10b Fp8",
+      "id": "togetherai:qwen/qwen3.5-122b-a10b-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 9B FP8",
+      "id": "togetherai:qwen/qwen3.5-9b",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.5 9B Fp8",
+      "id": "togetherai:qwen/qwen3.5-9b-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen3.6 35B A3b Fp8",
+      "id": "togetherai:qwen/qwen3.6-35b-a3b-fp8",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 262144,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Qwen QwQ-32B",
+      "id": "togetherai:qwen/qwq-32b",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat",
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Sarvam M",
+      "id": "togetherai:sarvamai/sarvam-m",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "EssentialAI Rnj-1 Instruct",
+      "id": "togetherai:togethercomputer/essentialai-rnj-1-instruct",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Meta Llama 3.1 8B Instruct Awq Int4",
+      "id": "togetherai:togethercomputer/meta-llama-3.1-8b-instruct-awq-int4",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "text_chat"
+      ]
+    },
+    {
+      "name": "Glm 4.5 Air Fp8",
+      "id": "togetherai:zai-org/glm-4.5-air-fp8",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM OCR",
+      "id": "togetherai:zai-org/glm-ocr",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "vision"
+      ]
+    }
+  ],
+  "xai": [
+    {
+      "name": "Grok 2 Vision",
+      "id": "grok-2-vision",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "vision"
+      ]
+    },
+    {
+      "name": "Grok 2 Vision (1212)",
+      "id": "grok-2-vision-1212",
+      "endpoint": "",
+      "context": 32768,
+      "max_tokens": 32768,
+      "categories": [
+        "vision"
+      ]
+    },
+    {
+      "name": "Grok 3",
+      "id": "grok-3",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok 3 Fast",
+      "id": "grok-3-fast",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok 3 Mini",
+      "id": "grok-3-mini",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok 3 Mini Fast",
+      "id": "grok-3-mini-fast",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok 4",
+      "id": "grok-4",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 256000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok 4 (0709)",
+      "id": "grok-4-0709",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 256000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok 4.1 Fast (Reasoning)",
+      "id": "grok-4-1-fast",
+      "endpoint": "",
+      "context": 2000000,
+      "max_tokens": 2000000,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Grok 4.1 Fast (Non-Reasoning)",
+      "id": "grok-4-1-fast-non-reasoning",
+      "endpoint": "",
+      "context": 2000000,
+      "max_tokens": 2000000,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Grok 4 Fast (Reasoning)",
+      "id": "grok-4-fast",
+      "endpoint": "",
+      "context": 2000000,
+      "max_tokens": 2000000,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Grok 4 Fast (Non-Reasoning)",
+      "id": "grok-4-fast-non-reasoning",
+      "endpoint": "",
+      "context": 2000000,
+      "max_tokens": 2000000,
+      "categories": [
+        "reasoning"
+      ]
+    },
+    {
+      "name": "Grok 4.3",
+      "id": "grok-4.3",
+      "endpoint": "",
+      "context": 1000000,
+      "max_tokens": 30000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok Beta",
+      "id": "grok-beta",
+      "endpoint": "",
+      "context": 131072,
+      "max_tokens": 131072,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok Code Fast 1",
+      "id": "grok-code-fast-1",
+      "endpoint": "",
+      "context": 256000,
+      "max_tokens": 256000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "Grok Vision Beta",
+      "id": "grok-vision-beta",
+      "endpoint": "",
+      "context": 8192,
+      "max_tokens": 8192,
+      "categories": [
+        "vision"
+      ]
+    }
+  ],
+  "zai": [
+    {
+      "name": "AutoGLM-Phone-Multilingual",
+      "id": "autoglm-phone-multilingual",
+      "endpoint": "",
+      "context": 4000,
+      "max_tokens": 4000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4-32B-0414-128K",
+      "id": "glm-4-32b-0414-128k",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.5",
+      "id": "glm-4.5",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 96000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.5-Air",
+      "id": "glm-4.5-air",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 96000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.5-AirX",
+      "id": "glm-4.5-airx",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 96000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.5-Flash",
+      "id": "glm-4.5-flash",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 96000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.5-X",
+      "id": "glm-4.5-x",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 96000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.5V",
+      "id": "glm-4.5v",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 16000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.6",
+      "id": "glm-4.6",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.6V",
+      "id": "glm-4.6v",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 32000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.6V-Flash",
+      "id": "glm-4.6v-flash",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 32000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.6V-FlashX",
+      "id": "glm-4.6v-flashx",
+      "endpoint": "",
+      "context": 128000,
+      "max_tokens": 32000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.7",
+      "id": "glm-4.7",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.7-Flash",
+      "id": "glm-4.7-flash",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-4.7-FlashX",
+      "id": "glm-4.7-flashx",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-5",
+      "id": "glm-5",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-5-Turbo",
+      "id": "glm-5-turbo",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-5.1",
+      "id": "glm-5.1",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    },
+    {
+      "name": "GLM-5V-Turbo",
+      "id": "glm-5v-turbo",
+      "endpoint": "",
+      "context": 200000,
+      "max_tokens": 128000,
+      "categories": [
+        "unknown"
+      ]
+    }
+  ]
+}
