@@ -15,6 +15,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.speech.SpeechRecognizer;
 import android.webkit.JavascriptInterface;
@@ -26,6 +28,8 @@ import android.media.AudioManager;
 import android.media.AudioRecordingConfiguration;
 
 import androidx.core.content.ContextCompat;
+
+import org.json.JSONObject;
 
 import java.io.OutputStream;
 import java.io.IOException;
@@ -39,16 +43,13 @@ import java.util.List;
  * The core bridge class between the HTML JavaScript and Native Android code.
  * Fulfills all requirements for native TTS, barge-in, full-screen voice agent,
  * and authentication persistence.
- * 
- * UPDATED: Adapted direct browser WebRTC logic (removed native OkHttp WebSocket Tunneling to optimize real-time streaming latency).
- * UPDATED: Implemented stopSpeaking() method to prevent JavaScript TypeError context crashes on delete actions.
- * UPDATED: Enhanced system hardware diagnostics and forensic log integration.
  */
 public class WebAppInterface {
 
     private final Context context;
     private final WebView webView;
     private final SharedPreferences prefs;
+    private final Handler mainHandler;
     private GeminiService geminiService;
 
     // Global static tracking for Live WebSocket session visibility
@@ -99,6 +100,7 @@ public class WebAppInterface {
     public WebAppInterface(Context context, WebView webView) {
         this.context = context;
         this.webView = webView;
+        this.mainHandler = new Handler(Looper.getMainLooper());
         this.prefs = context.getSharedPreferences(AppConstants.PREF_NAME, Context.MODE_PRIVATE);
         this.geminiService = new GeminiService(context, webView);
 
@@ -106,17 +108,13 @@ public class WebAppInterface {
     }
 
     /**
-     * Helper to safely escape JavaScript parameters to avoid script execution failures.
+     * Helper to safely format JavaScript string parameters using standard JSON quoting rules.
      */
-    private String escapeJsString(String value) {
+    private String safeQuote(String value) {
         if (value == null) {
-            return "";
+            return "\"\"";
         }
-        return value.replace("\\", "\\\\")
-                    .replace("'", "\\'")
-                    .replace("\"", "\\\"")
-                    .replace("\n", "\\n")
-                    .replace("\r", "\\r");
+        return JSONObject.quote(value);
     }
 
     /**
@@ -125,13 +123,14 @@ public class WebAppInterface {
     @JavascriptInterface
     public void nativeLog(String message, String type) {
         if (webView != null) {
-            String escapedMsg = escapeJsString(message);
+            String quotedMsg = safeQuote("[JAVA] " + (message != null ? message : ""));
+            String quotedType = safeQuote(type != null ? type : "info");
             webView.post(() -> {
-                webView.evaluateJavascript("if(window.addPuterLog){ window.addPuterLog('[JAVA] " + escapedMsg + "', '" + type + "'); }", null);
-                webView.evaluateJavascript("if(window.addNativeLogToConsole){ window.addNativeLogToConsole('[JAVA] " + escapedMsg + "', '" + type + "'); }", null);
+                webView.evaluateJavascript("if(window.addPuterLog){ window.addPuterLog(" + quotedMsg + ", " + quotedType + "); }", null);
+                webView.evaluateJavascript("if(window.addNativeLogToConsole){ window.addNativeLogToConsole(" + quotedMsg + ", " + quotedType + "); }", null);
             });
         }
-        Log.d("PuterNativeBridge", message);
+        Log.d("PuterNativeBridge", message != null ? message : "");
 
         if ("error".equalsIgnoreCase(type) || "critical".equalsIgnoreCase(type)) {
             ActionReportLogger.logError("NATIVE_BRIDGE", message);
@@ -303,12 +302,14 @@ public class WebAppInterface {
     @JavascriptInterface
     public void openFilePicker() {
         nativeLog("Invoking Native System File/Camera Picker", "native");
-        ((Activity) context).runOnUiThread(() -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            intent.setType("*/*");
-            ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select File for Puter"), 1);
-        });
+        if (context instanceof Activity) {
+            ((Activity) context).runOnUiThread(() -> {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("*/*");
+                ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Select File for Puter"), 1);
+            });
+        }
     }
 
     @JavascriptInterface
@@ -381,14 +382,26 @@ public class WebAppInterface {
         return sb.toString();
     }
 
+    /**
+     * Enhanced thread-safe clipboard integration supporting large code block copying.
+     */
     @JavascriptInterface
     public void copyToClipboard(String text) {
-        ((Activity) context).runOnUiThread(() -> {
-            ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clipObj = ClipData.newPlainText("PuterChat", text);
-            if (clipboard != null) {
-                clipboard.setPrimaryClip(clipObj);
-                Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show();
+        if (text == null) text = "";
+        final String copyText = text;
+        mainHandler.post(() -> {
+            try {
+                ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                if (clipboard != null) {
+                    ClipData clipObj = ClipData.newPlainText("PuterChat", copyText);
+                    clipboard.setPrimaryClip(clipObj);
+                    // On Android 13+ (API 33+), the OS displays an automatic native clipboard preview popup
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                        Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } catch (Exception e) {
+                Log.e("WebAppInterface", "Failed to copy to clipboard", e);
             }
         });
     }
@@ -511,7 +524,7 @@ public class WebAppInterface {
     @JavascriptInterface
     public void wakeUpKiwi(String queryText) {
         nativeLog("Bridge: On-demand wake-up triggered for Kiwi Browser.", "native");
-        ((Activity) context).runOnUiThread(() -> {
+        mainHandler.post(() -> {
             try {
                 String ddgBaseUrl = "https://html.duckduckgo.com/html/?q=";
                 String encodedQuery;
@@ -619,7 +632,7 @@ public class WebAppInterface {
         AuthManager.getInstance(context).logout();
         android.webkit.CookieManager.getInstance().flush();
 
-        ((Activity) context).runOnUiThread(() -> {
+        mainHandler.post(() -> {
             Toast.makeText(context, "Signed out of Puter", Toast.LENGTH_SHORT).show();
             webView.reload();
         });
@@ -632,7 +645,7 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public void saveImageToGallery(String base64Data) {
-        ((Activity) context).runOnUiThread(() -> {
+        mainHandler.post(() -> {
             try {
                 if (base64Data == null || base64Data.isEmpty()) {
                     Toast.makeText(context, "Image data is empty.", Toast.LENGTH_SHORT).show();
@@ -725,7 +738,7 @@ public class WebAppInterface {
     public void showToast(final String message) {
         if (message == null) return;
         nativeLog("Bridge: Triggering Native Toast -> " + message, "native");
-        new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+        mainHandler.post(() -> {
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         });
     }
@@ -742,9 +755,9 @@ public class WebAppInterface {
         ActionReportLogger.logHtmlGlitch(component, glitchDetails);
         Log.e("PuterHtmlGlitch", "[" + component + "] " + glitchDetails);
         if (webView != null) {
-            String escapedMsg = escapeJsString("[" + component + "] " + glitchDetails);
+            String quotedMsg = safeQuote("[" + component + "] " + glitchDetails);
             webView.post(() -> {
-                webView.evaluateJavascript("if(window.addNativeLogToConsole){ window.addNativeLogToConsole('" + escapedMsg + "', 'error'); }", null);
+                webView.evaluateJavascript("if(window.addNativeLogToConsole){ window.addNativeLogToConsole(" + quotedMsg + ", 'error'); }", null);
             });
         }
     }
@@ -755,9 +768,9 @@ public class WebAppInterface {
         ActionReportLogger.logLogicViolation(type, details);
         Log.e("PuterLogicViolation", "[" + type + "] " + details);
         if (webView != null) {
-            String escapedMsg = escapeJsString("[" + type + "] " + details);
+            String quotedMsg = safeQuote("[" + type + "] " + details);
             webView.post(() -> {
-                webView.evaluateJavascript("if(window.addNativeLogToConsole){ window.addNativeLogToConsole('" + escapedMsg + "', 'warning'); }", null);
+                webView.evaluateJavascript("if(window.addNativeLogToConsole){ window.addNativeLogToConsole(" + quotedMsg + ", 'warning'); }", null);
             });
         }
     }
