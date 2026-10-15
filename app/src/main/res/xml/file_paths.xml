@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 
+        This file defines the paths that the FileProvider can share with other apps.
+        It is essential for the Camera and File Picker to function correctly 
+        on Android 7.0 (API 24) and above.
+    -->
+
+    <!-- Access to the app's internal cache directory -->
+    <cache-path
+        name="my_cache_images"
+        path="." />
+
+    <!-- Access to the app's external files directory -->
+    <external-files-path
+        name="my_external_files"
+        path="." />
+
+    <!-- Access to the root of the external storage -->
+    <external-path
+        name="external_storage_root"
+        path="." />
+        
+</paths>
