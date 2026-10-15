@@ -1,0 +1,30 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.  
+buildscript {
+    repositories {
+        // Use the modern, required repositories. jcenter is shut down.
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // --- THIS IS THE FIX ---
+        // Upgrade the Android Gradle Plugin to a version compatible with modern libraries and SDK 34.
+        classpath 'com.android.tools.build:gradle:8.1.4' // <<< THIS LINE HAS BEEN UPDATED
+        // Add the Google services classpath for Firebase integration
+        classpath 'com.google.gms:google-services:4.4.1'
+    }
+}
+
+allprojects {
+    repositories {
+        // Ensure all parts of the project use the modern repositories.
+        google()
+        mavenCentral()
+        // Jitpack is sometimes needed for other libraries.
+        maven { url "https://jitpack.io" }
+        // Removed FrostWire repo - use Maven Central instead
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
