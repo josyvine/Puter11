@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <!-- 
+        NATIVE BROWSER TOOLBAR:
+        Contains physical controls for manual browsing.
+        Hidden by default (android:visibility="gone") so it does not block the Puter chat interface.
+    -->
+    <LinearLayout
+        android:id="@+id/browserToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#333333"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Native Exit Button: Navigates back to index.html -->
+        <Button
+            android:id="@+id/btnBrowserExit"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#D93025"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="Exit"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- Native Address Input Bar -->
+        <EditText
+            android:id="@+id/inputBrowserAddress"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:hint="Enter web address or search..."
+            android:imeOptions="actionGo"
+            android:inputType="textUri"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#999999"
+            android:textSize="13sp" />
+
+        <!-- Native Back Navigation Button -->
+        <Button
+            android:id="@+id/btnBrowserBack"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="6dp"
+            android:backgroundTint="#444444"
+            android:padding="0dp"
+            android:text="←"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Native Forward Navigation Button -->
+        <Button
+            android:id="@+id/btnBrowserForward"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="#444444"
+            android:padding="0dp"
+            android:text="→"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Native Reload Navigation Button -->
+        <Button
+            android:id="@+id/btnBrowserReload"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="#444444"
+            android:padding="0dp"
+            android:text="⟳"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Native Scraper Dashboard Navigation Button -->
+        <Button
+            android:id="@+id/btnBrowserScraper"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="#1A73E8"
+            android:padding="0dp"
+            android:text="📋"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- 
+        The primary WebView container.
+        Its top is dynamically constrained to the bottom of the native browserToolbar.
+    -->
+    <android.webkit.WebView
+        android:id="@+id/webView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/browserToolbar" />
+
+    <!-- 
+        NATIVE SCRAPING FAB:
+        Positioned as an overlay in the bottom-right corner of the WebView container.
+        Hidden by default (android:visibility="gone").
+    -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabScrape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:backgroundTint="#1A73E8"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:backgroundTint="#1A73E8"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_compass"
+        app:tint="#FFFFFF" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
