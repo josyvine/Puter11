@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- 
+        Background color of the input field. 
+        Set to White to match the overall light theme.
+    -->
+    <solid android:color="@color/white" />
+
+    <!-- 
+        The border of the input field.
+        Uses the border_gray defined in colors.xml for a clean look.
+    -->
+    <stroke
+        android:width="1dp"
+        android:color="@color/border_gray" />
+
+    <!-- 
+        Rounded corners to match the modern search bar 
+        and Material Design button styles.
+    -->
+    <corners android:radius="8dp" />
+
+    <!-- Padding inside the border to keep text from touching the edge -->
+    <padding
+        android:bottom="8dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="8dp" />
+        
+</shape>
