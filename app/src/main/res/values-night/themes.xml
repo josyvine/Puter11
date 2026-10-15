@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 
+        Night theme configuration.
+        Instruction Override: User requested a "White" theme.
+        To maintain the white UI even when the system is in Dark Mode, 
+        we explicitly set the windowBackground and statusBarColor to White 
+        and force the status bar icons to remain dark (visible).
+    -->
+    <style name="Theme.Puter.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/puter_blue</item>
+        <item name="colorPrimaryVariant">@color/puter_blue_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/puter_accent</item>
+        <item name="colorSecondaryVariant">@color/puter_blue_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <!-- Force White Background as per instruction -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        
+        <!-- Ensure status bar icons are dark against the white background -->
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Override Dark Mode forcing to keep WebView content bright -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <!-- Compatibility style for Splash Activity -->
+    <style name="Theme.HFS" parent="Theme.Puter.Light">
+    </style>
+</resources>
