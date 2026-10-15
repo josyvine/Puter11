@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Puter Branding Colors (Derived from your Original HTML Blue) -->
+    <color name="puter_blue">#1a73e8</color>
+    <color name="puter_blue_dark">#1557b0</color>
+    <color name="puter_accent">#1a73e8</color>
+
+    <!-- UI Surface Colors -->
+    <color name="background_light">#f7f7f7</color>
+    <color name="header_dark">#333333</color>
+    <color name="text_dark">#333333</color>
+    <color name="border_gray">#dadce0</color>
+</resources>
