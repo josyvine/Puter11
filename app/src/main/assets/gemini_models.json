@@ -1,0 +1,342 @@
+{
+  "generous": [
+    {
+      "name": "Gemini 3.1 Flash Lite",
+      "id": "gemini-3.1-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.0 Flash (audio)",
+      "id": "gemini-2.0-flash",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "audio"
+      ],
+      "setup": {
+        "model": "models/gemini-2.0-flash",
+        "generationConfig": {
+          "responseModalities": ["AUDIO"]
+        }
+      }
+    },
+    {
+      "name": "Gemma 4 26B IT",
+      "id": "gemma-4-26b-a4b-it",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "grounding_ready"
+      ]
+    },
+    {
+      "name": "Gemma 4 31B IT",
+      "id": "gemma-4-31b-it",
+      "endpoint": "",
+      "context": 262144,
+      "max_tokens": 32768,
+      "categories": [
+        "text_chat",
+        "grounding_ready"
+      ]
+    }
+  ],
+  "lite_generous": [
+    {
+      "name": "Gemini 2.5 Flash Lite",
+      "id": "gemini-2.5-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3.1 Flash Lite Preview",
+      "id": "gemini-3.1-flash-lite-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.0 Flash Lite",
+      "id": "gemini-2.0-flash-lite",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.0 Flash Lite 001",
+      "id": "gemini-2.0-flash-lite-001",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini Flash Lite Latest",
+      "id": "gemini-flash-lite-latest",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    }
+  ],
+  "rate_limited": [
+    {
+      "name": "Gemini 2.5 Flash",
+      "id": "gemini-2.5-flash",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65535,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Pro",
+      "id": "gemini-2.5-pro",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3.5 Flash",
+      "id": "gemini-3.5-flash",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3 Flash Preview",
+      "id": "gemini-3-flash-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3.1 Pro Preview",
+      "id": "gemini-3.1-pro-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3.1 Pro Preview (Custom Tools)",
+      "id": "gemini-3.1-pro-preview-customtools",
+      "endpoint": "",
+      "context": 1048756,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "tool_calling",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.0 Flash",
+      "id": "gemini-2.0-flash",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 2.0 Flash 001",
+      "id": "gemini-2.0-flash-001",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini Flash Latest",
+      "id": "gemini-flash-latest",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini Pro Latest",
+      "id": "gemini-pro-latest",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "vision",
+        "multimodal"
+      ]
+    },
+    {
+      "name": "Gemini 3.1 Flash TTS Preview",
+      "id": "gemini-3.1-flash-tts-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "audio"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Flash Preview TTS",
+      "id": "gemini-2.5-flash-preview-tts",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "audio"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Pro Preview TTS",
+      "id": "gemini-2.5-pro-preview-tts",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "audio"
+      ]
+    },
+    {
+      "name": "Gemini 3.1 Flash Live Preview",
+      "id": "gemini-3.1-flash-live-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "audio",
+        "live"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Flash Native Audio Preview",
+      "id": "gemini-2.5-flash-native-audio-preview-12-2025",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "audio",
+        "live"
+      ]
+    },
+    {
+      "name": "Gemini 2.0 Flash Exp (Live)",
+      "id": "gemini-2.0-flash-exp",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 65536,
+      "categories": [
+        "text_chat",
+        "audio",
+        "live"
+      ]
+    },
+    {
+      "name": "Gemini Robotics ER 1.6 Preview",
+      "id": "gemini-robotics-er-1.6-preview",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 8192,
+      "categories": [
+        "text_chat",
+        "robotics"
+      ]
+    },
+    {
+      "name": "Gemini 2.5 Computer Use Preview",
+      "id": "gemini-2.5-computer-use-preview-10-2025",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 30000,
+      "categories": [
+        "text_chat",
+        "computer_use"
+      ]
+    },
+    {
+      "name": "Antigravity Preview",
+      "id": "antigravity-preview-05-2026",
+      "endpoint": "",
+      "context": 1048576,
+      "max_tokens": 30000,
+      "categories": [
+        "text_chat",
+        "experimental"
+      ]
+    }
+  ]
+}
