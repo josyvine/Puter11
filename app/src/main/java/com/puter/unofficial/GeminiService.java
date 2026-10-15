@@ -7,8 +7,13 @@ import android.os.Looper;
 import android.util.Log;
 import android.webkit.WebView;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +52,7 @@ public class GeminiService {
         
         this.client = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS) // Generous read timeout for stable audio/stream blocks
+                .readTimeout(120, TimeUnit.SECONDS) // Extended read timeout for stable streaming of large codeblocks
                 .writeTimeout(15, TimeUnit.SECONDS)
                 .pingInterval(20, TimeUnit.SECONDS)
                 .build();
@@ -104,7 +109,7 @@ public class GeminiService {
                 }
 
                 if (isStream) {
-                    // Handle stream connections by reading chunks dynamically from the byteStream
+                    // Handle stream connections by reading characters dynamically from the stream reader
                     parseStreamResponse(responseBody, msgId);
                 } else {
                     // Deliver complete content immediately for standard single REST calls
@@ -120,16 +125,17 @@ public class GeminiService {
     }
 
     /**
-     * Parses the response body stream line-by-line or block-by-block and 
-     * pipes raw stream blocks back to JavaScript.
+     * Parses the response body stream cleanly using UTF-8 character buffers to prevent
+     * multi-byte character boundary corruption, and pipes raw chunks back to JavaScript.
      */
     private void parseStreamResponse(ResponseBody responseBody, String msgId) {
         InputStream inputStream = responseBody.byteStream();
-        byte[] buffer = new byte[4096];
-        int bytesRead;
+        Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        char[] buffer = new char[2048];
+        int charsRead;
         try {
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                String chunk = new String(buffer, 0, bytesRead, "UTF-8");
+            while ((charsRead = reader.read(buffer)) != -1) {
+                String chunk = new String(buffer, 0, charsRead);
                 deliverStreamChunk(msgId, chunk);
             }
             deliverStreamComplete(msgId);
@@ -137,6 +143,9 @@ public class GeminiService {
             Log.e(TAG, "Stream reading interrupted: " + e.getMessage());
             deliverError(msgId, "Streaming interrupted: " + e.getMessage());
         } finally {
+            try {
+                reader.close();
+            } catch (IOException ignored) {}
             try {
                 inputStream.close();
             } catch (IOException ignored) {}
@@ -147,47 +156,47 @@ public class GeminiService {
 
     private void deliverStreamChunk(final String msgId, final String chunk) {
         mainHandler.post(() -> {
-            String escapedChunk = escapeJsString(chunk);
-            String js = "if(window.onGeminiStreamChunk){ window.onGeminiStreamChunk('" + msgId + "', '" + escapedChunk + "'); }";
+            String quotedMsgId = safeQuote(msgId);
+            String quotedChunk = safeQuote(chunk);
+            String js = "if(window.onGeminiStreamChunk){ window.onGeminiStreamChunk(" + quotedMsgId + ", " + quotedChunk + "); }";
             webView.evaluateJavascript(js, null);
         });
     }
 
     private void deliverStreamComplete(final String msgId) {
         mainHandler.post(() -> {
-            String js = "if(window.onGeminiStreamComplete){ window.onGeminiStreamComplete('" + msgId + "'); }";
+            String quotedMsgId = safeQuote(msgId);
+            String js = "if(window.onGeminiStreamComplete){ window.onGeminiStreamComplete(" + quotedMsgId + "); }";
             webView.evaluateJavascript(js, null);
         });
     }
 
     private void deliverComplete(final String msgId, final String responseData) {
         mainHandler.post(() -> {
-            String escapedResponse = escapeJsString(responseData);
-            String js = "if(window.onGeminiComplete){ window.onGeminiComplete('" + msgId + "', '" + escapedResponse + "'); }";
+            String quotedMsgId = safeQuote(msgId);
+            String quotedResponse = safeQuote(responseData);
+            String js = "if(window.onGeminiComplete){ window.onGeminiComplete(" + quotedMsgId + ", " + quotedResponse + "); }";
             webView.evaluateJavascript(js, null);
         });
     }
 
     private void deliverError(final String msgId, final String errorMessage) {
         mainHandler.post(() -> {
-            String escapedError = escapeJsString(errorMessage);
-            String js = "if(window.onGeminiError){ window.onGeminiError('" + msgId + "', '" + escapedError + "'); }";
+            String quotedMsgId = safeQuote(msgId);
+            String quotedError = safeQuote(errorMessage);
+            String js = "if(window.onGeminiError){ window.onGeminiError(" + quotedMsgId + ", " + quotedError + "); }";
             webView.evaluateJavascript(js, null);
         });
     }
 
     /**
-     * Helper to safely escape JavaScript parameters to avoid string literal breaks in WebView evaluateJavascript.
+     * Helper to safely format JavaScript string parameters using standard JSON quoting rules.
      */
-    private String escapeJsString(String value) {
+    private String safeQuote(String value) {
         if (value == null) {
-            return "";
+            return "\"\"";
         }
-        return value.replace("\\", "\\\\")
-                    .replace("'", "\\'")
-                    .replace("\"", "\\\"")
-                    .replace("\n", "\\n")
-                    .replace("\r", "\\r");
+        return JSONObject.quote(value);
     }
 
     /**
