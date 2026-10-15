@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 
+        Standard network security configuration for Puter Unofficial.
+        This allows the application to communicate securely with Puter.js 
+        endpoints and allows cleartext traffic for localhost debugging 
+        which is often required for WebView-based Puter.js SDK calls.
+    -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Explicitly allowing Puter domains -->
+        <domain includeSubdomains="true">puter.com</domain>
+        <domain includeSubdomains="true">js.puter.com</domain>
+        <domain includeSubdomains="true">localhost</domain>
+    </domain-config>
+</network-security-config>
