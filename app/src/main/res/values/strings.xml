@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Application Branding -->
+    <string name="app_name">Puter Unofficial</string>
+
+    <!-- Navigation & Menu -->
+    <string name="menu_auth_signin">Sign In</string>
+    <string name="menu_auth_signout">Sign Out</string>
+    <string name="menu_custom_instruction">Custom Instruction</string>
+    <string name="menu_history">View History</string>
+    <string name="menu_new_session">New Session</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Voice Agent UI -->
+    <string name="voice_status_listening">Puter is listening...</string>
+    <string name="voice_status_thinking">Puter is thinking...</string>
+    <string name="voice_status_speaking">Puter is speaking...</string>
+    <string name="voice_status_error">Try speaking again...</string>
+    <string name="voice_transcript_hint">Transcript will appear here...</string>
+    <string name="voice_hint">Tap mic to talk. User speech interrupts AI.</string>
+
+    <!-- Auth & Settings -->
+    <string name="auth_status_signed_in">Status: Signed In</string>
+    <string name="auth_status_signed_out">Status: Not Signed In</string>
+    <string name="settings_title">Account Settings</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_close">Close</string>
+
+    <!-- File Operations -->
+    <string name="upload_title">Upload File</string>
+    <string name="image_attached">Image attached successfully</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">Permissions required for Voice and Camera features.</string>
+</resources>
