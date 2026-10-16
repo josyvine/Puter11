@@ -59,7 +59,7 @@
 
     .settings-container { position: fixed; top: 60px; left: 0; width: 100%; background: #fff; z-index: 90; padding: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-bottom: 1px solid #ddd; }
 
-    /* --- NEW CUSTOM ACCORDION SELECTOR CSS --- */
+    /* --- CUSTOM ACCORDION SELECTOR CSS --- */
     .custom-select-container { position: relative; width: 100%; z-index: 200; }
     .custom-select-trigger { width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #bbb; background-color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; height: 48px; }
     .custom-select-trigger:hover { background-color: #f9f9f9; }
@@ -293,7 +293,7 @@
     .btn-primary { background: #1a73e8; color: #fff; }
     .btn-secondary { background: #eee; color: #333; }
 
-    /* --- ENHANCEMENT: PERSISTENT FLOATING STICKY CODE HEADER --- */
+    /* --- PERSISTENT FLOATING STICKY CODE HEADER --- */
     .code-block-container { 
       background: #1e1e1e; 
       border-radius: 8px; 
@@ -829,6 +829,16 @@
         el.classList.toggle('open');
     }
 
+    function isImageModelCheck(modelObj, id, name) {
+        if (modelObj && Array.isArray(modelObj.categories) && modelObj.categories.includes("image_generation")) {
+            return true;
+        }
+        const text = ((id || "") + " " + (name || "")).toLowerCase();
+        return text.includes("image") || text.includes("banana") || text.includes("flux") || 
+               text.includes("dall-e") || text.includes("diffusion") || text.includes("sdxl") || 
+               text.includes("midjourney");
+    }
+
     function selectModel(id, name, modelObj = null) {
         globalSelectedModel = id;
         globalModelObject = modelObj;
@@ -837,7 +847,7 @@
         document.getElementById('selectedModelText').textContent = name || id;
 
         const ratioContainer = document.getElementById("aspectRatioContainer");
-        if (modelObj && modelObj.categories && modelObj.categories.includes("image_generation")) {
+        if (isImageModelCheck(modelObj, id, name)) {
             ratioContainer.style.display = "block";
         } else {
             ratioContainer.style.display = "none";
@@ -896,12 +906,58 @@
         document.getElementById('accordionMenu').classList.remove('show');
     }
 
+    function inferCategories(model) {
+        if (Array.isArray(model.categories) && model.categories.length > 0) {
+            return model.categories;
+        }
+        const cats = [];
+        const text = ((model.id || "") + " " + (model.name || "")).toLowerCase();
+
+        if (text.includes("image") || text.includes("flux") || text.includes("dall-e") || 
+            text.includes("diffusion") || text.includes("midjourney") || text.includes("banana") || 
+            text.includes("paint") || text.includes("sdxl") || text.includes("gen-")) {
+            cats.push("image_generation");
+        }
+
+        if (text.includes("audio") || text.includes("tts") || text.includes("voice") || 
+            text.includes("speech") || text.includes("sound") || text.includes("whisper")) {
+            cats.push("audio");
+        }
+
+        if (text.includes("vision") || text.includes("vl") || text.includes("multimodal") || text.includes("ocr")) {
+            cats.push("vision");
+            cats.push("multimodal");
+        }
+
+        if (text.includes("reasoning") || text.includes("deepseek-r") || text.includes("r1") || 
+            text.includes("o1") || text.includes("o3") || text.includes("thinking") || text.includes("qwq")) {
+            cats.push("reasoning");
+        }
+
+        if (cats.length === 0 || !cats.includes("image_generation")) {
+            cats.push("text_chat");
+        }
+
+        return cats;
+    }
+
     function normalizeModels(rawModels) {
         if (!rawModels) return {};
-        if (!Array.isArray(rawModels)) return rawModels;
+        if (!Array.isArray(rawModels)) {
+            for (const p in rawModels) {
+                if (Array.isArray(rawModels[p])) {
+                    rawModels[p].forEach(m => {
+                        if (m) m.categories = inferCategories(m);
+                    });
+                }
+            }
+            return rawModels;
+        }
 
         const grouped = {};
-        rawModels.filter(m => m && m.id).forEach(model => {
+        rawModels.filter(m => m && (m.id || typeof m === 'string')).forEach(rawModel => {
+            const model = typeof rawModel === 'string' ? { id: rawModel, name: rawModel } : { ...rawModel };
+            model.categories = inferCategories(model);
             const provider = model.provider || model.vendor || "other";
             if (!grouped[provider]) grouped[provider] = [];
             grouped[provider].push(model);
@@ -927,6 +983,7 @@
 
         let html = '';
 
+        // SLIDER 1: ALL MODELS
         html += `<div class="acc-section">
                     <div class="acc-header" onclick="toggleAcc('acc-all')">All Models <span class="material-symbols-outlined" style="font-size:18px;">expand_more</span></div>
                     <div id="acc-all" class="acc-content">`;
@@ -938,6 +995,7 @@
         });
         html += `   </div></div>`;
 
+        // SLIDER 2: BY PARENT
         html += `<div class="acc-section">
                     <div class="acc-header" onclick="toggleAcc('acc-parents')">By Parent <span class="material-symbols-outlined" style="font-size:18px;">expand_more</span></div>
                     <div id="acc-parents" class="acc-content">`;
@@ -954,6 +1012,7 @@
         }
         html += `   </div></div>`;
 
+        // SLIDER 3: BY CATEGORY
         html += `<div class="acc-section">
                     <div class="acc-header" onclick="toggleAcc('acc-cat')">By Category <span class="material-symbols-outlined" style="font-size:18px;">expand_more</span></div>
                     <div id="acc-cat" class="acc-content">`;
@@ -1236,7 +1295,7 @@
         return;
       }
 
-      const isImageModel = globalModelObject?.categories?.includes("image_generation");
+      const isImageModel = isImageModelCheck(globalModelObject, globalSelectedModel, globalModelObject?.name);
 
       if(isImageModel) {
           const ratio = document.getElementById("aspectRatioSelect").value;
