@@ -60,6 +60,7 @@ import org.json.JSONObject;
  * Handles permissions, hardware-level WebView configuration, 
  * and communication with the native Voice Agent Activity.
  * 
+ * UPDATED: Added speakWithLanguage to support dynamic multilingual TTS (Malayalam, Arabic, Spanish, etc.).
  * UPDATED: Fixed File Picker logic to ensure Bridge-initiated uploads 
  * are converted to Base64 and sent to the stagedFiles UI.
  * UPDATED: Integrated runtime POST_NOTIFICATIONS check and startForegroundService.
@@ -286,6 +287,44 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             Log.e("MainActivity", "TTS Engine initialization failed with status: " + status);
             ActionReportLogger.logError("TTS_INIT_FAILED_STATUS", "Engine initialization failed. Code: " + status);
             isTtsInitialized = false;
+        }
+    }
+
+    /**
+     * Enhanced multilingual vocalization: dynamically switches locale based on the active language.
+     * Accurately supports non-Latin scripts (Malayalam, Arabic, Tamil, Hindi, Spanish, etc.).
+     */
+    public void speakWithLanguage(String text, String langCode) {
+        if (isTtsInitialized && tts != null) {
+            if (langCode != null && !langCode.trim().isEmpty()) {
+                try {
+                    Locale targetLocale = Locale.forLanguageTag(langCode.trim().replace('_', '-'));
+                    int result = tts.setLanguage(targetLocale);
+
+                    // If regional variant isn't installed, fallback to base language
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        String langOnly = targetLocale.getLanguage();
+                        if (!langOnly.isEmpty()) {
+                            Locale fallbackLocale = new Locale(langOnly);
+                            result = tts.setLanguage(fallbackLocale);
+                        }
+                    }
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.w("MainActivity", "TTS: Locale " + langCode + " is not supported or missing voice data on this device.");
+                        ActionReportLogger.logError("TTS_LANG_UNSUPPORTED", "Locale " + langCode + " not supported.");
+                    } else {
+                        Log.d("MainActivity", "TTS: Locale successfully switched to " + langCode);
+                    }
+                } catch (Exception e) {
+                    Log.e("MainActivity", "TTS: Error configuring locale for " + langCode, e);
+                }
+            }
+            speak(text);
+        } else {
+            Log.w("MainActivity", "Native speakWithLanguage aborted: TTS Engine is not initialized or ready.");
+            ActionReportLogger.logError("TTS_SPEAK_ABORTED", "Speak aborted. Initialization state: " + isTtsInitialized);
+            Toast.makeText(this, "Native Speech Engine is not ready.", Toast.LENGTH_SHORT).show();
         }
     }
 
