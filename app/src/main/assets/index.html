@@ -27,7 +27,7 @@
     h2 { margin: 0; font-size: 1.3em; }
     .menu-button { cursor: pointer; font-size: 28px; padding: 5px; }
 
-    /* FIX #3: SCROLLABLE THREE-DOT MENU */
+    /* SCROLLABLE THREE-DOT MENU */
     .dropdown { 
       position: absolute; 
       top: 60px; 
@@ -53,7 +53,7 @@
     /* Session List styling inside dropdown */
     .session-divider { background: #f9f9f9; font-weight: bold; color: #888; font-size: 12px; padding: 5px 20px; cursor: default; border-top: 1px solid #eee; }
 
-    /* NEW: Usage Details styling in dropdown */
+    /* Usage Details styling in dropdown */
     .usage-divider { background: #e8f0fe; font-weight: bold; color: #1a73e8; font-size: 11px; padding: 10px 20px; cursor: default; border-top: 1px solid #d1e3ff; line-height: 1.4; }
     .usage-val { color: #333; font-family: monospace; display: block; margin-top: 2px; }
 
@@ -105,8 +105,8 @@
       color: #1a73e8;
     }
 
-    .chat-container { display: flex; flex-direction: column; flex: 1; width: 100%; position: relative; z-index: 5; padding: 15px; margin-top: 130px; margin-bottom: 120px; }
-    .chat-log { flex: 1; width: 100%; }
+    .chat-container { display: flex; flex-direction: column; flex: 1; width: 100%; position: relative; z-index: 5; padding: 15px; margin-top: 130px; margin-bottom: 120px; min-height: calc(100vh - 250px); }
+    .chat-log { flex: 1; width: 100%; min-height: 100px; }
 
     .message { display: flex; align-items: flex-start; margin-bottom: 20px; width: 100%; -webkit-user-select: none; user-select: none; }
     .user-message { flex-direction: row-reverse; }
@@ -345,11 +345,13 @@
     <ul class="dropdown" id="puterDropdownMenu">
       <li id="authOption" onclick="handleAuthAction()">Sign In</li>
       <li id="modelSourceToggle" onclick="toggleModelSource()">Enable Live Models</li>
-      <li onclick="openModal('customModal')">Custom Instruction</li>
       <li onclick="openModal('historyModal')">View History</li>
       <li onclick="newSession()">New Session</li>
       <li id="toggleSettingsBtn" onclick="toggleSettingsUI()">Hide Settings</li>
       <li onclick="openModal('helpModal')">Help</li>
+      
+      <!-- NEW SETTINGS OPTION: Placed below Help and before Browse Website -->
+      <li onclick="openModal('settingsHubModal')">Settings</li>
 
       <li onclick="window.AndroidInterface.loadLocalUrl('browser.html')">Browse Website</li>
       <li onclick="window.AndroidInterface.loadLocalUrl('bot.html')">Traders Zone</li>
@@ -369,56 +371,6 @@
 
       <div id="dynamicSessions"></div>
       <div id="dynamicScrapedItems"></div>
-
-      <li class="session-divider" style="background:#e8f0fe; color:#1a73e8;">Nostr Identity</li>
-      <li style="padding: 10px 20px; font-size: 13px; line-height: 1.5; cursor: default;">
-        <div style="font-weight: bold; color: #555;">Public ID (npub)</div>
-        <div id="nostrNpubDisplay" style="font-family: monospace; font-size: 11px; word-break: break-all; margin: 4px 0;">Loading...</div>
-        <button class="btn-primary" onclick="copyNostrKey('pub')" style="padding: 6px 12px; font-size: 11px; margin-top: 4px; border-radius: 4px; border:none; color:white; cursor:pointer; width: 100%;">Copy npub</button>
-      </li>
-      <li style="padding: 10px 20px; font-size: 13px; line-height: 1.5; cursor: default; border-bottom: 1px solid #eee;">
-        <div style="font-weight: bold; color: #555;">Private Key (nsec)</div>
-        <div id="nostrNsecDisplay" style="font-family: monospace; font-size: 11px; word-break: break-all; margin: 4px 0;">Loading...</div>
-        <button class="btn-primary" onclick="copyNostrKey('priv')" style="padding: 6px 12px; font-size: 11px; margin-top: 4px; border-radius: 4px; border:none; color:white; cursor:pointer; width: 100%;">Copy nsec</button>
-      </li>
-
-      <li class="session-divider" id="geminiMenuDivider" style="background:#e8f0fe; color:#1a73e8; display:none;">Gemini Configuration</li>
-      <li id="geminiToggleDrawerHeader" onclick="toggleGeminiDrawer()" style="display:none; font-weight:bold; cursor:pointer; justify-content:space-between; align-items:center;">
-        <span>Gemini Settings</span>
-        <span class="material-symbols-outlined" id="geminiDrawerChevron">expand_more</span>
-      </li>
-      <div id="geminiSettingsDrawer" style="display:none; padding:10px 20px; background:#f9f9f9; border-bottom:1px solid #eee; flex-direction:column; gap:10px; box-sizing:border-box;">
-        <div style="display:flex; flex-direction:column; gap:4px;">
-          <label style="font-size:11px; font-weight:bold; color:#555;">API Access Key</label>
-          <input type="password" id="geminiApiKeyInput" placeholder="Paste Gemini API Key..." onchange="handleGeminiApiKeyChange(this.value)" style="width:100%; padding:8px 12px; border:1px solid #ccc; border-radius:8px; font-size:13px; outline:none; background:#fff; box-sizing:border-box;" />
-        </div>
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:5px;">
-          <label style="font-size:11px; font-weight:bold; color:#555; cursor:pointer; display:flex; align-items:center; gap:6px;">
-            <input type="checkbox" id="geminiStreamToggle" onchange="handleGeminiStreamToggle(this.checked)" checked style="width:16px; height:16px;" />
-            <span>Enable Streaming</span>
-          </label>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:4px; margin-top:5px;">
-          <label style="font-size:11px; font-weight:bold; color:#555;">Grounding Mode</label>
-          <select id="geminiGroundingSelect" onchange="handleGeminiGroundingChange(this.value)" style="width:100%; padding:8px 12px; border:1px solid #ccc; border-radius:8px; font-size:13px; outline:none; background:#fff; box-sizing:border-box;">
-            <option value="none">None (Standard)</option>
-            <option value="search">Google Search</option>
-            <option value="maps">Google Maps</option>
-          </select>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:4px; margin-top:5px;">
-          <label style="font-size:11px; font-weight:bold; color:#555;">Voice Character</label>
-          <select id="geminiVoiceSelect" onchange="handleGeminiVoiceChange(this.value)" style="width:100%; padding:8px 12px; border:1px solid #ccc; border-radius:8px; font-size:13px; outline:none; background:#fff; box-sizing:border-box;">
-            <option value="Aoede">Aoede (Breezy)</option>
-            <option value="Charon">Charon (Informative)</option>
-            <option value="Kore">Kore (Firm)</option>
-            <option value="Puck" selected>Puck (Upbeat)</option>
-            <option value="Fenrir">Fenrir (Excitable)</option>
-            <option value="Leda">Leda (Youthful)</option>
-            <option value="Zephyr">Zephyr (Bright)</option>
-          </select>
-        </div>
-      </div>
     </ul>
   </header>
 
@@ -486,14 +438,149 @@
   </div>
 
   <ul id="customContextMenu" class="context-menu">
-      <li onclick="handleMenuAction('copy')"><span class="material-symbols-outlined">content_copy</span> Copy Chat</li>
-      <li onclick="handleMenuAction('read')"><span class="material-symbols-outlined">volume_up</span> Read Aloud</li>
-      <li onclick="handleMenuAction('delete')" class="delete-action"><span class="material-symbols-outlined">delete</span> Delete Chat</li>
+      <li id="menuCopyOption" onclick="handleMenuAction('copy')"><span class="material-symbols-outlined">content_copy</span> Copy Chat</li>
+      <li id="menuReadOption" onclick="handleMenuAction('read')"><span class="material-symbols-outlined">volume_up</span> Read Aloud</li>
+      <li id="menuDeleteOption" onclick="handleMenuAction('delete')" class="delete-action"><span class="material-symbols-outlined">delete</span> Delete Chat</li>
       <li onclick="handleMenuAction('refresh_relay')"><span class="material-symbols-outlined">sync</span> Refresh Relay</li>
       <li id="menuToggleModeOption" onclick="handleMenuAction('toggle_mode')"></li>
       <li id="menuToggleProviderOption" onclick="handleMenuAction('toggle_provider')"></li>
       <li onclick="handleMenuAction('end_session')"><span class="material-symbols-outlined">power_settings_new</span> End Session</li>
   </ul>
+
+  <!-- DEDICATED SETTINGS HUB MODAL -->
+  <div class="modal-overlay" id="settingsHubModal">
+    <div class="modal" style="max-width: 440px;">
+      <h3 style="display: flex; align-items: center; gap: 8px;">
+        <span class="material-symbols-outlined" style="color: #1a73e8;">settings</span>
+        <span>Settings</span>
+      </h3>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
+        <!-- Option 1: Custom Instruction -->
+        <div onclick="closeModal('settingsHubModal'); openModal('customModal');" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; cursor: pointer; transition: background 0.2s;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="material-symbols-outlined" style="color: #1a73e8; font-size: 24px;">psychology</span>
+            <div>
+              <div style="font-weight: bold; color: #333; font-size: 14px;">Custom Instruction</div>
+              <div style="font-size: 11px; color: #777;">Set system behavior for AI models</div>
+            </div>
+          </div>
+          <span class="material-symbols-outlined" style="color: #aaa; font-size: 20px;">chevron_right</span>
+        </div>
+
+        <!-- Option 2: Gemini Settings -->
+        <div onclick="closeModal('settingsHubModal'); openModal('geminiSettingsModal');" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; cursor: pointer; transition: background 0.2s;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="material-symbols-outlined" style="color: #1a73e8; font-size: 24px;">tune</span>
+            <div>
+              <div style="font-weight: bold; color: #333; font-size: 14px;">Gemini Settings</div>
+              <div style="font-size: 11px; color: #777;">API Key, Live Fetch, Grounding & Voice</div>
+            </div>
+          </div>
+          <span class="material-symbols-outlined" style="color: #aaa; font-size: 20px;">chevron_right</span>
+        </div>
+
+        <!-- Option 3: Nostr Identity -->
+        <div onclick="closeModal('settingsHubModal'); openModal('nostrIdentityModal');" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; cursor: pointer; transition: background 0.2s;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="material-symbols-outlined" style="color: #1a73e8; font-size: 24px;">fingerprint</span>
+            <div>
+              <div style="font-weight: bold; color: #333; font-size: 14px;">Nostr Identity</div>
+              <div style="font-size: 11px; color: #777;">View & copy public npub and private nsec</div>
+            </div>
+          </div>
+          <span class="material-symbols-outlined" style="color: #aaa; font-size: 20px;">chevron_right</span>
+        </div>
+      </div>
+
+      <div class="modal-buttons" style="margin-top: 20px;">
+        <button class="btn-secondary" onclick="closeModal('settingsHubModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEMINI SETTINGS MODAL -->
+  <div class="modal-overlay" id="geminiSettingsModal">
+    <div class="modal" style="max-width: 480px;">
+      <h3 style="display: flex; align-items: center; gap: 8px;">
+        <span class="material-symbols-outlined" style="color: #1a73e8;">tune</span>
+        <span>Gemini Settings</span>
+      </h3>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <label style="font-size: 12px; font-weight: bold; color: #444;">API Access Key</label>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <input type="password" id="geminiApiKeyInputModal" placeholder="Paste Gemini API Key..." onchange="handleGeminiApiKeyChange(this.value)" style="flex: 1; padding: 9px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 13px; outline: none; background: #fff;" />
+            <button type="button" id="btnFetchGeminiModels" class="btn-primary" onclick="fetchLiveGeminiModels()" style="display: flex; align-items: center; gap: 4px; padding: 9px 14px; font-size: 12px; border-radius: 8px; border: none; cursor: pointer; white-space: nowrap;">
+              <span class="material-symbols-outlined" id="fetchIconSpin" style="font-size: 16px;">sync</span>
+              <span>Fetch</span>
+            </button>
+          </div>
+          <div id="geminiFetchStatus" style="font-size: 11px; color: #666; margin-top: 2px;"></div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 0;">
+          <label style="font-size: 12px; font-weight: bold; color: #444; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" id="geminiStreamToggleModal" onchange="handleGeminiStreamToggle(this.checked)" checked style="width: 18px; height: 18px;" />
+            <span>Enable Streaming</span>
+          </label>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <label style="font-size: 12px; font-weight: bold; color: #444;">Grounding Mode</label>
+          <select id="geminiGroundingSelectModal" onchange="handleGeminiGroundingChange(this.value)" style="width: 100%; padding: 9px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 13px; outline: none; background: #fff;">
+            <option value="none">None (Standard)</option>
+            <option value="search">Google Search</option>
+            <option value="maps">Google Maps</option>
+          </select>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <label style="font-size: 12px; font-weight: bold; color: #444;">Voice Character</label>
+          <select id="geminiVoiceSelectModal" onchange="handleGeminiVoiceChange(this.value)" style="width: 100%; padding: 9px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 13px; outline: none; background: #fff;">
+            <option value="Aoede">Aoede (Breezy)</option>
+            <option value="Charon">Charon (Informative)</option>
+            <option value="Kore">Kore (Firm)</option>
+            <option value="Puck" selected>Puck (Upbeat)</option>
+            <option value="Fenrir">Fenrir (Excitable)</option>
+            <option value="Leda">Leda (Youthful)</option>
+            <option value="Zephyr">Zephyr (Bright)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-buttons" style="margin-top: 20px;">
+        <button class="btn-secondary" onclick="closeModal('geminiSettingsModal'); openModal('settingsHubModal');">Back</button>
+        <button class="btn-primary" onclick="closeModal('geminiSettingsModal');">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOSTR IDENTITY MODAL -->
+  <div class="modal-overlay" id="nostrIdentityModal">
+    <div class="modal" style="max-width: 480px;">
+      <h3 style="display: flex; align-items: center; gap: 8px;">
+        <span class="material-symbols-outlined" style="color: #1a73e8;">fingerprint</span>
+        <span>Nostr Identity</span>
+      </h3>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+        <div style="padding: 12px; background: #f8f9fa; border-radius: 8px; border: 1px solid #eee;">
+          <div style="font-weight: bold; color: #555; font-size: 12px;">Public ID (npub)</div>
+          <div id="nostrNpubDisplayModal" style="font-family: monospace; font-size: 11px; word-break: break-all; margin: 6px 0; color: #333;">Loading...</div>
+          <button class="btn-primary" onclick="copyNostrKey('pub')" style="padding: 7px 12px; font-size: 11px; border-radius: 4px; border: none; cursor: pointer; width: 100%;">Copy npub</button>
+        </div>
+        <div style="padding: 12px; background: #f8f9fa; border-radius: 8px; border: 1px solid #eee;">
+          <div style="font-weight: bold; color: #555; font-size: 12px;">Private Key (nsec)</div>
+          <div id="nostrNsecDisplayModal" style="font-family: monospace; font-size: 11px; word-break: break-all; margin: 6px 0; color: #333;">Loading...</div>
+          <button class="btn-primary" onclick="copyNostrKey('priv')" style="padding: 7px 12px; font-size: 11px; border-radius: 4px; border: none; cursor: pointer; width: 100%;">Copy nsec</button>
+        </div>
+      </div>
+      <div class="modal-buttons" style="margin-top: 20px;">
+        <button class="btn-secondary" onclick="closeModal('nostrIdentityModal'); openModal('settingsHubModal');">Back</button>
+        <button class="btn-primary" onclick="closeModal('nostrIdentityModal');">Done</button>
+      </div>
+    </div>
+  </div>
 
   <div class="modal-overlay" id="helpModal">
     <div class="modal">
@@ -501,7 +588,7 @@
         <span>Puter Unofficial Help</span>
       </h3>
       <p>• <b>Text Chat:</b> Type your message and hit send.</p>
-      <p>• <b>Long-Press:</b> Hold any chat bubble to Copy, Delete, or Read Aloud.</p>
+      <p>• <b>Long-Press:</b> Hold any chat bubble or blank area to access settings and actions.</p>
       <p>• <b>Vision:</b> Use the '+' icon to upload images and files for the AI to analyze.</p>
       <p>• <b>Sessions:</b> Long-press any session in the menu to delete it permanently.</p>
       <p>• <b>Voice Agent:</b> Tap the sparkles for a full-screen, hands-free conversation mode.</p>
@@ -623,7 +710,7 @@
             .replace(/'/g, '&#39;');
     }
 
-    /* --- MARKED CONFIGURATION & LIGHTWEIGHT FAST CODE RENDERER (ELIMINATES STREAM FREEZES) --- */
+    /* --- MARKED CONFIGURATION & LIGHTWEIGHT FAST CODE RENDERER --- */
     const renderer = new marked.Renderer();
     renderer.code = function(code, language) {
         const lang = language || 'plaintext';
@@ -816,6 +903,12 @@
         if(id === 'customModal') {
             document.getElementById('customInput').value = customInstruction || "";
         }
+        if(id === 'geminiSettingsModal' || id === 'settingsHubModal') {
+            syncGeminiUIState();
+        }
+        if(id === 'nostrIdentityModal') {
+            loadNostrIdentityInUI();
+        }
         document.getElementById(id).style.display = 'flex'; 
     }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
@@ -854,20 +947,22 @@
         }
 
         if (activeProvider === "Gemini") {
-            const streamToggleEl = document.getElementById("geminiStreamToggle");
-            const groundingSelectEl = document.getElementById("geminiGroundingSelect");
+            const streamToggleEl = document.getElementById("geminiStreamToggleModal");
+            const groundingSelectEl = document.getElementById("geminiGroundingSelectModal");
 
             const supportsStreaming = modelObj && modelObj.categories && !modelObj.id.includes("tts") && !modelObj.id.includes("live-preview") && !modelObj.id.includes("native-audio") && !modelObj.id.includes("exp");
-            if (supportsStreaming) {
-                streamToggleEl.disabled = false;
-                streamToggleEl.parentElement.style.opacity = "1";
-            } else {
-                streamToggleEl.checked = false;
-                if (window.AndroidInterface && window.AndroidInterface.setGeminiStreaming) {
-                    window.AndroidInterface.setGeminiStreaming(false);
+            if (streamToggleEl) {
+                if (supportsStreaming) {
+                    streamToggleEl.disabled = false;
+                    streamToggleEl.parentElement.style.opacity = "1";
+                } else {
+                    streamToggleEl.checked = false;
+                    if (window.AndroidInterface && window.AndroidInterface.setGeminiStreaming) {
+                        window.AndroidInterface.setGeminiStreaming(false);
+                    }
+                    streamToggleEl.disabled = true;
+                    streamToggleEl.parentElement.style.opacity = "0.5";
                 }
-                streamToggleEl.disabled = true;
-                streamToggleEl.parentElement.style.opacity = "0.5";
             }
 
             const supportsGrounding = modelObj && modelObj.categories && 
@@ -876,30 +971,32 @@
             const isLiveModel = modelObj && modelObj.categories && modelObj.categories.includes("live");
             const supportsMaps = supportsGrounding && !modelObj.id.includes("gemma") && !isLiveModel;
 
-            if (supportsGrounding) {
-                groundingSelectEl.disabled = false;
-                groundingSelectEl.style.opacity = "1";
-                const mapsOption = groundingSelectEl.querySelector('option[value="maps"]');
-                if (mapsOption) {
-                    if (!supportsMaps) {
-                        mapsOption.disabled = true;
-                        if (groundingSelectEl.value === "maps") {
-                            groundingSelectEl.value = "none";
-                            if (window.AndroidInterface && window.AndroidInterface.setGeminiGrounding) {
-                                window.AndroidInterface.setGeminiGrounding("none");
+            if (groundingSelectEl) {
+                if (supportsGrounding) {
+                    groundingSelectEl.disabled = false;
+                    groundingSelectEl.style.opacity = "1";
+                    const mapsOption = groundingSelectEl.querySelector('option[value="maps"]');
+                    if (mapsOption) {
+                        if (!supportsMaps) {
+                            mapsOption.disabled = true;
+                            if (groundingSelectEl.value === "maps") {
+                                groundingSelectEl.value = "none";
+                                if (window.AndroidInterface && window.AndroidInterface.setGeminiGrounding) {
+                                    window.AndroidInterface.setGeminiGrounding("none");
+                                }
                             }
+                        } else {
+                            mapsOption.disabled = false;
                         }
-                    } else {
-                        mapsOption.disabled = false;
                     }
+                } else {
+                    groundingSelectEl.value = "none";
+                    if (window.AndroidInterface && window.AndroidInterface.setGeminiGrounding) {
+                        window.AndroidInterface.setGeminiGrounding("none");
+                    }
+                    groundingSelectEl.disabled = true;
+                    groundingSelectEl.style.opacity = "0.5";
                 }
-            } else {
-                groundingSelectEl.value = "none";
-                if (window.AndroidInterface && window.AndroidInterface.setGeminiGrounding) {
-                    window.AndroidInterface.setGeminiGrounding("none");
-                }
-                groundingSelectEl.disabled = true;
-                groundingSelectEl.style.opacity = "0.5";
             }
         }
 
@@ -939,6 +1036,56 @@
         }
 
         return cats;
+    }
+
+    /* --- STRICT GEMINI TAXONOMY CLASSIFIER ---
+       Preserves strict rule: ONLY real-time bidirectional models receive "live"! */
+    function categorizeGeminiModel(m) {
+        const rawId = (m.name || m.id || "").replace(/^models\//, "");
+        const name = m.displayName || rawId;
+        const desc = (m.description || "").toLowerCase();
+        const idLower = rawId.toLowerCase();
+        const methods = m.supportedGenerationMethods || [];
+
+        const cats = [];
+
+        // STRICT GATING: Only genuine bidirectional live session models get 'live'
+        const isLiveAudio = idLower.includes("live-preview") || idLower.includes("native-audio") || (idLower.includes("exp") && idLower.includes("live"));
+        if (isLiveAudio) {
+            cats.push("live");
+            cats.push("audio");
+        } else if (idLower.includes("audio") || idLower.includes("tts") || idLower.includes("speech")) {
+            cats.push("audio");
+        }
+
+        if (idLower.includes("image") || idLower.includes("imagen")) {
+            cats.push("image_generation");
+        }
+
+        if (idLower.includes("flash") || idLower.includes("pro") || desc.includes("multimodal") || desc.includes("vision")) {
+            cats.push("vision");
+            cats.push("multimodal");
+        }
+
+        if (idLower.includes("thinking") || idLower.includes("reasoning") || desc.includes("thinking")) {
+            cats.push("reasoning");
+        }
+
+        if (methods.includes("generateContent") && (idLower.includes("flash") || idLower.includes("pro"))) {
+            cats.push("tool_calling");
+        }
+
+        if (cats.length === 0 || !cats.includes("image_generation")) {
+            cats.push("text_chat");
+        }
+
+        return {
+            id: rawId,
+            name: name,
+            categories: Array.from(new Set(cats)),
+            provider: "Google Gemini",
+            description: m.description || ""
+        };
     }
 
     function normalizeModels(rawModels) {
@@ -1041,15 +1188,39 @@
 
             syncGeminiUIState();
 
-            if (activeProvider === "Gemini") {
-                const geminiJsonString = window.AndroidInterface.getLocalJson("gemini_models.json");
-                if (!geminiJsonString || geminiJsonString === "{}") throw new Error("Local Gemini models missing");
-                const localGeminiData = normalizeModels(JSON.parse(geminiJsonString));
-                renderModelAccordion(localGeminiData);
-            } else {
-                isLiveMode = window.AndroidInterface.getModelSource();
-                document.getElementById('modelSourceToggle').textContent = isLiveMode ? "Use Local Models" : "Enable Live Models";
+            isLiveMode = window.AndroidInterface.getModelSource();
+            document.getElementById('modelSourceToggle').textContent = isLiveMode ? "Use Local Models" : "Enable Live Models";
 
+            if (activeProvider === "Gemini") {
+                if (isLiveMode) {
+                    let cached = null;
+                    if (window.AndroidInterface && window.AndroidInterface.getCachedGeminiModels) {
+                        try {
+                            const nativeCached = window.AndroidInterface.getCachedGeminiModels();
+                            if (nativeCached && nativeCached !== "{}" && nativeCached !== "[]") cached = nativeCached;
+                        } catch(e) {}
+                    }
+                    if (!cached) {
+                        cached = localStorage.getItem("gemini_live_models");
+                    }
+
+                    if (cached) {
+                        const parsed = typeof cached === 'string' ? JSON.parse(cached) : cached;
+                        const grouped = normalizeModels(parsed);
+                        renderModelAccordion(grouped);
+                    } else {
+                        document.getElementById('selectedModelText').textContent = "No Live Gemini Models Cached (Fetch in Settings)";
+                        if (window.AndroidInterface && window.AndroidInterface.showToast) {
+                            window.AndroidInterface.showToast("No live models cached. Tap Fetch in Gemini Settings.");
+                        }
+                    }
+                } else {
+                    const geminiJsonString = window.AndroidInterface.getLocalJson("gemini_models.json");
+                    if (!geminiJsonString || geminiJsonString === "{}") throw new Error("Local Gemini models missing");
+                    const localGeminiData = normalizeModels(JSON.parse(geminiJsonString));
+                    renderModelAccordion(localGeminiData);
+                }
+            } else {
                 if (isLiveMode) {
                     const cached = localStorage.getItem("puter_live_models");
                     if (cached) renderModelAccordion(JSON.parse(cached));
@@ -1104,9 +1275,97 @@
         }
     }
 
+    /* --- GEMINI LIVE MODEL DISCOVERY & CACHE ENGINE --- */
+    async function fetchLiveGeminiModels() {
+        const apiKey = window.AndroidInterface ? window.AndroidInterface.getGeminiApiKey() : (localStorage.getItem("gemini_user_api_key") || "");
+        if (!apiKey) {
+            alert("Please paste a valid Gemini API Key first.");
+            return;
+        }
+
+        const spinIcon = document.getElementById("fetchIconSpin");
+        const statusEl = document.getElementById("geminiFetchStatus");
+        if (spinIcon) spinIcon.style.animation = "ecg-flow 1s linear infinite";
+        if (statusEl) {
+            statusEl.textContent = "Fetching available models from Google...";
+            statusEl.style.color = "#1a73e8";
+        }
+
+        try {
+            if (window.AndroidInterface && window.AndroidInterface.fetchLiveGeminiModels) {
+                window.AndroidInterface.fetchLiveGeminiModels(apiKey);
+            }
+
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+            if (!response.ok) {
+                throw new Error("HTTP " + response.status + ": " + response.statusText);
+            }
+            const data = await response.json();
+            const rawModels = data.models || [];
+
+            if (!Array.isArray(rawModels) || rawModels.length === 0) {
+                throw new Error("No models returned by Google API.");
+            }
+
+            const processedList = rawModels.map(m => categorizeGeminiModel(m));
+            const grouped = { "Google Gemini": processedList };
+
+            const jsonStr = JSON.stringify(grouped);
+            localStorage.setItem("gemini_live_models", jsonStr);
+
+            if (window.AndroidInterface && window.AndroidInterface.saveCachedGeminiModels) {
+                window.AndroidInterface.saveCachedGeminiModels(jsonStr);
+            }
+
+            if (statusEl) {
+                statusEl.textContent = `Success: ${processedList.length} live models cached!`;
+                statusEl.style.color = "#27ae60";
+            }
+            if (window.AndroidInterface && window.AndroidInterface.showToast) {
+                window.AndroidInterface.showToast(`Cached ${processedList.length} Gemini models!`);
+            }
+
+            if (activeProvider === "Gemini" && isLiveMode) {
+                renderModelAccordion(grouped);
+            }
+        } catch (err) {
+            console.error("Gemini Live Models Fetch Error:", err);
+            if (statusEl) {
+                statusEl.textContent = "Fetch failed: " + err.message;
+                statusEl.style.color = "#d93025";
+            }
+            alert("Failed to fetch Gemini live models: " + err.message);
+        } finally {
+            if (spinIcon) spinIcon.style.animation = "none";
+        }
+    }
+
+    // Callbacks for Native OkHttp Fetch if dispatched through bridge
+    window.onGeminiLiveModelsFetched = function(rawJson) {
+        try {
+            const data = JSON.parse(rawJson);
+            const rawModels = data.models || (Array.isArray(data) ? data : []);
+            const processedList = rawModels.map(m => categorizeGeminiModel(m));
+            const grouped = { "Google Gemini": processedList };
+            const jsonStr = JSON.stringify(grouped);
+            localStorage.setItem("gemini_live_models", jsonStr);
+            if (activeProvider === "Gemini" && isLiveMode) {
+                renderModelAccordion(grouped);
+            }
+        } catch(e) {
+            console.error("Native live models sync error:", e);
+        }
+    };
+
+    window.onGeminiLiveModelsError = function(errMsg) {
+        console.error("Native live models error:", errMsg);
+    };
+
     function toggleModelSource() {
         isLiveMode = !isLiveMode;
-        window.AndroidInterface.setModelSource(isLiveMode);
+        if (window.AndroidInterface && window.AndroidInterface.setModelSource) {
+            window.AndroidInterface.setModelSource(isLiveMode);
+        }
         loadModels();
         document.getElementById('puterDropdownMenu').classList.remove('show');
     }
@@ -1384,7 +1643,6 @@
             else appendChat("Bot", "Error: Recognized image data not found in response.");
 
         } else {
-            /* --- CONSTRUCT MULTI-TURN MESSAGES ARRAY WITH PERSISTENT CHAT HISTORY --- */
             const messagesArray = [];
             if (activeSystemMessage) {
                 messagesArray.push({
@@ -1469,7 +1727,6 @@
 
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
 
-            /* --- FAST LIGHTWEIGHT STREAM RENDERING (NO FREEZES) --- */
             let lastRender = 0;
             for await (const chunk of streamResp) {
                 if(chunk.usage) { updateUsageUI(chunk.usage); continue; }
@@ -1485,7 +1742,6 @@
                 }
             }
 
-            // Final render with complete syntax highlight executed only once
             targetSpan.innerHTML = marked.parse(fullBotText);
             document.querySelectorAll(`#stream-content-${msgId} pre code`).forEach((block) => { hljs.highlightElement(block); });
             safeAutoScroll();
@@ -1571,12 +1827,29 @@
       safeAutoScroll();
     }
 
+    /* --- UNIVERSAL CONTEXT MENU: DYNAMIC ACTION TOGGLE --- */
     function showContextMenu(e, text, id) {
         e.preventDefault();
         e.stopPropagation();
 
-        activeMessageContext = { text, id };
+        activeMessageContext = (text !== null || id !== null) ? { text, id } : null;
         const menu = document.getElementById('customContextMenu');
+
+        const copyItem = document.getElementById('menuCopyOption');
+        const readItem = document.getElementById('menuReadOption');
+        const deleteItem = document.getElementById('menuDeleteOption');
+
+        if (!activeMessageContext) {
+            // Triggered on blank screen / empty space: hide bubble-specific actions
+            if (copyItem) copyItem.style.display = 'none';
+            if (readItem) readItem.style.display = 'none';
+            if (deleteItem) deleteItem.style.display = 'none';
+        } else {
+            // Triggered on actual message bubble
+            if (copyItem) copyItem.style.display = 'flex';
+            if (readItem) readItem.style.display = 'flex';
+            if (deleteItem) deleteItem.style.display = 'flex';
+        }
 
         const toggleLi = document.getElementById('menuToggleModeOption');
         if (toggleLi) {
@@ -1969,8 +2242,10 @@
                 const displayedPub = pubKey ? (pubKey.substring(0, 10) + "..." + pubKey.substring(pubKey.length - 6)) : "Not Generated";
                 const displayedPriv = privKey ? (privKey.substring(0, 6) + "..." + privKey.substring(privKey.length - 6)) : "Not Generated";
 
-                document.getElementById('nostrNpubDisplay').textContent = displayedPub;
-                document.getElementById('nostrNsecDisplay').textContent = displayedPriv;
+                const pubEl = document.getElementById('nostrNpubDisplayModal');
+                const privEl = document.getElementById('nostrNsecDisplayModal');
+                if (pubEl) pubEl.textContent = displayedPub;
+                if (privEl) privEl.textContent = displayedPriv;
 
                 window.__nostr_pub = pubKey;
                 window.__nostr_priv = privKey;
@@ -2336,7 +2611,7 @@
             updateLoaderCardText(loaderId, "AI is synthesizing web findings...");
 
             if (window.AndroidInterface) {
-                window.AndroidInterface.logDiagnostic("Delivering grounding grounding payload to Puter completions pipeline. Model: " + activeModel, "native");
+                window.AndroidInterface.logDiagnostic("Delivering grounding payload to Puter completions pipeline. Model: " + activeModel, "native");
             }
 
             const streamResp = await puter.ai.chat(messagesArray, {
@@ -2683,7 +2958,6 @@
 
         const msgId = "gemini-" + Date.now() + "_" + Math.floor(Math.random() * 1000000);
 
-        /* --- MULTI-TURN CONTENTS RECONSTRUCTION FROM LOCAL CHAT HISTORY --- */
         const contents = [];
 
         if (Array.isArray(chatHistory)) {
@@ -2747,7 +3021,6 @@
             }
         }
 
-        /* --- UNIFIED SYSTEM INSTRUCTION & CUSTOM DIRECTIVES --- */
         if (!isDedicatedTts) {
             const targetLanguage = localStorage.getItem("puter_target_language") || "";
             const nativeLanguage = getNativeLanguageName(targetLanguage);
@@ -2819,7 +3092,6 @@
         log.appendChild(div);
         safeAutoScroll();
 
-        /* --- FAST STREAM CHUNK PARSER (NO HANG) --- */
         let streamThrottleTimer = null;
 
         window.onGeminiStreamChunk = function(targetMsgId, rawChunk) {
@@ -3106,18 +3378,6 @@
         }
     }
 
-    function toggleGeminiDrawer() {
-        const drawer = document.getElementById("geminiSettingsDrawer");
-        const chevron = document.getElementById("geminiDrawerChevron");
-        if (drawer.style.display === "none" || drawer.style.display === "") {
-            drawer.style.display = "flex";
-            chevron.textContent = "expand_less";
-        } else {
-            drawer.style.display = "none";
-            chevron.textContent = "expand_more";
-        }
-    }
-
     function handleGeminiApiKeyChange(value) {
         if (window.AndroidInterface && window.AndroidInterface.saveGeminiApiKey) {
             window.AndroidInterface.saveGeminiApiKey(value.trim());
@@ -3145,30 +3405,53 @@
     }
 
     function syncGeminiUIState() {
-        const divider = document.getElementById("geminiMenuDivider");
-        const header = document.getElementById("geminiToggleDrawerHeader");
-        const drawer = document.getElementById("geminiSettingsDrawer");
-        
-        if (activeProvider === "Gemini") {
-            if (divider) divider.style.display = "block";
-            if (header) header.style.display = "flex";
-            if (window.AndroidInterface) {
-                const apiKey = window.AndroidInterface.getGeminiApiKey ? window.AndroidInterface.getGeminiApiKey() : localStorage.getItem("gemini_user_api_key");
-                document.getElementById("geminiApiKeyInput").value = apiKey || "";
-                
-                const stream = window.AndroidInterface.getGeminiStreaming ? window.AndroidInterface.getGeminiStreaming() : true;
-                document.getElementById("geminiStreamToggle").checked = stream;
-                
-                const grounding = window.AndroidInterface.getGeminiGrounding ? window.AndroidInterface.getGeminiGrounding() : "none";
-                document.getElementById("geminiGroundingSelect").value = grounding || "none";
+        let apiKey = "";
+        let stream = true;
+        let grounding = "none";
+        let voice = "Puck";
 
-                const voice = window.AndroidInterface.getGeminiVoice ? window.AndroidInterface.getGeminiVoice() : (localStorage.getItem("gemini_user_voice") || "Puck");
-                document.getElementById("geminiVoiceSelect").value = voice;
-            }
+        if (window.AndroidInterface) {
+            apiKey = window.AndroidInterface.getGeminiApiKey ? window.AndroidInterface.getGeminiApiKey() : (localStorage.getItem("gemini_user_api_key") || "");
+            stream = window.AndroidInterface.getGeminiStreaming ? window.AndroidInterface.getGeminiStreaming() : true;
+            grounding = window.AndroidInterface.getGeminiGrounding ? window.AndroidInterface.getGeminiGrounding() : "none";
+            voice = window.AndroidInterface.getGeminiVoice ? window.AndroidInterface.getGeminiVoice() : (localStorage.getItem("gemini_user_voice") || "Puck");
         } else {
-            if (divider) divider.style.display = "none";
-            if (header) header.style.display = "none";
-            if (drawer) drawer.style.display = "none";
+            apiKey = localStorage.getItem("gemini_user_api_key") || "";
+            voice = localStorage.getItem("gemini_user_voice") || "Puck";
+        }
+
+        const keyModal = document.getElementById("geminiApiKeyInputModal");
+        if (keyModal) keyModal.value = apiKey;
+
+        const streamModal = document.getElementById("geminiStreamToggleModal");
+        if (streamModal) streamModal.checked = stream;
+
+        const groundingModal = document.getElementById("geminiGroundingSelectModal");
+        if (groundingModal) groundingModal.value = grounding;
+
+        const voiceModal = document.getElementById("geminiVoiceSelectModal");
+        if (voiceModal) voiceModal.value = voice;
+
+        const statusEl = document.getElementById("geminiFetchStatus");
+        if (statusEl) {
+            const cached = localStorage.getItem("gemini_live_models");
+            if (cached) {
+                try {
+                    const parsed = JSON.parse(cached);
+                    let count = 0;
+                    for (const k in parsed) {
+                        count += (parsed[k] || []).length;
+                    }
+                    statusEl.textContent = `Cached models: ${count} available`;
+                    statusEl.style.color = "#27ae60";
+                } catch(e) {
+                    statusEl.textContent = "No cached live models";
+                    statusEl.style.color = "#888";
+                }
+            } else {
+                statusEl.textContent = "No cached live models (tap Fetch)";
+                statusEl.style.color = "#888";
+            }
         }
     }
 
@@ -3205,10 +3488,10 @@
             return;
         }
 
-        const voiceElement = document.getElementById("geminiVoiceSelect");
+        const voiceElement = document.getElementById("geminiVoiceSelectModal");
         const voiceName = voiceElement ? voiceElement.value : "Puck";
 
-        const groundingElement = document.getElementById("geminiGroundingSelect");
+        const groundingElement = document.getElementById("geminiGroundingSelectModal");
         const useSearch = groundingElement ? (groundingElement.value === "search") : false;
 
         const modelId = globalSelectedModel || "gemini-3.1-flash-live-preview";
@@ -3999,6 +4282,50 @@
         }
     }
 
+    /* --- UNIVERSAL LONG-PRESS LISTENER ON CHAT CONTAINER --- */
+    function initContainerLongPress() {
+        const container = document.querySelector('.chat-container');
+        if (!container) return;
+
+        let pressTimer = null;
+        let startX = 0, startY = 0;
+
+        container.addEventListener('pointerdown', (e) => {
+            // Ignore if pointerdown is directly on an existing message bubble or interactive element
+            if (e.target.closest('.message') || e.target.closest('button') || e.target.closest('.code-block-container') || e.target.closest('input') || e.target.closest('textarea') || e.target.closest('.download-icon-tiny')) {
+                return;
+            }
+            if (pressTimer) clearTimeout(pressTimer);
+            startX = e.clientX;
+            startY = e.clientY;
+            pressTimer = setTimeout(() => {
+                showContextMenu(e, null, null);
+            }, 700);
+        });
+
+        container.addEventListener('pointermove', (e) => {
+            if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
+                clearTimeout(pressTimer);
+                pressTimer = null;
+            }
+        });
+
+        container.addEventListener('pointerup', () => {
+            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+        });
+
+        container.addEventListener('pointercancel', () => {
+            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+        });
+
+        container.addEventListener('contextmenu', (e) => {
+            if (!e.target.closest('.message')) {
+                e.preventDefault();
+                showContextMenu(e, null, null);
+            }
+        });
+    }
+
     window.onload = () => {
         console.log("Page Lifecycle: ONLOAD on Secure Origin");
 
@@ -4017,6 +4344,8 @@
 
         document.getElementById('totalTokenVal').textContent = `Global Total: ${sessionTotalTokens} tokens`;
         document.getElementById('totalCreditVal').textContent = `Global Cost: $${sessionTotalCredits.toFixed(4)}`;
+
+        initContainerLongPress();
 
         if (typeof puter !== 'undefined') {
             console.log("Puter SDK detected. Waiting for ready signal...");
@@ -4040,3 +4369,4 @@
   </script>
 </body>
 </html>
+
