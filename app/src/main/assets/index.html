@@ -108,7 +108,16 @@
     .chat-container { display: flex; flex-direction: column; flex: 1; width: 100%; position: relative; z-index: 5; padding: 15px; margin-top: 130px; margin-bottom: 120px; min-height: calc(100vh - 250px); }
     .chat-log { flex: 1; width: 100%; min-height: 100px; }
 
-    .message { display: flex; align-items: flex-start; margin-bottom: 20px; width: 100%; -webkit-user-select: none; user-select: none; }
+    .message { 
+      display: flex; 
+      align-items: flex-start; 
+      margin-bottom: 20px; 
+      width: 100%; 
+      -webkit-user-select: none; 
+      user-select: none; 
+      touch-action: pan-y;
+      transition: transform 0.15s ease-out;
+    }
     .user-message { flex-direction: row-reverse; }
     .message-content { flex-grow: 0; max-width: 90%; padding: 12px 16px; border-radius: 18px; font-size: 16px; line-height: 1.4; box-shadow: 0 1px 2px rgba(0,0,0,0.15); overflow-wrap: break-word; }
     .user-message .message-content { background-color: #007bff; color: white; border-bottom-right-radius: 4px; }
@@ -120,12 +129,37 @@
     .chat-inline-thumb { width: 60px; height: 60px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(0,0,0,0.1); background: #fff; }
     .chat-inline-file { width: 60px; height: 60px; border-radius: 6px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #1a73e8; border: 1px solid rgba(0,0,0,0.1); text-align: center; }
 
-    /* --- ECG LOADER CSS --- */
+    /* --- ECG LOADER CSS WITH STOP BUTTON --- */
     .loader-container { display: none; flex-direction: column; align-items: center; justify-content: center; margin: 20px 0; width: 100%; }
     .ecg-graph { width: 120px; height: 30px; }
     .ecg-path { fill: none; stroke: #1a73e8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 200; stroke-dashoffset: 200; animation: ecg-flow 1.5s linear infinite; }
     @keyframes ecg-flow { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: -200; } }
-    .loader-text { font-size: 13px; color: #666; margin-top: 8px; font-weight: bold; }
+    .loader-text { font-size: 13px; color: #666; font-weight: bold; }
+    
+    .loader-controls-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .stop-gen-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ea4335;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+      transition: transform 0.1s ease, background 0.2s ease;
+    }
+    .stop-gen-btn:active {
+      transform: scale(0.9);
+      background: #c5221f;
+    }
 
     /* --- CONTEXT MENU CSS --- */
     .context-menu { position: fixed; background: #fff; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); display: none; z-index: 1000; min-width: 180px; padding: 5px 0; border: 1px solid #ddd; }
@@ -361,6 +395,12 @@
         <input type="text" id="modelLanguageInput" placeholder="Enter reply language (e.g., Malayalam, Spanish)..." onchange="handleLanguageInput(this.value)" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; outline: none; background: #f9f9f9; box-sizing: border-box;" />
       </li>
 
+      <!-- NEW: URL CONTEXT TOGGLE BELOW REPLY LANGUAGE -->
+      <li style="padding: 12px 20px; cursor: pointer; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between;" onclick="document.getElementById('urlContextCheckbox').click()">
+        <span style="font-weight: bold; color: #555; font-size: 13px;">Enable URL Context</span>
+        <input type="checkbox" id="urlContextCheckbox" onclick="event.stopPropagation()" onchange="handleUrlContextToggle(this.checked)" style="width: 18px; height: 18px; cursor: pointer;" />
+      </li>
+
       <li id="usageDisplay" class="usage-divider">
         GENERATION USAGE
         <span class="usage-val" id="lastTokenVal">Last: 0 tokens</span>
@@ -402,7 +442,12 @@
         <svg class="ecg-graph" viewBox="0 0 100 30">
             <path class="ecg-path" d="M0,15 L25,15 L30,5 L35,25 L40,15 L60,15 L65,0 L75,30 L80,15 L100,15" />
         </svg>
-        <div id="loaderText" class="loader-text">AI is answering...</div>
+        <div class="loader-controls-row">
+            <div id="loaderText" class="loader-text">AI is answering...</div>
+            <button type="button" class="stop-gen-btn" onclick="stopCurrentGeneration()" title="Stop Generation">
+                <span class="material-symbols-outlined" style="font-size: 16px;">close</span>
+            </button>
+        </div>
     </div>
   </div>
 
@@ -438,6 +483,7 @@
   </div>
 
   <ul id="customContextMenu" class="context-menu">
+      <li id="menuCancelGenOption" onclick="handleMenuAction('cancel_gen')" class="delete-action" style="display:none;"><span class="material-symbols-outlined">cancel</span> Stop Generation</li>
       <li id="menuCopyOption" onclick="handleMenuAction('copy')"><span class="material-symbols-outlined">content_copy</span> Copy Chat</li>
       <li id="menuReadOption" onclick="handleMenuAction('read')"><span class="material-symbols-outlined">volume_up</span> Read Aloud</li>
       <li id="menuDeleteOption" onclick="handleMenuAction('delete')" class="delete-action"><span class="material-symbols-outlined">delete</span> Delete Chat</li>
@@ -589,6 +635,8 @@
       </h3>
       <p>• <b>Text Chat:</b> Type your message and hit send.</p>
       <p>• <b>Long-Press:</b> Hold any chat bubble or blank area to access settings and actions.</p>
+      <p>• <b>Swipe Right-to-Left:</b> Swipe any message bubble to quote/re-attach its files and prompt into the input bar.</p>
+      <p>• <b>Stop Response:</b> Tap the ✕ button beside the answering spinner anytime to stop generation.</p>
       <p>• <b>Vision:</b> Use the '+' icon to upload images and files for the AI to analyze.</p>
       <p>• <b>Sessions:</b> Long-press any session in the menu to delete it permanently.</p>
       <p>• <b>Voice Agent:</b> Tap the sparkles for a full-screen, hands-free conversation mode.</p>
@@ -679,6 +727,30 @@
         return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
+    function getLanguageCode(lang) {
+        if (!lang) return "en-US";
+        const l = lang.trim().toLowerCase();
+        const mapping = {
+            'malayalam': 'ml-IN',
+            'tamil': 'ta-IN',
+            'hindi': 'hi-IN',
+            'telugu': 'te-IN',
+            'kannada': 'kn-IN',
+            'bengali': 'bn-IN',
+            'arabic': 'ar-SA',
+            'spanish': 'es-ES',
+            'espanol': 'es-ES',
+            'portuguese': 'pt-BR',
+            'french': 'fr-FR',
+            'german': 'de-DE',
+            'russian': 'ru-RU',
+            'japanese': 'ja-JP',
+            'chinese': 'zh-CN',
+            'english': 'en-US'
+        };
+        return mapping[l] || l;
+    }
+
     function getNativeLanguageName(lang) {
         if (!lang) return "";
         const normalized = lang.trim().toLowerCase();
@@ -689,6 +761,8 @@
             'telugu': 'తెలుగు (Telugu)',
             'kannada': 'കನ್ನಡ (Kannada)',
             'spanish': 'Español (Spanish)',
+            'espanol': 'Español (Spanish)',
+            'portuguese': 'Português (Portuguese)',
             'french': 'Français (French)',
             'german': 'Deutsch (German)',
             'russian': 'Русский (Russian)',
@@ -840,6 +914,9 @@
     let activeMessageContext = null; 
 
     let activeProvider = "Puter";
+
+    let isGeneratingResponse = false;
+    let activeGeneratingMsgId = null;
 
     let liveWs = null;
     let liveAudioContext = null;
@@ -1049,7 +1126,6 @@
 
         const cats = [];
 
-        // STRICT GATING: Only genuine bidirectional live session models get 'live'
         const isLiveAudio = idLower.includes("live-preview") || idLower.includes("native-audio") || (idLower.includes("exp") && idLower.includes("live"));
         if (isLiveAudio) {
             cats.push("live");
@@ -1340,7 +1416,6 @@
         }
     }
 
-    // Callbacks for Native OkHttp Fetch if dispatched through bridge
     window.onGeminiLiveModelsFetched = function(rawJson) {
         try {
             const data = JSON.parse(rawJson);
@@ -1408,7 +1483,8 @@
         }
 
         const recognition = new SpeechRecognition();
-        recognition.lang = "en-US";
+        const targetLanguage = localStorage.getItem("puter_target_language") || "";
+        recognition.lang = getLanguageCode(targetLanguage);
         recognition.interimResults = false;
         recognition.continuous = false;
 
@@ -1499,11 +1575,55 @@
        chatHistory.push({sender: "Bot", text: "[Image Generated]", type: "image", src: src, id: msgId});
        localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
 
+       attachMessageInteractions(div, "[Image Generated]", msgId, [{ name: "Generated_Image.png", type: "image/png", data: src }]);
        safeAutoScroll();
+    }
+
+    /* --- STOP / CANCEL RUNNING AI GENERATION --- */
+    function stopCurrentGeneration() {
+        if (!isGeneratingResponse) {
+            const loader = document.getElementById('ecgLoader');
+            if (loader) loader.style.display = 'none';
+            return;
+        }
+
+        console.log("Canceling running AI response generation...");
+        isGeneratingResponse = false;
+
+        if (window.AndroidInterface && window.AndroidInterface.cancelCurrentGeminiCall) {
+            try { window.AndroidInterface.cancelCurrentGeminiCall(); } catch(e) {}
+        }
+
+        if (window.AndroidInterface && window.AndroidInterface.stopSpeaking) {
+            try { window.AndroidInterface.stopSpeaking(); } catch(e) {}
+        }
+        if (window.speechSynthesis) {
+            try { window.speechSynthesis.cancel(); } catch(e) {}
+        }
+
+        const loader = document.getElementById('ecgLoader');
+        if (loader) loader.style.display = 'none';
+
+        if (activeGeneratingMsgId) {
+            const targetSpan = document.getElementById(`stream-content-${activeGeneratingMsgId}`);
+            if (targetSpan && (targetSpan.innerText === "Thinking..." || targetSpan.innerText.trim() === "")) {
+                targetSpan.innerHTML = `<i>[Response canceled by user]</i>`;
+            }
+            activeGeneratingMsgId = null;
+        }
+
+        if (window.AndroidInterface && window.AndroidInterface.showToast) {
+            window.AndroidInterface.showToast("Response generation canceled");
+        }
     }
 
     async function sendMessage(fromVoice = false) {
       console.log("Send Clicked. Voice Active: " + fromVoice);
+
+      if (isGeneratingResponse) {
+          stopCurrentGeneration();
+          return;
+      }
 
       isVoiceResponseActive = fromVoice;
       if(window.AndroidInterface && window.AndroidInterface.setVoiceMode) {
@@ -1535,6 +1655,7 @@
       appendChat("User", text, false, messageFiles);
 
       input.value = "";
+      clearFiles();
       handleInput(); 
 
       if (activeProvider === "Gemini") {
@@ -1587,6 +1708,7 @@
 
       const loader = document.getElementById('ecgLoader');
       loader.style.display = 'flex';
+      isGeneratingResponse = true;
       safeAutoScroll();
 
       try {
@@ -1626,6 +1748,7 @@
                 }
             });
 
+            isGeneratingResponse = false;
             loader.style.display = 'none';
             console.log("Image generation completed.");
 
@@ -1695,40 +1818,22 @@
 
             let fullBotText = "";
             const msgId = "msg-" + Date.now() + "_" + Math.floor(Math.random() * 1000000);
+            activeGeneratingMsgId = msgId;
             const log = document.getElementById('puterChatLog');
             const div = document.createElement('div');
             div.className = "message bot-message";
             div.id = msgId;
 
-            let pressTimer;
-            let startX, startY;
-            div.onpointerdown = (e) => { 
-                if (pressTimer) clearTimeout(pressTimer);
-                startX = e.clientX;
-                startY = e.clientY;
-                pressTimer = window.setTimeout(() => { showContextMenu(e, fullBotText, msgId); }, 700); 
-            };
-            div.onpointermove = (e) => {
-                if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
-                    clearTimeout(pressTimer);
-                    pressTimer = null;
-                }
-            };
-            div.onpointerup = () => {
-                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-            };
-            div.onpointercancel = () => {
-                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-            };
-            div.oncontextmenu = (e) => e.preventDefault();
+            attachMessageInteractions(div, "", msgId, []);
 
-            div.innerHTML = `<div class="message-content"><b>Bot:</b><br><span id="stream-content-${msgId}"></span></div>`;
+            div.innerHTML = `<div class="message-content"><b>Bot:</b><br><span id="stream-content-${msgId}">Thinking...</span></div>`;
             log.appendChild(div);
 
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
 
             let lastRender = 0;
             for await (const chunk of streamResp) {
+                if (!isGeneratingResponse) break;
                 if(chunk.usage) { updateUsageUI(chunk.usage); continue; }
                 const chunkText = chunk?.text || chunk?.message?.content || "";
                 if (chunkText) {
@@ -1742,25 +1847,119 @@
                 }
             }
 
-            targetSpan.innerHTML = marked.parse(fullBotText);
-            document.querySelectorAll(`#stream-content-${msgId} pre code`).forEach((block) => { hljs.highlightElement(block); });
-            safeAutoScroll();
+            if (isGeneratingResponse) {
+                targetSpan.innerHTML = marked.parse(fullBotText);
+                document.querySelectorAll(`#stream-content-${msgId} pre code`).forEach((block) => { hljs.highlightElement(block); });
+                safeAutoScroll();
 
-            loader.style.display = 'none';
-            chatHistory.push({sender: "Bot", text: fullBotText, id: msgId, files: []});
-            localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
+                loader.style.display = 'none';
+                isGeneratingResponse = false;
+                activeGeneratingMsgId = null;
 
-            if(isVoiceResponseActive) {
-                executeSpeechSynthesisFallback(fullBotText);
+                chatHistory.push({sender: "Bot", text: fullBotText, id: msgId, files: []});
+                localStorage.setItem('puter_chat_history_' + currentSessionId, JSON.stringify(chatHistory));
+
+                if(isVoiceResponseActive) {
+                    executeSpeechSynthesisFallback(fullBotText);
+                }
             }
         }
-
-        clearFiles(); 
       } catch(e) { 
+        isGeneratingResponse = false;
+        activeGeneratingMsgId = null;
         loader.style.display = 'none';
         console.error("API Call Failed: " + e.message);
         appendChat("System", "Error: " + e.message); 
       }
+    }
+
+    /* --- SWIPE TO RE-ATTACH & LONG-PRESS INTERACTION ENGINE --- */
+    function attachMessageInteractions(element, textContent, msgId, attachedFiles = []) {
+        let pressTimer = null;
+        let startX = 0, startY = 0;
+        let diffX = 0, diffY = 0;
+        let isSwiping = false;
+
+        element.onpointerdown = (e) => {
+            if (e.target.closest('button') || e.target.closest('.action-icon') || e.target.closest('.download-icon-tiny')) return;
+            startX = e.clientX;
+            startY = e.clientY;
+            diffX = 0;
+            diffY = 0;
+            isSwiping = true;
+
+            if (pressTimer) clearTimeout(pressTimer);
+            pressTimer = setTimeout(() => {
+                showContextMenu(e, textContent, msgId);
+                pressTimer = null;
+            }, 700);
+        };
+
+        element.onpointermove = (e) => {
+            if (!isSwiping) return;
+            diffX = e.clientX - startX;
+            diffY = e.clientY - startY;
+
+            if (pressTimer && Math.hypot(diffX, diffY) > 10) {
+                clearTimeout(pressTimer);
+                pressTimer = null;
+            }
+
+            // Real-time horizontal swipe visual feedback (Right-to-Left swipe)
+            if (diffX < -15 && Math.abs(diffX) > Math.abs(diffY)) {
+                const translateAmt = Math.max(diffX, -60);
+                element.style.transform = `translateX(${translateAmt}px)`;
+            }
+        };
+
+        const finalizeSwipe = () => {
+            if (!isSwiping) return;
+            isSwiping = false;
+            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+
+            element.style.transform = "translateX(0px)";
+
+            // Detect definite Right-to-Left swipe
+            if (diffX < -55 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+                console.log("Right-to-Left Swipe recognized on message ID: " + msgId);
+                quoteAndReattachMessage(textContent, attachedFiles);
+            }
+        };
+
+        element.onpointerup = finalizeSwipe;
+        element.onpointercancel = finalizeSwipe;
+        element.oncontextmenu = (e) => e.preventDefault();
+    }
+
+    function quoteAndReattachMessage(text, files) {
+        if (text && text !== "[Image Generated]") {
+            const input = document.getElementById('puterChatInput');
+            input.value = text;
+            handleInput();
+        }
+
+        if (files && Array.isArray(files) && files.length > 0) {
+            files.forEach(f => {
+                const alreadyExists = stagedFiles.some(existing => existing.data === f.data || existing.name === f.name);
+                if (!alreadyExists) {
+                    stagedFiles.push({ ...f });
+                }
+            });
+            renderThumbnails();
+            handleInput();
+        }
+
+        const inputContainer = document.getElementById('puterSearchBarContainer');
+        if (inputContainer) {
+            inputContainer.style.boxShadow = "0 0 12px rgba(26,115,232,0.8)";
+            setTimeout(() => {
+                inputContainer.style.boxShadow = "0 1px 4px rgba(0, 0, 0, 0.15)";
+            }, 400);
+        }
+
+        if (window.AndroidInterface && window.AndroidInterface.showToast) {
+            window.AndroidInterface.showToast("Message & files re-attached to input");
+        }
     }
 
     function appendChat(sender, text, isLoad = false, files = []) {
@@ -1771,35 +1970,7 @@
       div.className = "message " + (sender === "User" ? "user-message" : "bot-message");
       div.id = "msg-" + msgId;
 
-      let pressTimer;
-      let startX, startY;
-      div.onpointerdown = (e) => {
-          if (pressTimer) clearTimeout(pressTimer);
-          startX = e.clientX;
-          startY = e.clientY;
-          pressTimer = window.setTimeout(() => {
-              showContextMenu(e, text, "msg-" + msgId);
-          }, 700); 
-      };
-      div.onpointermove = (e) => {
-          if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
-              clearTimeout(pressTimer);
-              pressTimer = null;
-          }
-      };
-      div.onpointerup = () => {
-          if (pressTimer) {
-              clearTimeout(pressTimer);
-              pressTimer = null;
-          }
-      };
-      div.onpointercancel = () => {
-          if (pressTimer) {
-              clearTimeout(pressTimer);
-              pressTimer = null;
-          }
-      };
-      div.oncontextmenu = (e) => e.preventDefault(); 
+      attachMessageInteractions(div, text, "msg-" + msgId, files);
 
       let filesHtml = "";
       if(files && files.length > 0) {
@@ -1838,14 +2009,19 @@
         const copyItem = document.getElementById('menuCopyOption');
         const readItem = document.getElementById('menuReadOption');
         const deleteItem = document.getElementById('menuDeleteOption');
+        const cancelItem = document.getElementById('menuCancelGenOption');
+
+        if (isGeneratingResponse) {
+            if (cancelItem) cancelItem.style.display = 'flex';
+        } else {
+            if (cancelItem) cancelItem.style.display = 'none';
+        }
 
         if (!activeMessageContext) {
-            // Triggered on blank screen / empty space: hide bubble-specific actions
             if (copyItem) copyItem.style.display = 'none';
             if (readItem) readItem.style.display = 'none';
             if (deleteItem) deleteItem.style.display = 'none';
         } else {
-            // Triggered on actual message bubble
             if (copyItem) copyItem.style.display = 'flex';
             if (readItem) readItem.style.display = 'flex';
             if (deleteItem) deleteItem.style.display = 'flex';
@@ -1889,6 +2065,12 @@
     }
 
     function handleMenuAction(action) {
+        if(action === 'cancel_gen') {
+            stopCurrentGeneration();
+            document.getElementById('customContextMenu').style.display = 'none';
+            return;
+        }
+
         if(!activeMessageContext && action !== 'end_session' && action !== 'refresh_relay' && action !== 'toggle_mode' && action !== 'toggle_provider') return;
         const { text, id } = activeMessageContext || {};
 
@@ -1999,6 +2181,7 @@
                     </div>
                 `;
                 log.appendChild(div);
+                attachMessageInteractions(div, "[Image Generated]", item.id, [{ name: "Saved_Image.png", type: "image/png", data: item.src }]);
             } else {
                 appendChat(item.sender, item.text, true, item.files || []);
             }
@@ -2286,6 +2469,17 @@
     window.onImageResult = (base64) => {
       console.log("New File/Image Data Received via Bridge");
 
+      // Large payload IPC crash protection guard
+      const approximateSizeMB = (base64.length * (3 / 4)) / (1024 * 1024);
+      if (approximateSizeMB > 25) {
+          if (window.AndroidInterface && window.AndroidInterface.showToast) {
+              window.AndroidInterface.showToast("File size too large (>25MB). Please upload a smaller clip or document.");
+          } else {
+              alert("File size exceeds 25MB limit for inline processing.");
+          }
+          return;
+      }
+
       const fileName = "Upload_" + stagedFiles.length;
       const match = base64.match(/^data:([^;]+);base64,/);
       const mime = match ? match[1] : "application/octet-stream";
@@ -2294,7 +2488,7 @@
           name: fileName,
           type: mime,
           data: base64
-          });
+      });
 
       renderThumbnails();
       handleInput();
@@ -2559,6 +2753,11 @@
 
             const payload = { contents: contents };
 
+            const isUrlContextEnabled = localStorage.getItem("gemini_url_context_enabled") === "true";
+            if (isUrlContextEnabled) {
+                payload.urlContext = true;
+            }
+
             if (!isDedicatedTts) {
                 payload.systemInstruction = { parts: [{ text: groundingPrompt }] };
             } else {
@@ -2676,27 +2875,7 @@
         div.className = "message bot-message";
         div.id = `msg-${loaderId}`;
 
-        let pressTimer;
-        let startX, startY;
-        div.onpointerdown = (e) => { 
-            if (pressTimer) clearTimeout(pressTimer);
-            startX = e.clientX;
-            startY = e.clientY;
-            pressTimer = window.setTimeout(() => { showContextMenu(e, "", `msg-${loaderId}`); }, 700); 
-        };
-        div.onpointermove = (e) => {
-            if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
-                clearTimeout(pressTimer);
-                pressTimer = null;
-            }
-        };
-        div.onpointerup = () => {
-            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-        };
-        div.onpointercancel = () => {
-            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-        };
-        div.oncontextmenu = (e) => e.preventDefault();
+        attachMessageInteractions(div, "", `msg-${loaderId}`, []);
 
         div.innerHTML = `
             <div class="message-content" style="position: relative; width: 100%;">
@@ -2954,9 +3133,11 @@
 
         const loader = document.getElementById('ecgLoader');
         loader.style.display = 'flex';
+        isGeneratingResponse = true;
         safeAutoScroll();
 
         const msgId = "gemini-" + Date.now() + "_" + Math.floor(Math.random() * 1000000);
+        activeGeneratingMsgId = msgId;
 
         const contents = [];
 
@@ -3011,6 +3192,11 @@
             };
         }
 
+        const isUrlContextEnabled = localStorage.getItem("gemini_url_context_enabled") === "true";
+        if (isUrlContextEnabled) {
+            payload.urlContext = true;
+        }
+
         const groundingType = window.AndroidInterface ? window.AndroidInterface.getGeminiGrounding() : "none";
         if (groundingType !== "none") {
             payload.tools = [];
@@ -3051,6 +3237,8 @@
                 throw new Error("Android Interface native bridge not available.");
             }
         } catch (e) {
+            isGeneratingResponse = false;
+            activeGeneratingMsgId = null;
             loader.style.display = 'none';
             appendChat("System", "Native Execution failed: " + e.message);
         }
@@ -3066,27 +3254,7 @@
         div.className = "message bot-message";
         div.id = msgId;
 
-        let pressTimer;
-        let startX, startY;
-        div.onpointerdown = (e) => { 
-            if (pressTimer) clearTimeout(pressTimer);
-            startX = e.clientX;
-            startY = e.clientY;
-            pressTimer = window.setTimeout(() => { showContextMenu(e, activeGeminiBuffer, msgId); }, 700); 
-        };
-        div.onpointermove = (e) => {
-            if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
-                clearTimeout(pressTimer);
-                pressTimer = null;
-            }
-        };
-        div.onpointerup = () => {
-            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-        };
-        div.onpointercancel = () => {
-            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-        };
-        div.oncontextmenu = (e) => e.preventDefault();
+        attachMessageInteractions(div, activeGeminiBuffer, msgId, []);
 
         div.innerHTML = `<div class="message-content"><b>Bot:</b><br><span id="stream-content-${msgId}">Thinking...</span></div>`;
         log.appendChild(div);
@@ -3095,7 +3263,7 @@
         let streamThrottleTimer = null;
 
         window.onGeminiStreamChunk = function(targetMsgId, rawChunk) {
-            if (targetMsgId !== msgId) return;
+            if (targetMsgId !== msgId || !isGeneratingResponse) return;
             activeGeminiBuffer += rawChunk;
 
             if (streamThrottleTimer) return;
@@ -3216,18 +3384,23 @@
                 clearTimeout(streamThrottleTimer);
                 streamThrottleTimer = null;
             }
+            isGeneratingResponse = false;
+            activeGeneratingMsgId = null;
             const loader = document.getElementById('ecgLoader');
             loader.style.display = 'none';
             
             const targetSpan = document.getElementById(`stream-content-${msgId}`);
             if (targetSpan) {
-                targetSpan.innerHTML = `<span class="text-rose-500">Error: ${error}</span>`;
+                targetSpan.innerHTML = `<span style="color: #ea4335;">Error: ${error}</span>`;
             }
             finalizeGeminiResponse(msgId, "Error: " + error);
         };
     }
 
     function finalizeGeminiResponse(msgId, textBody = null) {
+        isGeneratingResponse = false;
+        activeGeneratingMsgId = null;
+
         const loader = document.getElementById('ecgLoader');
         loader.style.display = 'none';
 
@@ -3378,6 +3551,16 @@
         }
     }
 
+    function handleUrlContextToggle(checked) {
+        localStorage.setItem("gemini_url_context_enabled", checked ? "true" : "false");
+        if (window.AndroidInterface && window.AndroidInterface.setUrlContextEnabled) {
+            window.AndroidInterface.setUrlContextEnabled(checked);
+        }
+        if (window.AndroidInterface && window.AndroidInterface.showToast) {
+            window.AndroidInterface.showToast("URL Context " + (checked ? "Enabled" : "Disabled"));
+        }
+    }
+
     function handleGeminiApiKeyChange(value) {
         if (window.AndroidInterface && window.AndroidInterface.saveGeminiApiKey) {
             window.AndroidInterface.saveGeminiApiKey(value.trim());
@@ -3431,6 +3614,15 @@
 
         const voiceModal = document.getElementById("geminiVoiceSelectModal");
         if (voiceModal) voiceModal.value = voice;
+
+        const urlContextBox = document.getElementById("urlContextCheckbox");
+        if (urlContextBox) {
+            let isUrlContext = localStorage.getItem("gemini_url_context_enabled") === "true";
+            if (window.AndroidInterface && window.AndroidInterface.getUrlContextEnabled) {
+                isUrlContext = window.AndroidInterface.getUrlContextEnabled();
+            }
+            urlContextBox.checked = isUrlContext;
+        }
 
         const statusEl = document.getElementById("geminiFetchStatus");
         if (statusEl) {
@@ -3688,30 +3880,7 @@
                             div.className = "message bot-message";
                             div.id = msgId;
 
-                            let pressTimer;
-                            let startX, startY;
-                            div.onpointerdown = (e) => { 
-                                if (pressTimer) clearTimeout(pressTimer);
-                                startX = e.clientX;
-                                startY = e.clientY;
-                                pressTimer = window.setTimeout(() => { 
-                                    const currentText = document.getElementById(`live-span-${msgId}`)?.innerText || "";
-                                    showContextMenu(e, currentText, msgId); 
-                                }, 700); 
-                            };
-                            div.onpointermove = (e) => {
-                                if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
-                                    clearTimeout(pressTimer);
-                                    pressTimer = null;
-                                }
-                            };
-                            div.onpointerup = () => {
-                                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-                            };
-                            div.onpointercancel = () => {
-                                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-                            };
-                            div.oncontextmenu = (e) => e.preventDefault();
+                            attachMessageInteractions(div, "", msgId, []);
 
                             div.innerHTML = `<div class="message-content"><b>Bot:</b><br><span id="live-span-${msgId}"></span></div>`;
                             log.appendChild(div);
@@ -3749,30 +3918,7 @@
                             div.className = "message bot-message";
                             div.id = msgId;
 
-                            let pressTimer;
-                            let startX, startY;
-                            div.onpointerdown = (e) => { 
-                                if (pressTimer) clearTimeout(pressTimer);
-                                startX = e.clientX;
-                                startY = e.clientY;
-                                pressTimer = window.setTimeout(() => { 
-                                    const currentText = document.getElementById(`live-span-${msgId}`)?.innerText || "";
-                                    showContextMenu(e, currentText, msgId); 
-                                }, 700); 
-                            };
-                            div.onpointermove = (e) => {
-                                if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
-                                    clearTimeout(pressTimer);
-                                    pressTimer = null;
-                                }
-                            };
-                            div.onpointerup = () => {
-                                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-                            };
-                            div.onpointercancel = () => {
-                                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-                            };
-                            div.oncontextmenu = (e) => e.preventDefault();
+                            attachMessageInteractions(div, "", msgId, []);
 
                             div.innerHTML = `<div class="message-content"><b>Bot:</b><br><span id="live-span-${msgId}"></span></div>`;
                             log.appendChild(div);
@@ -3800,30 +3946,7 @@
                             div.className = "message user-message";
                             div.id = msgId;
 
-                            let pressTimer;
-                            let startX, startY;
-                            div.onpointerdown = (e) => { 
-                                if (pressTimer) clearTimeout(pressTimer);
-                                startX = e.clientX;
-                                startY = e.clientY;
-                                pressTimer = window.setTimeout(() => { 
-                                    const currentText = document.getElementById(`live-user-span-${msgId}`)?.innerText || "";
-                                    showContextMenu(e, currentText, msgId); 
-                                }, 700); 
-                            };
-                            div.onpointermove = (e) => {
-                                if (pressTimer && Math.hypot(e.clientX - startX, e.clientY - startY) > 8) {
-                                    clearTimeout(pressTimer);
-                                    pressTimer = null;
-                                }
-                            };
-                            div.onpointerup = () => {
-                                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-                            };
-                            div.onpointercancel = () => {
-                                if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
-                            };
-                            div.oncontextmenu = (e) => e.preventDefault();
+                            attachMessageInteractions(div, "", msgId, []);
 
                             div.innerHTML = `<div class="message-content"><b>User:</b><br><span id="live-user-span-${msgId}"></span></div>`;
                             log.appendChild(div);
@@ -4175,7 +4298,15 @@
     function executeSpeechSynthesisFallback(text) {
         if (!text) return;
 
-        if (window.AndroidInterface && window.AndroidInterface.speak) {
+        const targetLanguage = localStorage.getItem("puter_target_language") || "";
+        const langCode = getLanguageCode(targetLanguage);
+
+        if (window.AndroidInterface && window.AndroidInterface.speakWithLanguage) {
+            if (window.AndroidInterface.logDiagnostic) {
+                window.AndroidInterface.logDiagnostic(`Executing Tier 1 Speech synthesis with language: ${langCode}`, "SPEECH");
+            }
+            window.AndroidInterface.speakWithLanguage(text, langCode);
+        } else if (window.AndroidInterface && window.AndroidInterface.speak) {
             if (window.AndroidInterface.logDiagnostic) {
                 window.AndroidInterface.logDiagnostic("Executing Tier 1 Speech synthesis natively.", "SPEECH");
             }
@@ -4189,12 +4320,7 @@
                 try {
                     window.speechSynthesis.cancel();
                     const utterance = new SpeechSynthesisUtterance(text);
-                    
-                    const targetLanguage = localStorage.getItem("puter_target_language") || "";
-                    if (targetLanguage) {
-                        utterance.lang = targetLanguage;
-                    }
-                    
+                    utterance.lang = langCode;
                     window.speechSynthesis.speak(utterance);
                 } catch (e) {
                     console.error("Web Speech synthesis failed: ", e);
@@ -4291,7 +4417,6 @@
         let startX = 0, startY = 0;
 
         container.addEventListener('pointerdown', (e) => {
-            // Ignore if pointerdown is directly on an existing message bubble or interactive element
             if (e.target.closest('.message') || e.target.closest('button') || e.target.closest('.code-block-container') || e.target.closest('input') || e.target.closest('textarea') || e.target.closest('.download-icon-tiny')) {
                 return;
             }
@@ -4340,6 +4465,12 @@
         const languageInputContainer = document.getElementById("modelLanguageInput");
         if (languageInputContainer) {
             languageInputContainer.value = savedLanguageSetting;
+        }
+
+        const isUrlContext = localStorage.getItem("gemini_url_context_enabled") === "true";
+        const urlBox = document.getElementById("urlContextCheckbox");
+        if (urlBox) {
+            urlBox.checked = isUrlContext;
         }
 
         document.getElementById('totalTokenVal').textContent = `Global Total: ${sessionTotalTokens} tokens`;
