@@ -42,7 +42,7 @@ import java.util.List;
 /**
  * The core bridge class between the HTML JavaScript and Native Android code.
  * Fulfills all requirements for native TTS, barge-in, full-screen voice agent,
- * and authentication persistence.
+ * authentication persistence, and Gemini Live model caching.
  */
 public class WebAppInterface {
 
@@ -837,6 +837,44 @@ public class WebAppInterface {
             geminiService.executeCall(modelId, payloadJson, isStream, msgId);
         } else {
             nativeLog("Bridge Connection Failure: GeminiService was not properly instantiated.", "error");
+        }
+    }
+
+    // =========================================================================
+    // GEMINI LIVE MODELS DISCOVERY & LOCAL CACHE PERSISTENCE
+    // =========================================================================
+
+    /**
+     * Persists the fetched live Gemini model list JSON string directly into SharedPreferences.
+     */
+    @JavascriptInterface
+    public void saveCachedGeminiModels(String json) {
+        if (json == null) return;
+        prefs.edit().putString(AppConstants.KEY_GEMINI_CACHED_LIVE_MODELS, json).apply();
+        nativeLog("Bridge: Live Gemini models cached successfully into SharedPreferences.", "native");
+    }
+
+    /**
+     * Retrieves the cached live Gemini models JSON string from SharedPreferences.
+     */
+    @JavascriptInterface
+    public String getCachedGeminiModels() {
+        String cached = prefs.getString(AppConstants.KEY_GEMINI_CACHED_LIVE_MODELS, "{}");
+        nativeLog("Bridge: Retrieved cached live Gemini models from device storage.", "info");
+        return cached;
+    }
+
+    /**
+     * Delegates asynchronous discovery of all available Gemini models for the provided API key
+     * to the native OkHttp engine in GeminiService.
+     */
+    @JavascriptInterface
+    public void fetchLiveGeminiModels(String apiKey) {
+        nativeLog("Bridge: Initiating native fetch for available Gemini models...", "native");
+        if (geminiService != null) {
+            geminiService.fetchAvailableModels(apiKey);
+        } else {
+            nativeLog("Bridge: GeminiService is null, unable to fetch live models natively.", "error");
         }
     }
 
