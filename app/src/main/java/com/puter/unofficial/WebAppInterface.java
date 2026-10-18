@@ -41,8 +41,8 @@ import java.util.List;
 
 /**
  * The core bridge class between the HTML JavaScript and Native Android code.
- * Fulfills all requirements for native TTS, barge-in, full-screen voice agent,
- * authentication persistence, and Gemini Live model caching.
+ * Fulfills all requirements for native TTS, multilingual speech routing, call cancellation,
+ * URL context state, barge-in, authentication persistence, and Gemini Live model caching.
  */
 public class WebAppInterface {
 
@@ -224,6 +224,21 @@ public class WebAppInterface {
     }
 
     /**
+     * Enhanced multilingual TTS bridge method supporting explicit language routing (Malayalam, Arabic, etc.).
+     */
+    @JavascriptInterface
+    public void speakWithLanguage(String text, String langCode) {
+        nativeLog("speakWithLanguage requested (Lang: " + langCode + "): " + (text != null ? text.substring(0, Math.min(text.length(), 25)) + "..." : "null"), "info");
+        DiagnosticLogger.log("[BRIDGE] speakWithLanguage invoked with lang=" + langCode);
+        if (context instanceof MainActivity) {
+            ((MainActivity) context).speakWithLanguage(text, langCode);
+        } else {
+            nativeLog("speakWithLanguage aborted: Context is not an instance of MainActivity.", "error");
+            DiagnosticLogger.log("[BRIDGE] speakWithLanguage failure: Context is not MainActivity.");
+        }
+    }
+
+    /**
      * Resolves the unhandled JavaScript crash context when message deletion triggers a stopSpeaking invocation.
      */
     @JavascriptInterface
@@ -395,7 +410,6 @@ public class WebAppInterface {
                 if (clipboard != null) {
                     ClipData clipObj = ClipData.newPlainText("PuterChat", copyText);
                     clipboard.setPrimaryClip(clipObj);
-                    // On Android 13+ (API 33+), the OS displays an automatic native clipboard preview popup
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                         Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show();
                     }
@@ -828,6 +842,32 @@ public class WebAppInterface {
     public void saveGeminiVoice(String voice) {
         prefs.edit().putString("gemini_user_voice", voice).apply();
         nativeLog("Gemini Voice configuration state updated natively to: " + voice, "info");
+    }
+
+    /**
+     * URL Context State persistence methods for the Gemini Grounding Tool
+     */
+    @JavascriptInterface
+    public void setUrlContextEnabled(boolean enabled) {
+        prefs.edit().putBoolean("gemini_url_context_enabled", enabled).apply();
+        nativeLog("Bridge: Set URL Context enabled -> " + enabled, "info");
+    }
+
+    @JavascriptInterface
+    public boolean getUrlContextEnabled() {
+        return prefs.getBoolean("gemini_url_context_enabled", false);
+    }
+
+    /**
+     * Halts the currently running Gemini network request on demand.
+     */
+    @JavascriptInterface
+    public void cancelCurrentGeminiCall() {
+        nativeLog("Bridge: Canceling current Gemini API call natively.", "info");
+        DiagnosticLogger.log("[BRIDGE] cancelCurrentGeminiCall invoked.");
+        if (geminiService != null) {
+            geminiService.cancelCurrentCall();
+        }
     }
 
     @JavascriptInterface
