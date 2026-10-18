@@ -44,10 +44,15 @@ public class AppConstants {
     public static final String KEY_GEMINI_API_KEY = "gemini_user_api_key";
     public static final String KEY_GEMINI_STREAMING = "gemini_streaming_enabled";
     public static final String KEY_GEMINI_GROUNDING = "gemini_grounding_type";
+    // Key for persisting live fetched Gemini models list into local cache
+    public static final String KEY_GEMINI_CACHED_LIVE_MODELS = "gemini_cached_live_models";
 
-    // --- PUTER URLs ---
+    // --- PUTER & GEMINI URLs ---
     // The main entry point for Puter.com authentication via browser redirect.
     public static final String PUTER_LOGIN_URL = "https://puter.com/login";
+
+    // Google Generative Language API endpoint for querying available live models
+    public static final String GEMINI_MODELS_LIST_URL = "https://generativelanguage.googleapis.com/v1beta/models";
     
     // The local asset path for the app frontend.
     // UPDATED: Now uses the virtual HTTPS origin required for Puter.js session persistence.
