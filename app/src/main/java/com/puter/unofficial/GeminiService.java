@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.webkit.WebView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -14,10 +15,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,18 +33,23 @@ import okhttp3.ResponseBody;
 
 /**
  * Native Network Service for Google Gemini APIs.
- * Handles background REST, streaming execution, and live model discovery utilizing OkHttp and thread executors.
- * Pipes streaming chunk payloads and model catalogs directly back to the active WebView on the main UI thread.
+ * Handles background REST, streaming execution, active call cancellation,
+ * URL context extraction/fetching, and live model discovery utilizing OkHttp.
+ * Pipes streaming chunk payloads directly back to the active WebView on the main UI thread.
  */
 public class GeminiService {
 
     private static final String TAG = "GeminiService";
-    
+    private static final Pattern URL_PATTERN = Pattern.compile("https?://[a-zA-Z0-9./_\\-~%#?=&]+");
+
     private final Context context;
     private final WebView webView;
     private final OkHttpClient client;
     private final ExecutorService executorService;
     private final Handler mainHandler;
+
+    private Call activeCall = null;
+    private final Object callLock = new Object();
 
     /**
      * Constructor for GeminiService.
@@ -49,18 +60,31 @@ public class GeminiService {
         this.webView = webView;
         this.mainHandler = new Handler(Looper.getMainLooper());
         this.executorService = Executors.newSingleThreadExecutor();
-        
+
         this.client = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS) // Extended read timeout for stable streaming of large codeblocks
-                .writeTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS) // Extended read timeout for large code streaming
+                .writeTimeout(20, TimeUnit.SECONDS)
                 .pingInterval(20, TimeUnit.SECONDS)
                 .build();
     }
 
     /**
+     * Cancels the currently executing Gemini network request, if active.
+     */
+    public void cancelCurrentCall() {
+        synchronized (callLock) {
+            if (activeCall != null && !activeCall.isCanceled()) {
+                Log.d(TAG, "User requested cancellation. Aborting active Gemini network call.");
+                activeCall.cancel();
+                activeCall = null;
+            }
+        }
+    }
+
+    /**
      * Executes the Gemini completion or streaming request on a background thread.
-     * 
+     *
      * @param modelId     The target Google model ID (e.g., "gemini-2.5-flash")
      * @param payloadJson The compiled JSON request parameters passed from JavaScript
      * @param isStream    True to route over streaming connections, false for standard completions
@@ -68,15 +92,18 @@ public class GeminiService {
      */
     public void executeCall(final String modelId, final String payloadJson, final boolean isStream, final String msgId) {
         executorService.execute(() -> {
+            Call call = null;
             try {
                 // Retrieve API Key securely from local SharedPreferences
                 SharedPreferences prefs = context.getSharedPreferences(AppConstants.PREF_NAME, Context.MODE_PRIVATE);
                 String apiKey = prefs.getString(AppConstants.KEY_GEMINI_API_KEY, "");
 
                 if (apiKey.isEmpty()) {
-                    // Fallback to initial default key if not configured in the three-dot setting dropdown
                     apiKey = "AIzaSyBbwPg-mPKe4FNtfI8j07REFFjV6C-xVMw";
                 }
+
+                // Process payload for URL Context and prevent HTTP 400 schema rejections
+                String cleanPayload = processUrlContextAndCleanPayload(payloadJson);
 
                 // Resolve target URL endpoints dynamically based on connection style
                 String baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/" + modelId;
@@ -86,14 +113,19 @@ public class GeminiService {
                 Log.d(TAG, "Initiating Gemini network request. URL: " + baseUrl + action + " | MsgId: " + msgId);
 
                 MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
-                RequestBody body = RequestBody.create(payloadJson, mediaType);
+                RequestBody body = RequestBody.create(cleanPayload, mediaType);
 
                 Request request = new Request.Builder()
                         .url(targetUrl)
                         .post(body)
                         .build();
 
-                Response response = client.newCall(request).execute();
+                call = client.newCall(request);
+                synchronized (callLock) {
+                    this.activeCall = call;
+                }
+
+                Response response = call.execute();
 
                 if (!response.isSuccessful()) {
                     String errorText = response.body() != null ? response.body().string() : "Empty response body";
@@ -109,24 +141,148 @@ public class GeminiService {
                 }
 
                 if (isStream) {
-                    // Handle stream connections by reading characters dynamically from the stream reader
                     parseStreamResponse(responseBody, msgId);
                 } else {
-                    // Deliver complete content immediately for standard single REST calls
                     String responseData = responseBody.string();
                     deliverComplete(msgId, responseData);
                 }
 
             } catch (IOException e) {
+                if (call != null && call.isCanceled()) {
+                    Log.d(TAG, "Active Gemini call was intentionally canceled.");
+                    deliverError(msgId, "Request canceled.");
+                    return;
+                }
                 Log.e(TAG, "Network exception occurred during Gemini connection: " + e.getMessage(), e);
                 deliverError(msgId, "Connection failed: " + e.getMessage());
+            } catch (Exception ex) {
+                Log.e(TAG, "Unexpected error in executeCall: " + ex.getMessage(), ex);
+                deliverError(msgId, "Processing error: " + ex.getMessage());
+            } finally {
+                synchronized (callLock) {
+                    if (this.activeCall == call) {
+                        this.activeCall = null;
+                    }
+                }
             }
         });
     }
 
     /**
+     * Inspects the incoming payload for "urlContext": true.
+     * If enabled, extracts any URLs from the prompt or attached text, fetches their raw contents
+     * via OkHttp, injects them as grounded context, and removes the "urlContext" field to
+     * prevent Gemini HTTP 400 schema validation errors.
+     */
+    private String processUrlContextAndCleanPayload(String rawPayloadJson) {
+        try {
+            JSONObject root = new JSONObject(rawPayloadJson);
+
+            boolean isUrlContextEnabled = false;
+            if (root.has("urlContext")) {
+                isUrlContextEnabled = root.optBoolean("urlContext", false);
+                root.remove("urlContext"); // Clean root to satisfy Google Generative API schema
+            }
+
+            if (!isUrlContextEnabled || !root.has("contents")) {
+                return root.toString();
+            }
+
+            JSONArray contents = root.getJSONArray("contents");
+            List<String> detectedUrls = new ArrayList<>();
+
+            // Scan user text parts for URLs
+            for (int i = 0; i < contents.length(); i++) {
+                JSONObject turn = contents.getJSONObject(i);
+                if (turn.optString("role", "").equals("user") && turn.has("parts")) {
+                    JSONArray parts = turn.getJSONArray("parts");
+                    for (int j = 0; j < parts.length(); j++) {
+                        JSONObject part = parts.getJSONObject(j);
+                        if (part.has("text")) {
+                            String text = part.getString("text");
+                            Matcher matcher = URL_PATTERN.matcher(text);
+                            while (matcher.find()) {
+                                String url = matcher.group();
+                                if (!detectedUrls.contains(url)) {
+                                    detectedUrls.add(url);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // If URLs are found, fetch their text in parallel/sequence (up to 12 files to prevent memory overflow)
+            if (!detectedUrls.isEmpty()) {
+                StringBuilder fetchedContextBuilder = new StringBuilder();
+                int fetchedCount = 0;
+                int maxFetches = Math.min(detectedUrls.size(), 15);
+
+                Log.d(TAG, "URL Context active. Found " + detectedUrls.size() + " URLs. Resolving first " + maxFetches + "...");
+
+                for (int i = 0; i < maxFetches; i++) {
+                    String url = detectedUrls.get(i);
+                    String fetchedData = fetchUrlContentDirectly(url);
+                    if (fetchedData != null && !fetchedData.trim().isEmpty()) {
+                        fetchedContextBuilder.append("\n\n--- START OF FILE CONTEXT [URL: ").append(url).append("] ---\n");
+                        fetchedContextBuilder.append(fetchedData);
+                        fetchedContextBuilder.append("\n--- END OF FILE CONTEXT ---\n");
+                        fetchedCount++;
+                    }
+                }
+
+                if (fetchedCount > 0) {
+                    // Inject the retrieved document context into the latest user turn
+                    JSONObject lastTurn = contents.getJSONObject(contents.length() - 1);
+                    JSONArray parts = lastTurn.getJSONArray("parts");
+
+                    JSONObject contextPart = new JSONObject();
+                    contextPart.put("text", "\n[System URL Context Retrieval: The following " + fetchedCount +
+                            " source file(s) were successfully fetched and verified]\n" +
+                            fetchedContextBuilder.toString());
+
+                    parts.put(contextPart);
+                    Log.d(TAG, "Successfully injected fetched content for " + fetchedCount + " URLs into Gemini prompt.");
+                }
+            }
+
+            return root.toString();
+        } catch (Exception e) {
+            Log.e(TAG, "Error processing URL context in payload: " + e.getMessage());
+            return rawPayloadJson;
+        }
+    }
+
+    /**
+     * Direct HTTP fetch helper for fetching raw code/text documents from URLs.
+     */
+    private String fetchUrlContentDirectly(String url) {
+        try {
+            Request req = new Request.Builder()
+                    .url(url)
+                    .header("User-Agent", "Mozilla/5.0 (Android; Mobile; rv:120.0) Gecko/120.0 Firefox/120.0")
+                    .get()
+                    .build();
+
+            try (Response resp = client.newCall(req).execute()) {
+                if (resp.isSuccessful() && resp.body() != null) {
+                    String bodyStr = resp.body().string();
+                    // Guard against giant binaries: limit single file snippet to 40,000 characters
+                    if (bodyStr.length() > 40000) {
+                        return bodyStr.substring(0, 40000) + "\n...[Content truncated for token safety]...";
+                    }
+                    return bodyStr;
+                }
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Failed to pre-fetch URL context for " + url + ": " + e.getMessage());
+        }
+        return null;
+    }
+
+    /**
      * Queries the Google Generative Language API on a background thread to retrieve all live available models.
-     * 
+     *
      * @param apiKey The user-provided or stored Google Gemini API key
      */
     public void fetchAvailableModels(final String apiKey) {
@@ -193,6 +349,12 @@ public class GeminiService {
             }
             deliverStreamComplete(msgId);
         } catch (IOException e) {
+            synchronized (callLock) {
+                if (activeCall != null && activeCall.isCanceled()) {
+                    Log.d(TAG, "Stream aborted cleanly by user cancellation.");
+                    return;
+                }
+            }
             Log.e(TAG, "Stream reading interrupted: " + e.getMessage());
             deliverError(msgId, "Streaming interrupted: " + e.getMessage());
         } finally {
@@ -272,6 +434,7 @@ public class GeminiService {
      * Disposes the asynchronous background thread executors safely on destruction.
      */
     public void shutdown() {
+        cancelCurrentCall();
         if (!executorService.isShutdown()) {
             executorService.shutdownNow();
         }
