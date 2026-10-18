@@ -27,8 +27,8 @@ import okhttp3.ResponseBody;
 
 /**
  * Native Network Service for Google Gemini APIs.
- * Handles background REST and streaming execution utilizing OkHttp and thread executors.
- * Pipes streaming chunk payloads directly back to the active WebView on the main UI thread.
+ * Handles background REST, streaming execution, and live model discovery utilizing OkHttp and thread executors.
+ * Pipes streaming chunk payloads and model catalogs directly back to the active WebView on the main UI thread.
  */
 public class GeminiService {
 
@@ -125,6 +125,59 @@ public class GeminiService {
     }
 
     /**
+     * Queries the Google Generative Language API on a background thread to retrieve all live available models.
+     * 
+     * @param apiKey The user-provided or stored Google Gemini API key
+     */
+    public void fetchAvailableModels(final String apiKey) {
+        executorService.execute(() -> {
+            try {
+                String keyToUse = (apiKey != null && !apiKey.trim().isEmpty()) ? apiKey.trim() : "";
+                if (keyToUse.isEmpty()) {
+                    SharedPreferences prefs = context.getSharedPreferences(AppConstants.PREF_NAME, Context.MODE_PRIVATE);
+                    keyToUse = prefs.getString(AppConstants.KEY_GEMINI_API_KEY, "");
+                }
+
+                if (keyToUse.isEmpty()) {
+                    deliverLiveModelsError("Gemini API key is missing. Please configure an API key in Gemini Settings.");
+                    return;
+                }
+
+                String targetUrl = AppConstants.GEMINI_MODELS_LIST_URL + "?key=" + keyToUse;
+                Log.d(TAG, "Fetching live Gemini models from endpoint: " + AppConstants.GEMINI_MODELS_LIST_URL);
+
+                Request request = new Request.Builder()
+                        .url(targetUrl)
+                        .get()
+                        .build();
+
+                Response response = client.newCall(request).execute();
+
+                if (!response.isSuccessful()) {
+                    String errorText = response.body() != null ? response.body().string() : "Empty error response";
+                    Log.e(TAG, "Failed to fetch Gemini models: HTTP " + response.code() + " -> " + errorText);
+                    deliverLiveModelsError("HTTP " + response.code() + ": " + errorText);
+                    return;
+                }
+
+                ResponseBody responseBody = response.body();
+                if (responseBody == null) {
+                    deliverLiveModelsError("Empty response body from Google Generative Language API.");
+                    return;
+                }
+
+                String responseData = responseBody.string();
+                Log.d(TAG, "Successfully retrieved live Gemini models from Google API.");
+                deliverLiveModelsFetched(responseData);
+
+            } catch (IOException e) {
+                Log.e(TAG, "Network error while fetching Gemini models: " + e.getMessage(), e);
+                deliverLiveModelsError("Network connection failure: " + e.getMessage());
+            }
+        });
+    }
+
+    /**
      * Parses the response body stream cleanly using UTF-8 character buffers to prevent
      * multi-byte character boundary corruption, and pipes raw chunks back to JavaScript.
      */
@@ -185,6 +238,22 @@ public class GeminiService {
             String quotedMsgId = safeQuote(msgId);
             String quotedError = safeQuote(errorMessage);
             String js = "if(window.onGeminiError){ window.onGeminiError(" + quotedMsgId + ", " + quotedError + "); }";
+            webView.evaluateJavascript(js, null);
+        });
+    }
+
+    private void deliverLiveModelsFetched(final String json) {
+        mainHandler.post(() -> {
+            String quotedJson = safeQuote(json);
+            String js = "if(window.onGeminiLiveModelsFetched){ window.onGeminiLiveModelsFetched(" + quotedJson + "); }";
+            webView.evaluateJavascript(js, null);
+        });
+    }
+
+    private void deliverLiveModelsError(final String errorMessage) {
+        mainHandler.post(() -> {
+            String quotedError = safeQuote(errorMessage);
+            String js = "if(window.onGeminiLiveModelsError){ window.onGeminiLiveModelsError(" + quotedError + "); }";
             webView.evaluateJavascript(js, null);
         });
     }
